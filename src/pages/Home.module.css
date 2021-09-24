@@ -1,0 +1,36 @@
+.h1 {
+  font-size: 70px;
+}
+
+.p {
+  font-size: 40px;
+  text-align: center;
+}
+
+.button1 {
+  background-color: rgb(72, 18, 221);
+  border: none;
+  border-radius: 0.5em;
+  color: white;
+  display: inline-block;
+  margin: 15px;
+  padding: 15px;
+  height: 50px;
+  width: 250px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.button2 {
+  background-color: rgb(187, 18, 221);
+  border: none;
+  border-radius: 0.5em;
+  color: white;
+  display: inline-block;
+  margin: 15px;
+  padding: 15px;
+  height: 50px;
+  width: 250px;
+  text-align: center;
+  font-size: 20px;
+}

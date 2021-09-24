@@ -1,0 +1,29 @@
+.header {
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(171, 134, 255);
+}
+
+.header ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.header li {
+  margin: 1rem 5rem;
+}
+
+.header a {
+  text-decoration: underline;
+  font-size: 1.5rem;
+  color: rgb(72, 18, 221);
+}
+
+.header a:hover,
+.header a:active,
+.header a.active {
+  color: white;
+}

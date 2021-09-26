@@ -1,9 +1,13 @@
+import SignUpForm from '../components/forms/SignUpForm';
+import signupclass from './SignUp.module.css';
+
 function SignUpPage() {
     return (
-        <div>
-            <h1>Sign Up</h1>
-        </div>
-
+        <section>
+            <h1 className={signupclass.h1}>Sign Up</h1>
+            <SignUpForm />
+        </section>
+        
     );
 }
 

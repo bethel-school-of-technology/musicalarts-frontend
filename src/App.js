@@ -4,6 +4,7 @@ import HomePage from './pages/Home';
 import AboutPage from './pages/About';
 import SignInPage from './pages/SignIn';
 import SignUpPage from './pages/SignUp';
+import SellerDashboard from './pages/SellerDashboard';
 
 import Layout from './components/layout/Layout';
 
@@ -22,6 +23,9 @@ function App() {
         </Route>
         <Route path='/signup'>
           <SignUpPage />
+        </Route>
+        <Route path='/seller'>
+          <SellerDashboard />
         </Route>
       </Switch>
     </Layout>

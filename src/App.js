@@ -5,6 +5,7 @@ import AboutPage from './pages/About';
 import SignInPage from './pages/SignIn';
 import SignUpPage from './pages/SignUp';
 import SellerDashboard from './pages/SellerDashboard';
+import Gallery from './pages/Gallery';
 
 import Layout from './components/layout/Layout';
 
@@ -26,6 +27,9 @@ function App() {
         </Route>
         <Route path='/seller'>
           <SellerDashboard />
+        </Route>
+        <Route path='/gallery'>
+          <Gallery />
         </Route>
       </Switch>
     </Layout>

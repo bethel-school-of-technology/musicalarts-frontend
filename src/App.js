@@ -8,6 +8,7 @@ import SellerDashboard from './pages/SellerDashboard';
 import Gallery from './pages/Gallery';
 
 import Layout from './components/layout/Layout';
+import ItemDetail from './components/ItemDetail.js';
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
         </Route>
         <Route path='/gallery'>
           <Gallery />
+        </Route>
+        <Route path='/:itemId'>
+          <ItemDetail />
         </Route>
       </Switch>
     </Layout>

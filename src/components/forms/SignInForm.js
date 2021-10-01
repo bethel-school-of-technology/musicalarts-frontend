@@ -1,57 +1,53 @@
-import { useState } from 'react';
-import API from '../../utils/API';
+import { useState } from "react";
+import API from "../../utils/API";
 
-import signinclass from './SignInForm.module.css';
+import signinclass from "./SignInForm.module.css";
 
 function SignInForm() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-    const [userName, setUserName] = useState("");
-    const [userPassword, setUserPassword] = useState("");
+  function submitHandler() {
+    console.log(username);
+    console.log(password);
 
-    const handleUserName = (e) => {
-        const { value } = e.target;
-       setUserName(value);
+    API.getUser({
+      username,
+      password,
+    }).then((res) => {
+      console.log(res);
+    });
+  }
 
-       console.log(userName);
-    }
-
-    const handlePassword = (e) => {
-        const { value } = e.target;
-       setUserPassword(value);
-
-       console.log(userPassword);
-    }
-
-    function submitHandler(event) {
-        event.preventDefault();
-
-        console.log(userName);
-        console.log(userPassword);
-
-        const userInfo = {
-            userName: userName,
-            passWord: userPassword
-        }
-        API.getUser(userInfo).then(res => {
-            console.log(res);
-        })
-
-    }
-
-    return (
-        <form className={signinclass.form} onSubmit={submitHandler}>
-            <div>
-                <input onChange={handleUserName} htmlFor='username' className={signinclass.input} type="text" required id="username" placeholder="Username" />
-            </div>
-            <div>
-                <input onChange={handlePassword} htmlFor='password' className={signinclass.input} type="text" required id="password" placeholder="Password" />  
-            </div>
-            <div>
-                <button className={signinclass.button} >Submit</button>
-            </div>
-        </form>
-    );
-
+  return (
+    <div className={signinclass.form}>
+      <div>
+        <input
+          onChange={(e) => setUsername(e.target.value)}
+          className={signinclass.input}
+          type="text"
+          required
+          id="username"
+          placeholder="Username"
+        />
+      </div>
+      <div>
+        <input
+          onChange={(e) => setPassword(e.target.value)}
+          className={signinclass.input}
+          type="text"
+          required
+          id="password"
+          placeholder="Password"
+        />
+      </div>
+      <div>
+        <button className={signinclass.button} onClick={submitHandler}>
+          Submit
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default SignInForm;

@@ -1,11 +1,7 @@
-// import React, { useState } from "react";
-// import SignUp from "../pages/SignUp";
 import { Link } from "react-router-dom";
 import homeclass from "./Home.module.css";
 
 const HomePage = () => {
-  // const [modalButton, setModalButton] = useState(false);
-
   return (
     <div>
       <h1 className={homeclass.h1}>Welcome to MusicalArts®!</h1>

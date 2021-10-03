@@ -1,13 +1,15 @@
 import axios from "axios";
 
-const backendUrl = "http://localhost:3000/users"; //Just for now. Once I collaborate with Matt, I will put in the right URL. - Ben Von Achen :)
+const backendUrl = "http://localhost:3001/";
 
 const API = {
-  getUser: function (user) {
-    return axios.get(`${backendUrl}`, user).catch((e) => console.error(e));
+  getUser: function () {
+    return axios.get(`${backendUrl}` + "users").catch((e) => console.error(e));
   },
-  createUser: function (user) {
-    return axios.create(`${backendUrl}`, user).catch((e) => console.error(e));
+  createUser: function (newUser) {
+    return axios
+      .post(`${backendUrl}` + "users", newUser)
+      .catch((e) => console.error(e));
   },
 };
 

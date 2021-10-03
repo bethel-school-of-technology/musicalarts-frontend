@@ -4,32 +4,20 @@ import API from "../../utils/API";
 import signupclass from "./SignUpForm.module.css";
 
 function SignUpForm() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
+  const [user, setUser] = useState({
+    userName: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    address: "",
+    phoneNumber: "",
+  });
 
   function submitHandler() {
-    console.log(username);
-    console.log(password);
-    console.log(firstName);
-    console.log(lastName);
-    console.log(email);
-    console.log(address);
-    console.log(phone);
+    console.log(user.userName);
 
-    API.createUser({
-      username,
-      password,
-      firstName,
-      lastName,
-      email,
-      address,
-      phone,
-    }).then((res) => {
+    API.createUser(user).then((res) => {
       console.log(res);
     });
   }
@@ -38,7 +26,7 @@ function SignUpForm() {
     <div className={signupclass.form}>
       <div>
         <input
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => setUser({ ...user, userName: e.target.value })}
           className={signupclass.input}
           type="text"
           required
@@ -48,9 +36,9 @@ function SignUpForm() {
       </div>
       <div>
         <input
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
           className={signupclass.input}
-          type="text"
+          type="password"
           required
           id="password"
           placeholder="Password"
@@ -58,7 +46,7 @@ function SignUpForm() {
       </div>
       <div>
         <input
-          onChange={(e) => setFirstName(e.target.value)}
+          onChange={(e) => setUser({ ...user, firstName: e.target.value })}
           className={signupclass.input}
           type="text"
           required
@@ -68,7 +56,7 @@ function SignUpForm() {
       </div>
       <div>
         <input
-          onChange={(e) => setLastName(e.target.value)}
+          onChange={(e) => setUser({ ...user, lastName: e.target.value })}
           className={signupclass.input}
           type="text"
           required
@@ -78,7 +66,7 @@ function SignUpForm() {
       </div>
       <div>
         <input
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
           className={signupclass.input}
           type="text"
           required
@@ -88,7 +76,7 @@ function SignUpForm() {
       </div>
       <div>
         <input
-          onChange={(e) => setAddress(e.target.value)}
+          onChange={(e) => setUser({ ...user, address: e.target.value })}
           className={signupclass.input}
           type="text"
           required
@@ -98,11 +86,11 @@ function SignUpForm() {
       </div>
       <div>
         <input
-          onChange={(e) => setPhone(e.target.value)}
+          onChange={(e) => setUser({ ...user, phoneNumber: e.target.value })}
           className={signupclass.input}
           type="text"
           required
-          id="phone"
+          id="phonenumber"
           placeholder="Phone"
         />
       </div>

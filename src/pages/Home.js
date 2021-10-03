@@ -1,5 +1,6 @@
 // import React, { useState } from "react";
 // import SignUp from "../pages/SignUp";
+import { Link } from "react-router-dom";
 import homeclass from "./Home.module.css";
 
 const HomePage = () => {
@@ -14,9 +15,13 @@ const HomePage = () => {
           and Musicians!
         </i>
       </p>
-      <button className={homeclass.button1}>Create Account</button>
+      <Link to="/signup">
+        <button className={homeclass.button1}>Create Account</button>
+      </Link>
       <br />
-      <button className={homeclass.button2}>View Listings</button>
+      <Link to="/gallery">
+        <button className={homeclass.button2}>View Listings</button>
+      </Link>
     </div>
   );
 };

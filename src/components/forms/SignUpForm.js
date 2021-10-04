@@ -5,7 +5,7 @@ import signupclass from "./SignUpForm.module.css";
 
 function SignUpForm() {
   const [user, setUser] = useState({
-    userName: "",
+    username: "",
     password: "",
     firstName: "",
     lastName: "",
@@ -15,7 +15,7 @@ function SignUpForm() {
   });
 
   function submitHandler() {
-    console.log(user.userName);
+    console.log(user.username);
 
     API.createUser(user).then((res) => {
       console.log(res);
@@ -26,7 +26,7 @@ function SignUpForm() {
     <div className={signupclass.form}>
       <div>
         <input
-          onChange={(e) => setUser({ ...user, userName: e.target.value })}
+          onChange={(e) => setUser({ ...user, username: e.target.value })}
           className={signupclass.input}
           type="text"
           required

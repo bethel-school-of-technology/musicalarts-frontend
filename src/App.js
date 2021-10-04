@@ -7,6 +7,7 @@ import SignUpPage from "./pages/SignUp";
 import SellerDashboard from "./pages/SellerDashboard";
 import Gallery from "./pages/Gallery";
 import ShoppingBag from "./pages/ShoppingBag";
+import Checkout from "./pages/Checkout";
 
 import Layout from "./components/layout/Layout";
 import ItemDetail from "./components/ItemDetail.js";
@@ -35,6 +36,9 @@ function App() {
         </Route>
         <Route path="/shoppingbag">
           <ShoppingBag />
+        </Route>
+        <Route path="/checkout">
+          <Checkout />
         </Route>
         <Route path="/:itemId">
           <ItemDetail />

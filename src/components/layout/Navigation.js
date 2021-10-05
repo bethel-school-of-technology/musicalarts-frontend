@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import navclass from "./Navigation.module.css";
 
-function FirstNavigation() {
+function Navigation() {
   return (
     <header className={navclass.header}>
       <nav>
@@ -31,4 +31,4 @@ function FirstNavigation() {
   );
 }
 
-export default FirstNavigation;
+export default Navigation;

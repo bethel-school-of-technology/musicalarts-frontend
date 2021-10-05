@@ -1,14 +1,14 @@
-import axios from 'axios';
+import axios from "axios";
 
-const backendUrl = 'http://localhost:3001/';
+const backendUrl = "http://localhost:3001/";
 
 const API = {
   getUser: function () {
-    return axios.get(`${backendUrl}` + 'users').catch((e) => console.error(e));
+    return axios.get(`${backendUrl}` + "users").catch((e) => console.error(e));
   },
   createUser: function (newUser) {
     return axios
-      .post(`${backendUrl}` + 'users', newUser)
+      .post(`${backendUrl}` + "users", newUser)
       .catch((e) => console.error(e));
   },
   getListings: function () {
@@ -19,6 +19,16 @@ const API = {
       .post(`${backendUrl}inventory`, newListing)
       .catch((e) => console.error(e));
   },
+  //createShippingInfo: function (newShippingInfo) {
+  //return axios
+  //.post(`${backendUrl}` + 'shipping', newShippingInfo)
+  //.catch((e) => console.error(e));
+  //},
+  //createPaymentMethod: function (newPaymentMethod) {
+  //return axios
+  //.post(`${backendUrl}` + 'payment', newPaymentMethod)
+  //.catch((e) => console.error(e));
+  //},
 };
 
 export default API;

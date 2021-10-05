@@ -1,11 +1,15 @@
-import CheckoutForm from "../components/forms/CheckoutForm";
+import ShippingInfoForm from "../components/forms/CheckoutForms/ShippingInfo";
+import PaymentMethodForm from "../components/forms/CheckoutForms/PaymentMethod";
+import GrandTotal from "../components/forms/CheckoutForms/GrandTotal";
 import checkoutclass from "./Checkout.module.css";
 
 const CheckoutPage = () => {
   return (
     <section>
       <h1 className={checkoutclass.h1}>Checkout</h1>
-      <CheckoutForm />
+      <ShippingInfoForm />
+      <PaymentMethodForm />
+      <GrandTotal />
     </section>
   );
 };

@@ -11,9 +11,10 @@ const ShoppingBag = () => {
 
         <p className="subtotal">Sub Total: </p>
 
-        {/* <Link to='/checkout'> */}
-        <button className="checkout">Proceed To Checkout</button>
-        {/* </Link> */}
+        <Link to="/checkout">
+          <button className="checkout">Proceed To Checkout</button>
+        </Link>
+
         <Link to="/gallery">
           <button className="shopping">Continue Shopping</button>
         </Link>

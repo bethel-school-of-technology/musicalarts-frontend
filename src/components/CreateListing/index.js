@@ -1,55 +1,64 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router';
 import './CreateListing.css';
+import axios from 'axios';
+//import API from '../../utils/API';
 
 //TODO: add history once you have axios up and running!!
-const CreateListing = (props) => {
-  const [title, setTitle] = useState('');
+const CreateListing = (props, { history }) => {
+  const [itemName, setItemName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [genre, setGenre] = useState('');
   const [location, setLocation] = useState('');
-  // const [musicType, setMusicType] = useState(false);
-  // const [artType, setArtType] = useState(false);
+
+  // const submitListing = () => {
+  //   API.createListing(inventory).then((res) => {
+  //     console.log(res);
+  //   });
+  // };
 
   const createListing = (e) => {
     e.preventDefault();
-    // if (
-    //   title !== '' &&
-    //   description !== '' &&
-    //   price !== '' &&
-    //   genre !== '' &&
-    //   location !== ''
-    // ) {
-    //   const req = {
-    //     title,
-    //     description,
-    //     price,
-    //     genre,
-    //     location,
-    //   };
+    if (
+      itemName !== '' &&
+      description !== '' &&
+      price !== '' &&
+      genre !== '' &&
+      location !== ''
+    ) {
+      const req = {
+        itemName,
+        description,
+        price,
+        genre,
+        location,
+      };
 
-    //   const token = localStorage.getItem('myJWT')
+      const token = localStorage.getItem('myJWT');
 
-    //   if(!token) {
-    //     //redirect
-    //     history.push('/login')
-    //   }
+      if (!token) {
+        //redirect
+        history.push('/home');
+      }
 
-    //   const options = {
-    //     headers: {
-    //       'Authorization': `Bearer ${token}`
-    //     }
-    //   }
-    //   axios.post('http://localhost:3001/item', req, options).then((res) => {
-    //     console.log(res.data);
-    //     history.push('/gallery');
-    //   }, err => {
-    //     //TODO: figure out what we will be naming the token
-    //     localStorage.removeItem('token?')
-    //     history.push('/signin')
-    //   });
-    // }
+      const options = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      axios.post('http://localhost:3001/item', req, options).then(
+        (res) => {
+          console.log(res.data);
+          history.push('/gallery');
+        },
+        (err) => {
+          //TODO: figure out what we will be naming the token
+          localStorage.removeItem('myJWT', token);
+          history.push('/signin');
+        }
+      );
+    }
   };
 
   return props.trigger ? (
@@ -60,9 +69,9 @@ const CreateListing = (props) => {
           <h2>Create a post: </h2>
           <input
             type='text'
-            placeholder='Title'
-            name='title'
-            onChange={(e) => setTitle(e.target.value)}
+            placeholder='Item Name'
+            name='itemName'
+            onChange={(e) => setItemName(e.target.value)}
           />
           <input
             type='text'
@@ -90,9 +99,9 @@ const CreateListing = (props) => {
           />
           <p>Will you be uploading Music or Art?:</p>
           <input type='checkbox' id='music' name='music' />
-          <label for='musicType'>Music</label>
+          <label htmlFor='musicType'>Music</label>
           <input type='checkbox' id='artType' name='artType' />
-          <label for='artType'>Art</label>
+          <label htmlFor='artType'>Art</label>
           <button className='close-btn' onClick={() => props.setTrigger(false)}>
             close
           </button>

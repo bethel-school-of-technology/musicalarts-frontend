@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 const ItemDetail = ({ history }) => {
   const [inventory, setInventory] = useState({});
   let { itemId } = useParams();
+
   useEffect(() => {
-    const url = `http://localhost:3001/items/${itemId}`;
+    const url = `http://localhost:3001/inventory/${itemId}`;
     axios.get(url).then(
       (res) => {
         console.log(res);
@@ -18,9 +19,13 @@ const ItemDetail = ({ history }) => {
       }
     );
   }, [itemId, history]);
+
+  if (!inventory) {
+    return <div>Product Not Found</div>;
+  }
   return (
     <div>
-      <h1>{inventory.title}</h1>
+      <h1>{inventory.itemName}</h1>
       <p>{inventory.description}</p>
       <Link to='/gallery'>Back to Gallery</Link>
     </div>

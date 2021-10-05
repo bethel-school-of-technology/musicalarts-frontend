@@ -16,7 +16,7 @@ const Item = ({ item }) => {
     <div>
       <Card>
         {/* TODO: Need to create a page to view single item. Clicking on the image should link to ProductPage/ItemPage */}
-        <Link to={'/' + item.id}>
+        <Link to={'/gallery' + '/' + item.id}>
           <CardImg
             top
             width='100%'
@@ -28,7 +28,7 @@ const Item = ({ item }) => {
         <CardBody>
           <CardTitle tag='h5'>{item.title}</CardTitle>
           <CardSubtitle tag='h6' className='mb-2 text-muted'>
-            {item.price} | {item.genre}
+            ${item.price} | {item.genre}
           </CardSubtitle>
           <CardText>{item.description}</CardText>
           <Button outline color='primary'>

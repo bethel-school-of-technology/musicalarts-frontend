@@ -1,0 +1,20 @@
+.h1 {
+  color: white;
+  font-size: 65px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  text-align: center;
+}
+
+.button {
+  background-color: rgb(72, 18, 221);
+  border: none;
+  border-radius: 0.5em;
+  color: white;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  display: inline-block;
+  margin: 15px;
+  padding: 10px;
+  text-align: center;
+  font-size: 26px;
+  width: 250px;
+}

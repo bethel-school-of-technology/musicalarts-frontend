@@ -35,7 +35,7 @@ function SignInForm() {
         <input
           onChange={(e) => setPassword(e.target.value)}
           className={signinclass.input}
-          type="text"
+          type="password"
           required
           id="password"
           placeholder="Password"

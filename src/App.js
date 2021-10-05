@@ -1,5 +1,6 @@
 import { Route, Switch } from 'react-router-dom';
 
+
 import HomePage from './pages/Home';
 import AboutPage from './pages/About';
 import SignInPage from './pages/SignIn';
@@ -7,6 +8,7 @@ import SignUpPage from './pages/SignUp';
 import SellerDashboard from './pages/SellerDashboard';
 import Gallery from './pages/Gallery';
 import ShoppingBag from './pages/ShoppingBag';
+import Checkout from './pages/Checkout';
 
 import Layout from './components/layout/Layout';
 import ItemDetail from './components/ItemDetail.js';
@@ -39,6 +41,10 @@ function App() {
         <Route path='/gallery/:itemId' exact>
           <ItemDetail />
         </Route>
+        <Route path='/checkout'>
+          <Checkout />
+        </Route>
+        
       </Switch>
     </Layout>
   );

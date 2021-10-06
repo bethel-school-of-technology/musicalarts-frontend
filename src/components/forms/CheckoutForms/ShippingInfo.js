@@ -5,7 +5,7 @@ import API from "../../../utils/API";
 import shippingclass from "./ShippingInfo.module.css";
 
 const ShippingInfoForm = () => {
-  const [order, setShippingInfo] = useState({
+  const [shippinginfo, setShippingInfo] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -16,9 +16,9 @@ const ShippingInfoForm = () => {
   });
 
   function submitHandler() {
-    console.log(order.firstName);
+    console.log(shippinginfo.firstName);
 
-    API.createShippingInfo(order).then((res) => {
+    API.createShippingInfo(shippinginfo).then((res) => {
       console.log(res);
     });
   }
@@ -28,7 +28,7 @@ const ShippingInfoForm = () => {
       <div>
         <input
           onChange={(e) =>
-            setShippingInfo({ ...order, firstName: e.target.value })
+            setShippingInfo({ ...shippinginfo, firstName: e.target.value })
           }
           className={shippingclass.input}
           type="text"
@@ -40,7 +40,7 @@ const ShippingInfoForm = () => {
       <div>
         <input
           onChange={(e) =>
-            setShippingInfo({ ...order, LastName: e.target.value })
+            setShippingInfo({ ...shippinginfo, lastName: e.target.value })
           }
           className={shippingclass.input}
           type="text"
@@ -51,7 +51,9 @@ const ShippingInfoForm = () => {
       </div>
       <div>
         <input
-          onChange={(e) => setShippingInfo({ ...order, email: e.target.value })}
+          onChange={(e) =>
+            setShippingInfo({ ...shippinginfo, email: e.target.value })
+          }
           className={shippingclass.input}
           type="text"
           required
@@ -62,7 +64,7 @@ const ShippingInfoForm = () => {
       <div>
         <input
           onChange={(e) =>
-            setShippingInfo({ ...order, address: e.target.value })
+            setShippingInfo({ ...shippinginfo, address: e.target.value })
           }
           className={shippingclass.input}
           type="text"
@@ -73,7 +75,9 @@ const ShippingInfoForm = () => {
       </div>
       <div>
         <input
-          onChange={(e) => setShippingInfo({ ...order, city: e.target.value })}
+          onChange={(e) =>
+            setShippingInfo({ ...shippinginfo, city: e.target.value })
+          }
           className={shippingclass.input}
           type="text"
           required
@@ -83,7 +87,9 @@ const ShippingInfoForm = () => {
       </div>
       <div>
         <input
-          onChange={(e) => setShippingInfo({ ...order, state: e.target.value })}
+          onChange={(e) =>
+            setShippingInfo({ ...shippinginfo, state: e.target.value })
+          }
           className={shippingclass.input}
           type="text"
           required
@@ -94,7 +100,7 @@ const ShippingInfoForm = () => {
       <div>
         <input
           onChange={(e) =>
-            setShippingInfo({ ...order, zipCode: e.target.value })
+            setShippingInfo({ ...shippinginfo, zipCode: e.target.value })
           }
           className={shippingclass.input}
           type="number"

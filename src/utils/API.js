@@ -19,11 +19,11 @@ const API = {
       .post(`${backendUrl}inventory`, newListing)
       .catch((e) => console.error(e));
   },
-  //createShippingInfo: function (newShippingInfo) {
-  //return axios
-  //.post(`${backendUrl}` + 'shipping', newShippingInfo)
-  //.catch((e) => console.error(e));
-  //},
+  createShippingInfo: function (newShippingInfo) {
+    return axios
+      .post(`${backendUrl}` + "shippinginfos", newShippingInfo)
+      .catch((e) => console.error(e));
+  },
   //createPaymentMethod: function (newPaymentMethod) {
   //return axios
   //.post(`${backendUrl}` + 'payment', newPaymentMethod)

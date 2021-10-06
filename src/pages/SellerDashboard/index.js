@@ -1,15 +1,16 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useParams, withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 import CreateListing from '../../components/CreateListing';
+import UpdateListing from '../../components/UpdateListing';
 import './SellerDashboard.css';
 
-/*import React, { useState, useEffect } from 'react';*/
 
-//I had to comment that import for the time being. It was giving me warning messages. After I commented it out, it compiled successfully! Once you start to actually use this import, you can uncomment them. -Ben Von Achen :)
 
 const SellerDashboard = ({ history }) => {
   const [modalButton, setModalButton] = useState(false);
+  const [updateButton, setUpdateButton] = useState(false);
   const [seller, setSeller] = useState([]);
   let { sellerId } = useParams();
 
@@ -21,7 +22,7 @@ const SellerDashboard = ({ history }) => {
         setSeller(res.data);
       },
       (err) => {
-        history.push('/home');
+        history.push('/');
       }
     );
   }, [sellerId, history]);
@@ -38,13 +39,22 @@ const SellerDashboard = ({ history }) => {
         <p>account type: Seller</p>
 
         <button onClick={() => setModalButton(true)}>Create New Listing</button>
+        {/* TODO:  Put this in manage listings component */}
+        {/* <button onClick={() => setUpdateButton(true)}>Manage Listings</button> */}
 
-        <button>Manage Listing's</button>
         <button>Update Account</button>
         <CreateListing trigger={modalButton} setTrigger={setModalButton} />
         {/* <Modal trigger={modalButton} setTrigger={setModalButton}>
         <h2>this works right?</h2>
       </Modal> */}
+        {/* TODO:  Put this in manage listings component */}
+        <UpdateListing
+          triggerUpdate={updateButton}
+          setTriggerUpdate={setUpdateButton}
+        />
+        <Link to='/manage-listings'>
+          <button>Manage everything</button>
+        </Link>
       </main>
     </div>
   );

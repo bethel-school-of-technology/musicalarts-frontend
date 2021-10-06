@@ -47,7 +47,7 @@ const CreateListing = (props, { history }) => {
           Authorization: `Bearer ${token}`,
         },
       };
-      axios.post('http://localhost:3001/item', req, options).then(
+      axios.post('http://localhost:3001/inventory', req, options).then(
         (res) => {
           console.log(res.data);
           history.push('/gallery');

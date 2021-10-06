@@ -28,6 +28,10 @@ const ItemDetail = ({ history }) => {
       <h1>{inventory.itemName}</h1>
       <p>{inventory.description}</p>
       <Link to='/gallery'>Back to Gallery</Link>
+      <br />
+      <button outline color='primary'>
+        Add to cart
+      </button>
     </div>
   );
 };

@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import API from "../../../utils/API";
-//import submitHandler from '../CheckoutForms/GrandTotal';
 
 import paymentclass from "./PaymentMethod.module.css";
 
 const PaymentMethodForm = () => {
-  const [order, setPaymentMethod] = useState({
+  const [paymentmethod, setPaymentMethod] = useState({
     cardNumber: "",
     expirationDate: "",
     cvv: "",
     phoneNumber: "",
   });
 
-  function submitHandler() {
-    console.log(order.phoneNumber);
+  function submitPaymentMethod() {
+    console.log(paymentmethod.cardNumber);
 
-    API.createPaymentMethod(order).then((res) => {
+    API.createPaymentMethod(paymentmethod).then((res) => {
       console.log(res);
     });
   }
@@ -26,7 +25,7 @@ const PaymentMethodForm = () => {
       <div>
         <input
           onChange={(e) =>
-            setPaymentMethod({ ...order, cardNumber: e.target.value })
+            setPaymentMethod({ ...paymentmethod, cardNumber: e.target.value })
           }
           className={paymentclass.input}
           type="number"
@@ -38,10 +37,13 @@ const PaymentMethodForm = () => {
       <div>
         <input
           onChange={(e) =>
-            setPaymentMethod({ ...order, expirationDate: e.target.value })
+            setPaymentMethod({
+              ...paymentmethod,
+              expirationDate: e.target.value,
+            })
           }
           className={paymentclass.input}
-          type="date"
+          type="text"
           required
           id="expirationdate"
           placeholder="Exp. (MM/YY)"
@@ -49,7 +51,9 @@ const PaymentMethodForm = () => {
       </div>
       <div>
         <input
-          onChange={(e) => setPaymentMethod({ ...order, cvv: e.target.value })}
+          onChange={(e) =>
+            setPaymentMethod({ ...paymentmethod, cvv: e.target.value })
+          }
           className={paymentclass.input}
           type="number"
           required
@@ -60,7 +64,7 @@ const PaymentMethodForm = () => {
       <div>
         <input
           onChange={(e) =>
-            setPaymentMethod({ ...order, phoneNumber: e.target.value })
+            setPaymentMethod({ ...paymentmethod, phoneNumber: e.target.value })
           }
           className={paymentclass.input}
           type="text"
@@ -70,7 +74,7 @@ const PaymentMethodForm = () => {
         />
       </div>
       <div>
-        <button className={paymentclass.button} onClick={submitHandler}>
+        <button className={paymentclass.button} onClick={submitPaymentMethod}>
           Submit
         </button>
       </div>

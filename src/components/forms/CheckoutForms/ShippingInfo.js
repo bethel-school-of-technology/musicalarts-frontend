@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import API from "../../../utils/API";
-//import submitHandler from "../CheckoutForms/GrandTotal";
 
 import shippingclass from "./ShippingInfo.module.css";
 
@@ -15,7 +14,7 @@ const ShippingInfoForm = () => {
     zipCode: "",
   });
 
-  function submitHandler() {
+  function submitShippingInfo() {
     console.log(shippinginfo.firstName);
 
     API.createShippingInfo(shippinginfo).then((res) => {
@@ -110,7 +109,7 @@ const ShippingInfoForm = () => {
         />
       </div>
       <div>
-        <button className={shippingclass.button} onClick={submitHandler}>
+        <button className={shippingclass.button} onClick={submitShippingInfo}>
           Submit
         </button>
       </div>

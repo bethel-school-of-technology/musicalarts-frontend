@@ -49,9 +49,7 @@ function App() {
         <Route path='/ordersubmission'>
           <OrderSubmission />
         </Route>
-        <Route path='/manage-listings'>
-          <ManageListings />
-        </Route>
+        <PrivateRoute path='/user/manage-listings' component={ManageListings} />
       </Switch>
     </Layout>
   );

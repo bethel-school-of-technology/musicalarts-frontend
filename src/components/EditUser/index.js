@@ -26,7 +26,7 @@ function SignUpForm() {
         ...user,
       };
 
-      const token = localStorage.getItem('myJWT');
+      const token = localStorage.getItem('token');
 
       if (!token) {
         //redirect
@@ -38,7 +38,7 @@ function SignUpForm() {
           Authorization: `Bearer ${props.token}`,
         },
       };
-      const url = `http://localhost:3001/users/${userId}`;
+      const url = `http://localhost:3001/user/${userId}`;
       axios.put(url, req, options).then(
         (res) => {
           console.log(res.data);
@@ -46,7 +46,7 @@ function SignUpForm() {
         },
         (err) => {
           //TODO: figure out what we will be naming the token
-          localStorage.removeItem('myJWT');
+          localStorage.removeItem('token');
           props.history.push('/signin');
         }
       );

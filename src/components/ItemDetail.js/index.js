@@ -4,7 +4,7 @@ import { useParams, withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 
 const ItemDetail = ({ history }) => {
-  const [inventory, setInventory] = useState({});
+  const [inventory, setInventory] = useState([]);
   let { itemId } = useParams();
 
   useEffect(() => {

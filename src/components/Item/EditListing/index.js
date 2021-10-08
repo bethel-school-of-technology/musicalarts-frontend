@@ -28,7 +28,7 @@ const EditListing = (props) => {
         ...listing,
       };
 
-      const token = localStorage.getItem('myJWT');
+      const token = localStorage.getItem('token');
 
       if (!token) {
         //redirect
@@ -48,7 +48,7 @@ const EditListing = (props) => {
         },
         (err) => {
           //TODO: figure out what we will be naming the token
-          localStorage.removeItem('myJWT');
+          localStorage.removeItem('token');
           props.history.push('/signin');
         }
       );
@@ -56,7 +56,7 @@ const EditListing = (props) => {
   };
 
   const deleteListing = () => {
-    const token = localStorage.getItem('myJWT');
+    const token = localStorage.getItem('token');
     if (!token) {
       //redirect
       history.push('/login');
@@ -76,7 +76,7 @@ const EditListing = (props) => {
         console.log(result.data);
       },
       (err) => {
-        localStorage.removeItem('myJWT');
+        localStorage.removeItem('token');
         history.push('/login');
       }
     );

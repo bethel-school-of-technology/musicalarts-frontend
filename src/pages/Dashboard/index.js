@@ -1,37 +1,47 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { useParams, withRouter } from 'react-router';
+import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import CreateListing from '../../components/CreateListing';
 import UpdateListing from '../../components/UpdateListing';
-import './SellerDashboard.css';
+import './Dashboard.css';
 
-
-
-const SellerDashboard = ({ history }) => {
+const Dashboard = (props) => {
   const [modalButton, setModalButton] = useState(false);
   const [updateButton, setUpdateButton] = useState(false);
   const [seller, setSeller] = useState([]);
-  let { sellerId } = useParams();
 
   useEffect(() => {
-    const url = `http://localhost:3001/users/${sellerId}`;
-    axios.get(url).then(
+    const token = localStorage.getItem('token');
+    if (!token) {
+      //redirect
+      props.history.push('/');
+    }
+
+    const options = {
+      headers: {
+        Authorization: `Bearer ${props.token}`,
+      },
+    };
+    const url = `http://localhost:3001/users/dashboard`;
+    axios.get(url, options).then(
       (res) => {
         console.log(res);
         setSeller(res.data);
       },
       (err) => {
-        history.push('/');
+        localStorage.removeItem('token');
+        props.history.push('/signin');
+        console.error(err);
       }
     );
-  }, [sellerId, history]);
+  }, [props.token, props.history]);
 
   return (
     <div>
       <main>
         {/* When the model's/backend are set up integrate it so that the user's name shows up */}
-        <h2>{seller.firstName} Dashboard</h2>
+        <h2>{seller.firstName}'s Dashboard</h2>
         <p>username: {seller.username} </p>
         <p>first name: {seller.firstName}</p>
         <p>last name: {seller.lastName} </p>
@@ -60,4 +70,4 @@ const SellerDashboard = ({ history }) => {
   );
 };
 
-export default withRouter(SellerDashboard);
+export default withRouter(Dashboard);

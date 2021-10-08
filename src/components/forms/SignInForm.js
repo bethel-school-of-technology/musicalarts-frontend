@@ -1,22 +1,33 @@
-import { useState } from "react";
-import API from "../../utils/API";
+import axios from 'axios';
+import { useState } from 'react';
+import { withRouter } from 'react-router';
 
-import signinclass from "./SignInForm.module.css";
+import signinclass from './SignInForm.module.css';
 
-function SignInForm() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+function SignInForm({ history }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   function submitHandler() {
     console.log(username);
     console.log(password);
-
-    API.getUser({
-      username,
-      password,
-    }).then((res) => {
-      console.log(res);
-    });
+    if (username !== '' && password !== '') {
+      const req = {
+        username,
+        password,
+      };
+      axios.post('http://localhost:3001/users/signin', req).then(
+        (result) => {
+          const token = result.data.jwt;
+          localStorage.setItem('token', token);
+          history.push(`/dashboard`);
+          console.log(result.data);
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
+    }
   }
 
   return (
@@ -25,20 +36,20 @@ function SignInForm() {
         <input
           onChange={(e) => setUsername(e.target.value)}
           className={signinclass.input}
-          type="text"
+          type='text'
           required
-          id="username"
-          placeholder="Username"
+          id='username'
+          placeholder='Username'
         />
       </div>
       <div>
         <input
           onChange={(e) => setPassword(e.target.value)}
           className={signinclass.input}
-          type="password"
+          type='password'
           required
-          id="password"
-          placeholder="Password"
+          id='password'
+          placeholder='Password'
         />
       </div>
       <div>
@@ -50,4 +61,4 @@ function SignInForm() {
   );
 }
 
-export default SignInForm;
+export default withRouter(SignInForm);

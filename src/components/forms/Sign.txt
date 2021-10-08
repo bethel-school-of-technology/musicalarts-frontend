@@ -1,36 +1,22 @@
-import axios from 'axios';
-import { useState } from 'react';
-import { useParams, withRouter } from 'react-router';
-//import API from '../../utils/API';
+import { useState } from "react";
+import API from "../../utils/API";
 
-import signinclass from './SignInForm.module.css';
+import signinclass from "./SignInForm.module.css";
 
-function SignInForm({ history }) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  let { sellerId } = useParams();
+function SignInForm() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   function submitHandler() {
     console.log(username);
     console.log(password);
-    if (username !== '' && password !== '') {
-      const req = {
-        username,
-        password,
-      };
-      axios.post('http://localhost:3001/users/signin', req).then((result) => {
-        const token = result.data.jwt;
-        localStorage.setItem('myJWT', token);
-        history.push(`/gallery/${sellerId}`);
-        console.log(result.data);
-      });
-    }
 
-    //   API.getUser({
-    //     username,
-    //     password,
-    //   }).then((res) => {
-    //     console.log(res);
-    //   });
+    API.getUser({
+      username,
+      password,
+    }).then((res) => {
+      console.log(res);
+    });
   }
 
   return (
@@ -39,20 +25,20 @@ function SignInForm({ history }) {
         <input
           onChange={(e) => setUsername(e.target.value)}
           className={signinclass.input}
-          type='text'
+          type="text"
           required
-          id='username'
-          placeholder='Username'
+          id="username"
+          placeholder="Username"
         />
       </div>
       <div>
         <input
           onChange={(e) => setPassword(e.target.value)}
           className={signinclass.input}
-          type='password'
+          type="password"
           required
-          id='password'
-          placeholder='Password'
+          id="password"
+          placeholder="Password"
         />
       </div>
       <div>
@@ -64,4 +50,4 @@ function SignInForm({ history }) {
   );
 }
 
-export default withRouter(SignInForm);
+export default SignInForm;

@@ -5,7 +5,7 @@ import axios from 'axios';
 //import API from '../../utils/API';
 
 //TODO: add history once you have axios up and running!!
-const CreateListing = (props, { history }) => {
+const CreateListing = (props) => {
   const [itemName, setItemName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
@@ -18,8 +18,7 @@ const CreateListing = (props, { history }) => {
   //   });
   // };
 
-  const createListing = (e) => {
-    e.preventDefault();
+  const createListing = () => {
     if (
       itemName !== '' &&
       description !== '' &&
@@ -39,23 +38,23 @@ const CreateListing = (props, { history }) => {
 
       if (!token) {
         //redirect
-        history.push('/home');
+        props.history.push('/');
       }
 
       const options = {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${props.token}`,
         },
       };
       axios.post('http://localhost:3001/inventory', req, options).then(
         (res) => {
           console.log(res.data);
-          history.push('/gallery');
+          props.history.push('/gallery');
         },
         (err) => {
           //TODO: figure out what we will be naming the token
-          localStorage.removeItem('myJWT', token);
-          history.push('/signin');
+          localStorage.removeItem('myJWT');
+          props.history.push('/signin');
         }
       );
     }
@@ -65,7 +64,7 @@ const CreateListing = (props, { history }) => {
     <div className='modal'>
       <div className='inner-modal'>
         <h2>Create A New Listing</h2>
-        <form onSubmit={createListing}>
+        <form>
           <h2>Create a post: </h2>
           <input
             type='text'
@@ -105,7 +104,9 @@ const CreateListing = (props, { history }) => {
           <button className='close-btn' onClick={() => props.setTrigger(false)}>
             close
           </button>
-          <button type='submit'>Create Listing</button>
+          <button onClick={createListing} type='submit'>
+            Create Listing
+          </button>
         </form>
       </div>
     </div>

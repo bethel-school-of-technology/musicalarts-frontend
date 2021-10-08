@@ -1,7 +1,7 @@
 import { Redirect, Route } from 'react-router';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const token = localStorage.getItem('myJWT');
+  const token = localStorage.getItem('token');
 
   const isLoggedIn = !!token;
 
@@ -15,7 +15,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         ) : (
           <Redirect
             to={{
-              pathname: '/sigin',
+              pathname: '/signin',
               state: { from: props.location },
             }}
           />

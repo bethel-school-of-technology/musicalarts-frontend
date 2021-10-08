@@ -1,25 +1,25 @@
-import axios from "axios";
-import { useState } from "react";
-import { withRouter } from "react-router";
+import axios from 'axios';
+import { useState } from 'react';
+import { withRouter } from 'react-router';
 
-import signinclass from "./SignInForm.module.css";
+import signinclass from './SignInForm.module.css';
 
 function SignInForm({ history }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   function submitHandler() {
     console.log(username);
     console.log(password);
-    if (username !== "" && password !== "") {
+    if (username !== '' && password !== '') {
       const req = {
         username,
         password,
       };
-      axios.post("http://localhost:3001/user/signin", req).then(
+      axios.post('http://localhost:3001/user/signin', req).then(
         (result) => {
           const token = result.data.jwt;
-          localStorage.setItem("token", token);
+          localStorage.setItem('token', token);
           history.push(`/dashboard`);
           console.log(result.data);
         },
@@ -36,20 +36,20 @@ function SignInForm({ history }) {
         <input
           onChange={(e) => setUsername(e.target.value)}
           className={signinclass.input}
-          type="text"
+          type='text'
           required
-          id="username"
-          placeholder="Username"
+          id='username'
+          placeholder='Username'
         />
       </div>
       <div>
         <input
           onChange={(e) => setPassword(e.target.value)}
           className={signinclass.input}
-          type="password"
+          type='password'
           required
-          id="password"
-          placeholder="Password"
+          id='password'
+          placeholder='Password'
         />
       </div>
       <div>

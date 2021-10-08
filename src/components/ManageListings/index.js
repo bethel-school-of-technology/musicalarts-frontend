@@ -10,7 +10,7 @@ const ManageListings = ({ history }) => {
   const [inventory, setInventory] = useState([]);
 
   useEffect(() => {
-    const token = localStorage.getItem('myJWT');
+    const token = localStorage.getItem('token');
     if (!token) {
       history.push('/signin');
     }
@@ -25,7 +25,7 @@ const ManageListings = ({ history }) => {
         setInventory(res.data);
       },
       (err) => {
-        localStorage.removeItem('myJWT');
+        localStorage.removeItem('token');
         history.push('/signin');
       }
     );

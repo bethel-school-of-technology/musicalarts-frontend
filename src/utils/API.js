@@ -4,11 +4,11 @@ const backendUrl = "http://localhost:3001/";
 
 const API = {
   getUser: function () {
-    return axios.get(`${backendUrl}users`).catch((e) => console.error(e));
+    return axios.get(`${backendUrl}user`).catch((e) => console.error(e));
   },
   createUser: function (newUser) {
     return axios
-      .post(`${backendUrl}users`, newUser)
+      .post(`${backendUrl}user`, newUser)
       .catch((e) => console.error(e));
   },
   getListings: function () {

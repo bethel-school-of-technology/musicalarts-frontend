@@ -1,10 +1,10 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { withRouter } from 'react-router';
-import { Link } from 'react-router-dom';
-import CreateListing from '../../components/CreateListing';
-import UpdateListing from '../../components/UpdateListing';
-import './Dashboard.css';
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router";
+import { Link } from "react-router-dom";
+import CreateListing from "../../components/CreateListing";
+import UpdateListing from "../../components/UpdateListing";
+import "./Dashboard.css";
 
 const Dashboard = (props) => {
   const [modalButton, setModalButton] = useState(false);
@@ -12,10 +12,10 @@ const Dashboard = (props) => {
   const [seller, setSeller] = useState([]);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
       //redirect
-      props.history.push('/');
+      props.history.push("/");
     }
 
     const options = {
@@ -23,15 +23,15 @@ const Dashboard = (props) => {
         Authorization: `Bearer ${props.token}`,
       },
     };
-    const url = `http://localhost:3001/users/dashboard`;
+    const url = `http://localhost:3001/user/dashboard`;
     axios.get(url, options).then(
       (res) => {
         console.log(res);
         setSeller(res.data);
       },
       (err) => {
-        localStorage.removeItem('token');
-        props.history.push('/signin');
+        localStorage.removeItem("token");
+        props.history.push("/signin");
         console.error(err);
       }
     );
@@ -62,7 +62,7 @@ const Dashboard = (props) => {
           triggerUpdate={updateButton}
           setTriggerUpdate={setUpdateButton}
         />
-        <Link to='/manage-listings'>
+        <Link to="/manage-listings">
           <button>Manage everything</button>
         </Link>
       </main>

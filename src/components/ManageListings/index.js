@@ -1,17 +1,36 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router';
 import Item from '../Item';
-import API from '../../utils/API';
+//import API from '../../utils/API';
 import { Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const ManageListings = () => {
+const ManageListings = ({ history }) => {
   const [inventory, setInventory] = useState([]);
 
   useEffect(() => {
-    API.getListings().then((res) => {
-      setInventory(res.data);
-    });
-  }, []);
+    const token = localStorage.getItem('myJWT');
+    if (!token) {
+      history.push('/signin');
+    }
+    const options = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const url = `http://localhost:3001/inventory/user-listing`;
+    axios.get(url, options).then(
+      (res) => {
+        setInventory(res.data);
+      },
+      (err) => {
+        localStorage.removeItem('myJWT');
+        history.push('/signin');
+      }
+    );
+  }, [history]);
+
   //TODO: Figure out what needs to be fixed in the backend to get user's listings
   return (
     <div>
@@ -28,4 +47,4 @@ const ManageListings = () => {
   );
 };
 
-export default ManageListings;
+export default withRouter(ManageListings);

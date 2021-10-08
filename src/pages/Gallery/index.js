@@ -12,17 +12,6 @@ const Gallery = () => {
       setInventory(res.data);
     });
   }, []);
-  // useEffect(() => {
-  //   axios
-  //     .get('http://localhost:3001/items')
-  //     .then((res) => {
-  //       console.log(res);
-  //       setInventory(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
 
   return (
     <div>

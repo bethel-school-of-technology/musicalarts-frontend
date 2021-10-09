@@ -8,7 +8,7 @@ import Dashboard from './pages/Dashboard';
 import Gallery from './pages/Gallery';
 import ShoppingBag from './pages/ShoppingBag';
 import Checkout from './pages/Checkout';
-
+import NotFound from './pages/NotFound';
 import OrderSubmission from './components/alertPages/OrderSubmission';
 
 import Layout from './components/layout/Layout';
@@ -32,7 +32,7 @@ function App() {
         <Route path='/signup'>
           <SignUpPage />
         </Route>
-        <PrivateRoute path='/dashboard' component={Dashboard} />
+        <PrivateRoute path='/user/dashboard' component={Dashboard} />
 
         <Route path='/gallery' exact>
           <Gallery />
@@ -50,6 +50,7 @@ function App() {
           <OrderSubmission />
         </Route>
         <PrivateRoute path='/user/manage-listings' component={ManageListings} />
+        <Route component={NotFound} />
       </Switch>
     </Layout>
   );

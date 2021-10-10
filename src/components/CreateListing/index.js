@@ -34,7 +34,7 @@ const CreateListing = (props) => {
         location,
       };
 
-      const token = localStorage.getItem('myJWT');
+      const token = localStorage.getItem('token');
 
       if (!token) {
         //redirect
@@ -53,7 +53,7 @@ const CreateListing = (props) => {
         },
         (err) => {
           //TODO: figure out what we will be naming the token
-          localStorage.removeItem('myJWT');
+          localStorage.removeItem('token');
           props.history.push('/signin');
         }
       );

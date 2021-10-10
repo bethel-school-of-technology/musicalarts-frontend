@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 
 import signupclass from './SignUpForm.module.css';
 
-function SignUpForm() {
+function EditUser() {
   const [user, setUser] = useState({
     username: '',
     firstName: '',
@@ -120,4 +120,4 @@ function SignUpForm() {
   );
 }
 
-export default SignUpForm;
+export default EditUser;

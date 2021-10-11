@@ -1,10 +1,10 @@
 import BagItem from "../../components/BagItem";
 import baglist from "./BagList.module.css";
 
-const BagList = (props) => {
+const BagList = (item) => {
   return (
     <ul className={baglist.list}>
-      {props.bag.map((bag) => (
+      {item.bag.map((bag) => (
         <BagItem
           key={bag.id}
           id={bag.id}

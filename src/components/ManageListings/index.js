@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router';
-import Item from '../Item';
+import UserItem from '../UserItem';
 //import API from '../../utils/API';
 import { Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const ManageListings = ({ history }) => {
-  const [inventory, setInventory] = useState([]);
+  const [listing, setListing] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -19,10 +19,10 @@ const ManageListings = ({ history }) => {
         Authorization: `Bearer ${token}`,
       },
     };
-    const url = `http://localhost:3001/inventory/user-listing`;
+    const url = `http://localhost:3001/products/user-listing`;
     axios.get(url, options).then(
       (res) => {
-        setInventory(res.data);
+        setListing(res.data);
       },
       (err) => {
         localStorage.removeItem('token');
@@ -36,9 +36,9 @@ const ManageListings = ({ history }) => {
     <div>
       <h2>Manage your listings</h2>
       <div>
-        {inventory.map((item) => (
+        {listing.map((item) => (
           <Container key={item.id}>
-            <Item item={item} />
+            <UserItem item={item} />
           </Container>
         ))}
       </div>

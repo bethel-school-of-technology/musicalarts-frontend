@@ -8,7 +8,7 @@ const ItemDetail = ({ history }) => {
   let { itemId } = useParams();
 
   useEffect(() => {
-    const url = `http://localhost:3001/inventory/${itemId}`;
+    const url = `http://localhost:3001/products/${itemId}`;
     axios.get(url).then(
       (res) => {
         console.log(res);
@@ -25,7 +25,7 @@ const ItemDetail = ({ history }) => {
   }
   return (
     <div>
-      <h1>{inventory.itemName}</h1>
+      <h1>{inventory.productName}</h1>
       <p>{inventory.description}</p>
       <Link to='/gallery'>Back to Gallery</Link>
       <br />

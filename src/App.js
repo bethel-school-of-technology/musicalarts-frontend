@@ -13,7 +13,6 @@ import OrderSubmission from './components/alertPages/OrderSubmission';
 
 import Layout from './components/layout/Layout';
 import ItemDetail from './components/ItemDetail.js';
-import ManageListings from './components/ManageListings';
 import PrivateRoute from './components/PrivateRoute';
 
 function App() {
@@ -32,7 +31,7 @@ function App() {
         <Route path='/signup'>
           <SignUpPage />
         </Route>
-        <PrivateRoute path='/user/dashboard' component={Dashboard} />
+        <PrivateRoute path='/dashboard' component={Dashboard} />
 
         <Route path='/gallery' exact>
           <Gallery />
@@ -49,7 +48,6 @@ function App() {
         <Route path='/ordersubmission'>
           <OrderSubmission />
         </Route>
-        <PrivateRoute path='/user/manage-listings' component={ManageListings} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

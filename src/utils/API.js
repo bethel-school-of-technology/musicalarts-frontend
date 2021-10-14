@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-const backendUrl = "http://localhost:3001/";
+const backendUrl = 'http://localhost:3001/';
 
 const API = {
   getUser: function () {
@@ -12,11 +12,11 @@ const API = {
       .catch((e) => console.error(e));
   },
   getListings: function () {
-    return axios.get(`${backendUrl}inventory`).catch((e) => console.error(e));
+    return axios.get(`${backendUrl}products`).catch((e) => console.error(e));
   },
   createListing: function (newListing) {
     return axios
-      .post(`${backendUrl}inventory`, newListing)
+      .post(`${backendUrl}products`, newListing)
       .catch((e) => console.error(e));
   },
   createShippingInfo: function (newShippingInfo) {

@@ -1,9 +1,10 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useParams, withRouter } from 'react-router';
 
-import signupclass from './SignUpForm.module.css';
+//import signupclass from './SignUpForm.module.css';
 
-function EditUser() {
+function EditUser(props) {
   const [user, setUser] = useState({
     username: '',
     firstName: '',
@@ -15,12 +16,12 @@ function EditUser() {
   let { userId } = useParams();
   const editUser = () => {
     if (
-      username !== '' &&
-      firstName !== '' &&
-      lastName !== '' &&
-      email !== '' &&
-      phoneNumber !== '' &&
-      address !== ''
+      user.username !== '' &&
+      user.firstName !== '' &&
+      user.lastName !== '' &&
+      user.email !== '' &&
+      user.phoneNumber !== '' &&
+      user.address !== ''
     ) {
       const req = {
         ...user,
@@ -38,7 +39,7 @@ function EditUser() {
           Authorization: `Bearer ${props.token}`,
         },
       };
-      const url = `http://localhost:3001/user/${userId}`;
+      const url = `http://localhost:3001/user/${user.id}`;
       axios.put(url, req, options).then(
         (res) => {
           console.log(res.data);
@@ -53,12 +54,26 @@ function EditUser() {
     }
   };
 
+  useEffect(() => {
+    //Load Listing from API
+    const url = `http://localhost:3001/products/${userId}`;
+
+    axios.get(url).then(
+      (res) => {
+        console.log(res);
+        setUser(res.data);
+      },
+      (err) => {
+        props.history.push('/');
+      }
+    );
+  }, [userId, props.history]);
+
   return (
-    <div className={signupclass.form}>
+    <div>
       <div>
         <input
           onChange={(e) => setUser({ ...user, username: e.target.value })}
-          className={signupclass.input}
           type='text'
           id='username'
           value={user.username}
@@ -67,7 +82,6 @@ function EditUser() {
       <div>
         <input
           onChange={(e) => setUser({ ...user, firstName: e.target.value })}
-          className={signupclass.input}
           type='text'
           required
           id='firstname'
@@ -77,7 +91,6 @@ function EditUser() {
       <div>
         <input
           onChange={(e) => setUser({ ...user, lastName: e.target.value })}
-          className={signupclass.input}
           type='text'
           required
           id='lastname'
@@ -87,7 +100,6 @@ function EditUser() {
       <div>
         <input
           onChange={(e) => setUser({ ...user, email: e.target.value })}
-          className={signupclass.input}
           type='text'
           required
           id='email'
@@ -97,7 +109,6 @@ function EditUser() {
       <div>
         <input
           onChange={(e) => setUser({ ...user, address: e.target.value })}
-          className={signupclass.input}
           type='text'
           required
           id='address'
@@ -120,4 +131,4 @@ function EditUser() {
   );
 }
 
-export default EditUser;
+export default withRouter(EditUser);

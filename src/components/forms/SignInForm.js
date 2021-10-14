@@ -20,7 +20,7 @@ function SignInForm({ history }) {
         (result) => {
           const token = result.data.jwt;
           localStorage.setItem('token', token);
-          history.push(`/user/dashboard`);
+          history.push(`/dashboard`);
           console.log(result.data);
         },
         (err) => {

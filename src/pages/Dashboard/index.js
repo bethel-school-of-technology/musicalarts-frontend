@@ -1,15 +1,17 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { withRouter } from 'react-router';
-import { Link } from 'react-router-dom';
+import { useRouteMatch, withRouter } from 'react-router';
+import { Link, Switch, Route } from 'react-router-dom';
+
 import CreateListing from '../../components/CreateListing';
-import UpdateListing from '../../components/UpdateListing';
+import EditListing from '../../components/EditListing';
+import EditUser from '../../components/EditUser';
+import ManageListings from '../../components/ManageListings';
+
 import './Dashboard.css';
 
 const Dashboard = (props) => {
-  const [modalButton, setModalButton] = useState(false);
-  const [updateButton, setUpdateButton] = useState(false);
-  const [seller, setSeller] = useState([]);
+  const [user, setUser] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -27,7 +29,7 @@ const Dashboard = (props) => {
     axios.get(url, options).then(
       (res) => {
         console.log(res);
-        setSeller(res.data.userInfo);
+        setUser(res.data.userInfo);
       },
       (err) => {
         localStorage.removeItem('token');
@@ -37,35 +39,46 @@ const Dashboard = (props) => {
     );
   }, [props.token, props.history]);
 
+  const { path, url } = useRouteMatch();
+
   return (
     <div>
       <main>
         {/* When the model's/backend are set up integrate it so that the user's name shows up */}
-        <h2>{seller.firstName}'s Dashboard</h2>
-        <p>username: {seller.username} </p>
-        <p>first name: {seller.firstName}</p>
-        <p>last name: {seller.lastName} </p>
-        <p>email address: {seller.email}</p>
-        <p>account type: Seller</p>
-
-        <button onClick={() => setModalButton(true)}>Create New Listing</button>
-        {/* TODO:  Put this in manage listings component */}
-        {/* <button onClick={() => setUpdateButton(true)}>Manage Listings</button> */}
-
-        <button>Update Account</button>
-        <CreateListing trigger={modalButton} setTrigger={setModalButton} />
-        {/* <Modal trigger={modalButton} setTrigger={setModalButton}>
-        <h2>this works right?</h2>
-      </Modal> */}
-        {/* TODO:  Put this in manage listings component */}
-        <UpdateListing
-          triggerUpdate={updateButton}
-          setTriggerUpdate={setUpdateButton}
-        />
-        <Link to='/user/manage-listings'>
-          <button>Manage everything</button>
-        </Link>
+        <h2>{user.firstName}'s Dashboard</h2>
+        <div className='nav'>
+          <ul>
+            <li>
+              <Link className='link' to={`${url}/create-listing`}>
+                Create Listing
+              </Link>
+            </li>
+            <li>
+              <Link className='link' to={`${url}/manage-listings`}>
+                Manage Listings
+              </Link>
+            </li>
+            <li>
+              <Link className='link' to={`${url}/update-account`}>
+                Update Account
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className='profile'>
+          <h3>Profile</h3>
+          <p>username: {user.username} </p>
+          <p>first name: {user.firstName}</p>
+          <p>last name: {user.lastName} </p>
+          <p>email address: {user.email}</p>
+        </div>
       </main>
+      <Switch>
+        <Route path={`${path}/create-listing`} component={CreateListing} />
+        <Route path={`${path}/manage-listings`} component={ManageListings} />
+        <Route path={`${path}/update-account`} component={EditUser} />
+        <Route path={`${path}/edit-listing`} component={EditListing} />
+      </Switch>
     </div>
   );
 };

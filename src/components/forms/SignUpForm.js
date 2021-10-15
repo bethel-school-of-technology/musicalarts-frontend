@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import API from "../../utils/API";
 
 import signupclass from "./SignUpForm.module.css";
@@ -95,9 +96,11 @@ function SignUpForm() {
         />
       </div>
       <div>
-        <button className={signupclass.button} onClick={submitHandler}>
-          Submit
-        </button>
+        <Link to="/signin">
+          <button className={signupclass.button} onClick={submitHandler}>
+            Submit
+          </button>
+        </Link>
       </div>
     </div>
   );

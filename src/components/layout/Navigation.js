@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 //import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import navclass from "./Navigation.module.css";
 
-function Navigation() {
+const Navigation = () => {
+  //const { countCartItems } = props;
   return (
     <header className={navclass.header}>
       <nav>
@@ -24,7 +25,13 @@ function Navigation() {
           </li>
           <li>
             <Link to="/bag">
-              ShopBag
+              ShopBag{" "}
+              {/*{""}
+              {countCartItems ? (
+                <button className="badge">{countCartItems}</button>
+              ) : (
+                ""
+              )}*/}
               {/*<i className="fa fa-shopping-cart" aria-hidden="true"></i>*/}
               {/*<FontAwesomeIcon icon={faShoppingCart} />*/}
             </Link>
@@ -33,6 +40,6 @@ function Navigation() {
       </nav>
     </header>
   );
-}
+};
 
 export default Navigation;

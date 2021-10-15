@@ -12,6 +12,7 @@ const BagList = (product) => {
           title={bag.title}
           type={bag.type}
           price={bag.price}
+          qty={bag.qty}
         />
       ))}
     </ul>

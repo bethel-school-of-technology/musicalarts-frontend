@@ -4,12 +4,13 @@ import React, { useState } from "react";
 
 const BagItem = (product) => {
   const [cartItems, setCartItems] = useState([]);
+
   const addItem = (product) => {
     const exist = cartItems.find((e) => e.id === product.id);
     if (exist) {
       setCartItems(
         cartItems.map((e) =>
-          e.id === product.id ? { ...exist, qty: exist.qty + 1 } : e
+          e.id === product.id ? { ...exist, qty: product.exist.qty + 1 } : e
         )
       );
     } else {
@@ -23,7 +24,7 @@ const BagItem = (product) => {
     } else {
       setCartItems(
         cartItems.map((e) =>
-          e.id === product.id ? { ...exist, qty: exist.qty - 1 } : e
+          e.id === product.id ? { ...exist, qty: product.exist.qty - 1 } : e
         )
       );
     }
@@ -40,6 +41,9 @@ const BagItem = (product) => {
           <p>Type: {product.type}</p>
           <p>Price: {product.price}</p>
         </div>
+        {/*<div className={bagitem.count}>
+          <input>Count:{product.exist.qty}</input>
+        </div>*/}
         <div className={bagitem.additem}>
           <button onClick={() => addItem(product)}> + </button>
         </div>

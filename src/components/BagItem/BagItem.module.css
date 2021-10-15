@@ -43,16 +43,30 @@
   text-align: center;
 }
 
-.actions button {
+.additem button {
   background-color: rgb(72, 18, 221);
   border: none;
   border-radius: 0.5em;
   color: white;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   display: inline-block;
-  margin: 15px;
-  padding: 10px;
+  margin: 5px;
+  padding: 5px;
   text-align: center;
-  font-size: 26px;
-  width: 250px;
+  font-size: 30px;
+  width: 100px;
+}
+
+.removeitem button {
+  background-color: rgb(187, 18, 221);
+  border: none;
+  border-radius: 0.5em;
+  color: white;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  display: inline-block;
+  margin: 15px;
+  padding: 5px;
+  text-align: center;
+  font-size: 30px;
+  width: 100px;
 }

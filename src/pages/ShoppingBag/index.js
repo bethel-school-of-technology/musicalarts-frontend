@@ -40,8 +40,6 @@ const ShoppingBag = () => {
       <main>
         <h1 className="title">Shopping Bag</h1>
 
-        <p className="numberofitems">Number of Items: </p>
-
         <section>
           <BagList bag={ShoppingBag_Data} />
         </section>

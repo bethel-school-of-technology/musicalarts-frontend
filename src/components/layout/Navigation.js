@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import navclass from "./Navigation.module.css";
 
 function Navigation() {
@@ -23,7 +23,11 @@ function Navigation() {
             <Link to="/signup">SignUp</Link>
           </li>
           <li>
-            <Link to="/shoppingbag">ShopBag</Link>
+            <Link to="/bag">
+              ShopBag
+              {/*<i className="fa fa-shopping-cart" aria-hidden="true"></i>*/}
+              {/*<FontAwesomeIcon icon={faShoppingCart} />*/}
+            </Link>
           </li>
         </ul>
       </nav>

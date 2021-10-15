@@ -1,10 +1,10 @@
-import BagItem from "../../components/BagItem";
+import BagItem from "../BagItem";
 import baglist from "./BagList.module.css";
 
-const BagList = (item) => {
+const BagList = (product) => {
   return (
     <ul className={baglist.list}>
-      {item.bag.map((bag) => (
+      {product.bag.map((bag) => (
         <BagItem
           key={bag.id}
           id={bag.id}

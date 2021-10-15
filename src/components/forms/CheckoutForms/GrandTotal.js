@@ -17,7 +17,7 @@ const GrandTotal = () => {
         </button>
       </Link>
       <br />
-      <Link to="/shoppingbag">
+      <Link to="/bag">
         <button className={grandclass.button2}>Back To Shopping Bag</button>
       </Link>
     </div>

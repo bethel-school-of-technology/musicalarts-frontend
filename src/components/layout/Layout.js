@@ -7,6 +7,7 @@ function Layout(props) {
       <Navigation />
       <main className={layclass.main}>{props.children}</main>
     </div>
+    /*countCartItems={cartItems.length}*/
   );
 }
 

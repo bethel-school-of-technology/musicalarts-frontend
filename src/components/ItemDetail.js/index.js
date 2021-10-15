@@ -26,12 +26,20 @@ const ItemDetail = ({ history }) => {
   return (
     <div>
       <h1>{inventory.productName}</h1>
+      <img src={inventory.imageUrl} alt={inventory.productName} />
       <p>{inventory.description}</p>
+      {inventory.quantity === 0 || inventory.quantity === null ? (
+        <p style={{ color: 'red' }}>Sold Out</p>
+      ) : (
+        <div>
+          <p style={{ color: 'green' }}>In Stock</p>
+          <button outline color='primary'>
+            Add to cart
+          </button>
+        </div>
+      )}
       <Link to='/gallery'>Back to Gallery</Link>
       <br />
-      <button outline color='primary'>
-        Add to cart
-      </button>
     </div>
   );
 };

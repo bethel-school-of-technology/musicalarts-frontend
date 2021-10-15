@@ -24,6 +24,16 @@
 
 .header a:hover,
 .header a:active,
-.header a.active {
+.header a.active,
+.signout:hover {
   color: white;
+}
+
+.signout {
+  background-color: rgb(171, 134, 255);
+  color: rgb(72, 18, 221);
+  cursor: pointer;
+  border: none;
+  font-size: 1.5rem;
+  text-decoration: underline;
 }

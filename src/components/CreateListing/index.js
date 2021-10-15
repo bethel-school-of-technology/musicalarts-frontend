@@ -12,6 +12,8 @@ const CreateListing = (props) => {
   const [genre, setGenre] = useState('');
   const [location, setLocation] = useState('');
   const [category, setCategory] = useState([]);
+  const [quantity, setQuantity] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
 
   // const submitListing = () => {
   //   API.createListing(inventory).then((res) => {
@@ -35,6 +37,8 @@ const CreateListing = (props) => {
         genre,
         location,
         category,
+        quantity,
+        imageUrl,
       };
 
       const token = localStorage.getItem('token');
@@ -62,6 +66,7 @@ const CreateListing = (props) => {
         }
       );
     }
+    alert('Listing Successfully created!');
   };
 
   return (
@@ -88,7 +93,21 @@ const CreateListing = (props) => {
         />
         <input
           type='text'
-          placeholder='Price($)'
+          placeholder='Image Url'
+          name='imgUrl'
+          onChange={(e) => setImageUrl(e.target.value)}
+        />
+        <input
+          type='number'
+          min='0'
+          max='10'
+          placeholder='Qty'
+          name='quantity'
+          onChange={(e) => setQuantity(e.target.value)}
+        />
+        <input
+          type='text'
+          placeholder='Price (ex. 45.67)'
           name='price'
           onChange={(e) => setPrice(e.target.value)}
         />

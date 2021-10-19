@@ -117,13 +117,24 @@ const CreateListing = (props) => {
           name='location'
           onChange={(e) => setLocation(e.target.value)}
         />
-        <label>
+        <div onChange={(e) => setCategory(e.target.value)}>
+          <input type='radio' id='music' value='music' name='category' />
+          <label htmlFor='music'>Music</label> <br />
+          <input type='radio' id='art' value='Female' name='category' /> 
+          <label htmlFor='art'>Art</label>
+          <br />
+        </div>
+        {/* <label htmlFor='category'>
           Pick your listing type:
-          <select onChange={(e) => setCategory(e.target.value)}>
+          <select
+            name='category'
+            onChange={(e) => setCategory(e.target.value)}
+            required
+          >
             <option value='music'>music</option>
             <option value='art'>art</option>
           </select>
-        </label>
+        </label> */}
         <button onClick={createListing} type='submit'>
           Create Listing
         </button>

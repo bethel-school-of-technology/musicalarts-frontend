@@ -1,4 +1,6 @@
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import navclass from './Navigation.module.css';
 
@@ -8,17 +10,22 @@ import navclass from './Navigation.module.css';
 
 function Navigation() {
   //const { countCartItems } = props;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  //const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-  const token = localStorage.getItem('token');
-  const isLoggedIn = !!token;
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    console.log(token);
+    setIsLoggedIn(token);
+  }, []);
 
   const history = useHistory();
   const signout = () => {
     localStorage.removeItem('token');
     history.push('/signin');
   };
+  // if(!token) {
+  //   return
+  // }
 
   return (
     <header className={navclass.header}>

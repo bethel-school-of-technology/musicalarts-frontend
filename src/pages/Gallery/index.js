@@ -12,6 +12,25 @@ const Gallery = () => {
       setInventory(res.data);
     });
   }, []);
+  const addToBag = (product) => {
+    //console.log('shoppingCart...');
+    console.log(product);
+    const bag = getBagItems();
+    //const cart = JSON.parse(localStorage.getItem('shoppingCart'));
+    // TODO if nothing in array, init empty array
+    console.log(bag);
+    //if (!cart) return [];
+    //cart.push(product);
+    localStorage.setItem('shoppingBag', JSON.stringify([...bag, product]));
+  };
+
+  const getBagItems = () => {
+    const bagItems = localStorage.getItem('shoppingBag');
+    if (!bagItems) {
+      return [];
+    }
+    return JSON.parse(bagItems);
+  };
 
   return (
     <div>
@@ -20,6 +39,14 @@ const Gallery = () => {
         {inventory.map((item) => (
           <Container key={item.id}>
             <Item item={item} />
+            {item.quantity === 0 || item.quantity === null ? (
+              <p style={{ color: 'red' }}>Sold Out</p>
+            ) : (
+              <div>
+                <p style={{ color: 'green' }}>In Stock</p>
+                <button onClick={() => addToBag(item)}>Add to Bag</button>
+              </div>
+            )}
           </Container>
         ))}
       </div>

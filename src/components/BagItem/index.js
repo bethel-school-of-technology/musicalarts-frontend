@@ -4,7 +4,10 @@ import React, { useState } from "react";
 
 const BagItem = (product) => {
   const [cartItems, setCartItems] = useState([]);
+  //const [qty, setQty] = useState(1);
+  //const countItems = (product) => {
 
+  //};
   const addItem = (product) => {
     const exist = cartItems.find((e) => e.id === product.id);
     if (exist) {
@@ -43,7 +46,7 @@ const BagItem = (product) => {
         </div>
         {/*<div className={bagitem.count}>
           <input>Count:{product.exist.qty}</input>
-        </div>*/}
+          </div>*/}
         <div className={bagitem.additem}>
           <button onClick={() => addItem(product)}> + </button>
         </div>

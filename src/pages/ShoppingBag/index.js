@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import BagList from "../../components/BagList";
+//import BagList from "../../components/BagList";
 import "./ShoppingBag.css";
 
-const ShoppingBag_Data = [
+/*const ShoppingBag_Data = [
   {
     id: 1,
     image:
@@ -26,7 +26,7 @@ const ShoppingBag_Data = [
     type: "Music",
     price: "$17.99",
   },
-];
+];*/
 
 //const NumberOfItems
 // Have a fuction where it counts the number of items in the shopping bag
@@ -39,10 +39,8 @@ const ShoppingBag = () => {
     <div>
       <main>
         <h1 className="title">Shopping Bag</h1>
-
-        <section>
-          <BagList bag={ShoppingBag_Data} />
-        </section>
+        {/*<BagList bag={ShoppingBag_Data} />*/}
+        <section></section>
 
         <p className="subtotal">Sub Total: </p>
 

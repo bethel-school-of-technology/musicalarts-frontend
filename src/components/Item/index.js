@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
+
 import {
   Button,
   Card,
@@ -16,7 +17,7 @@ const Item = ({ item }) => {
     <div>
       <Card>
         <Link to={`/gallery/${item.id}`}>
-          {item.imageUrl === null ? (
+          {item.imageUrl === null || item.imageUrl === '' ? (
             <CardImg
               top
               width='100%'
@@ -40,17 +41,8 @@ const Item = ({ item }) => {
             ${item.price} | {item.genre} | {item.category}
           </CardSubtitle>
           <CardText>{item.description}</CardText>
-          {item.quantity === 0 || item.quantity === null ? (
-            <p style={{ color: 'red' }}>Sold Out</p>
-          ) : (
-            <div>
-              <p style={{ color: 'green' }}>In Stock</p>
-              <Button>Add to Bag </Button>
-            </div>
-          )}
-          <Link to={`/gallery/${item.id}`}>
-            <Button>View</Button>
-          </Link>
+
+          <Link to={`/gallery/${item.id}`}>View</Link>
         </CardBody>
       </Card>
     </div>

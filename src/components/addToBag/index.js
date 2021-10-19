@@ -4,8 +4,15 @@ import React, { useState, useEffect } from "react";
 const AddToBag = () => {
   const [cart, setCart] = useState([]);
   const addToBag = () => {
+    let cartItem = {
+      productId: { productId },
+      productName: { productName },
+      quantity: { quantity },
+      price: { price },
+    };
+    console.log(cartItem);
     useEffect(() => {
-      localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem("cart", JSON.stringify(cartItem));
     });
   };
 

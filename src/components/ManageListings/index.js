@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { withRouter } from 'react-router';
+import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router";
 //import UserItem from '../UserItem';
 //import API from '../../utils/API';
-import { Table } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { Table } from "reactstrap";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const ManageListings = ({ history }) => {
   const [listing, setListing] = useState([]);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
-      history.push('/signin');
+      history.push("/signin");
     }
     const options = {
       headers: {
@@ -25,8 +25,8 @@ const ManageListings = ({ history }) => {
         setListing(res.data);
       },
       (err) => {
-        localStorage.removeItem('token');
-        history.push('/signin');
+        localStorage.removeItem("token");
+        history.push("/signin");
       }
     );
   }, [history]);
@@ -49,11 +49,11 @@ const ManageListings = ({ history }) => {
           </thead>
           <tbody>
             {listing.map((item) => (
-              <tr>
+              <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>{item.productName}</td>
                 <td>{item.quantity}</td>
-                {item.imageUrl === null || item.imageUrl === '' ? (
+                {item.imageUrl === null || item.imageUrl === "" ? (
                   <td>no image found</td>
                 ) : (
                   <td>{item.imageUrl}</td>
@@ -68,7 +68,7 @@ const ManageListings = ({ history }) => {
           </tbody>
         </Table>
       </div>
-      <Link to='/gallery'></Link>
+      <Link to="/gallery"></Link>
     </div>
   );
 };

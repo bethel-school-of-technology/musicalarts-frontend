@@ -5,7 +5,7 @@ import { Card } from "reactstrap";
 import bagitem from "../../components/BagItem/BagItem.module.css";
 //import BagList from "../../components/BagList";
 import "./ShoppingBag.css";
-//import useLocalStorage from "../../hooks/useLocalStorage";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 //const NumberOfItems
 // Have a fuction where it counts the number of items in the shopping bag
@@ -15,12 +15,32 @@ import "./ShoppingBag.css";
 
 const ShoppingBag = () => {
   const [shoppingBag, setShoppingBag] = useState([]);
+  const [shoppingOrder, setShoppingOrder] = useLocalStorage(
+    "shoppingorder",
+    []
+  );
+  const [totalPrice, setTotalPrice] = useLocalStorage("orderTotal", []);
+  const [qty, setQty] = useState({
+    quantity: 1,
+  });
+  // const productPrice = shoppingBag.reduce(
+  //   (a, c) => a + c.price * c.quantity,
+  //   0
+  // );
+  const productPrice = shoppingBag.reduce((a, c) => a + c.price * 1, 0);
   //const [subTotal, setSubTotal] = useLocalStorage('total', 0);
-  //const [bag, setBag] = useLocalStorage("shoppingBag", [...shoppingBag])
+  //const [bag, setBag] = seLocalStorage("shoppingBag", [...shoppingBag])
   useEffect(() => {
     let shoppingBag = JSON.parse(localStorage.getItem("shoppingBag"));
     setShoppingBag(shoppingBag);
   }, []);
+
+  const submitShoppingBag = (product, price) => {
+    setShoppingOrder([...shoppingOrder, product]);
+    setTotalPrice([...totalPrice, price]);
+
+    //localStorage.removeItem('shoppingBag')
+  };
 
   const removeItem = (product) => {
     let shoppingBagCopy = [...shoppingBag];
@@ -68,13 +88,33 @@ const ShoppingBag = () => {
                   <h3>Title: {product.productName}</h3>
                   <p>Type: {product.category}</p>
                   <p>Price: ${product.price}</p>
-                  <input
-                    type="number"
-                    min="1"
-                    max={product.quantity}
-                    placeholder="Qty"
-                    name="quantity"
-                  />
+                  {product.quantity > 0 && (
+                    <>
+                      <li>
+                        <div className="row">
+                          <div>Qty</div>
+                          <div>
+                            <select
+                              value={qty}
+                              onChange={(e) => setQty(e.target.value)}
+                            >
+                              {[...Array(product.quantity).keys()].map((x) => (
+                                <option key={x + 1} value={x + 1}>
+                                  {x + 1}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+                      </li>
+                    </>
+                  )}
+                  {/*if(quantity >= setQuantity){
+                      then(alert:"Exceeds Quantity")
+                  } else if{
+                    (quantity <= setQuantity)
+                    then()
+                 }*/}
                 </div>
                 {/*<div className={bagitem.count}>
                <input>Count:{product.exist.qty}</input>
@@ -93,10 +133,15 @@ const ShoppingBag = () => {
               //   <p>{p.productName}</p>
               // </div>
             ))}
-            <p className="subtotal">Sub Total: </p>
+            <p className="subtotal">Sub Total: ${productPrice} </p>
 
             <Link to="/checkout">
-              <button className="checkout">Proceed To Checkout</button>
+              <button
+                onClick={() => submitShoppingBag(shoppingBag)}
+                className="checkout"
+              >
+                Proceed To Checkout
+              </button>
             </Link>
 
             <Link to="/gallery">

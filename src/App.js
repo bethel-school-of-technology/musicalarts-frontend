@@ -42,12 +42,8 @@ function App() {
         <Route path="/gallery/:itemId" exact>
           <ItemDetail />
         </Route>
-        <Route path="/checkout">
-          <Checkout />
-        </Route>
-        <Route path="/ordersubmission">
-          <OrderSubmission />
-        </Route>
+        <PrivateRoute path="/checkout" component={Checkout} />
+        <PrivateRoute path="/ordersubmission" component={OrderSubmission} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

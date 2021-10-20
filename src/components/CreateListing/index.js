@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { withRouter } from 'react-router';
+import React, { useState } from "react";
+import { withRouter } from "react-router";
 //import './CreateListing.css';
-import axios from 'axios';
+import axios from "axios";
 //import API from '../../utils/API';
 
 //TODO: add history once you have axios up and running!!
 const CreateListing = (props) => {
-  const [productName, setProductName] = useState('');
-  const [description, setDescription] = useState('');
-  const [price, setPrice] = useState('');
-  const [genre, setGenre] = useState('');
-  const [location, setLocation] = useState('');
+  const [productName, setProductName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [genre, setGenre] = useState("");
+  const [location, setLocation] = useState("");
   const [category, setCategory] = useState([]);
-  const [quantity, setQuantity] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  const [quantity, setQuantity] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   // const submitListing = () => {
   //   API.createListing(inventory).then((res) => {
@@ -23,12 +23,12 @@ const CreateListing = (props) => {
 
   const createListing = () => {
     if (
-      productName !== '' &&
-      description !== '' &&
-      price !== '' &&
-      genre !== '' &&
-      location !== '' &&
-      category !== ''
+      productName !== "" &&
+      description !== "" &&
+      price !== "" &&
+      genre !== "" &&
+      location !== "" &&
+      category !== ""
     ) {
       const req = {
         productName,
@@ -41,11 +41,11 @@ const CreateListing = (props) => {
         imageUrl,
       };
 
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
 
       if (!token) {
         //redirect
-        props.history.push('/');
+        props.history.push("/");
       }
 
       const options = {
@@ -53,10 +53,10 @@ const CreateListing = (props) => {
           Authorization: `Bearer ${props.token}`,
         },
       };
-      axios.post('http://localhost:3001/products', req, options).then(
+      axios.post("http://localhost:3001/products", req, options).then(
         (res) => {
           console.log(res.data);
-          props.history.push('/gallery');
+          props.history.push("/gallery");
         },
         (err) => {
           //TODO: figure out what we will be naming the token
@@ -66,7 +66,7 @@ const CreateListing = (props) => {
         }
       );
     }
-    alert('Listing Successfully created!');
+    alert("Listing Successfully created!");
   };
 
   return (
@@ -74,54 +74,54 @@ const CreateListing = (props) => {
       <div>
         <h2>Create A New Listing: </h2>
         <input
-          type='text'
-          placeholder='Listing Name'
-          name='productName'
+          type="text"
+          placeholder="Listing Name"
+          name="productName"
           onChange={(e) => setProductName(e.target.value)}
         />
         <input
-          type='text'
-          placeholder='Genre'
-          name='genre'
+          type="text"
+          placeholder="Genre"
+          name="genre"
           onChange={(e) => setGenre(e.target.value)}
         />
         <input
-          type='text'
-          placeholder='Description'
-          name='description'
+          type="text"
+          placeholder="Description"
+          name="description"
           onChange={(e) => setDescription(e.target.value)}
         />
         <input
-          type='text'
-          placeholder='Image Url'
-          name='imgUrl'
+          type="text"
+          placeholder="Image Url"
+          name="imgUrl"
           onChange={(e) => setImageUrl(e.target.value)}
         />
         <input
-          type='number'
-          min='0'
-          max='10'
-          placeholder='Qty'
-          name='quantity'
+          type="number"
+          min="0"
+          max="10"
+          placeholder="Qty"
+          name="quantity"
           onChange={(e) => setQuantity(e.target.value)}
         />
         <input
-          type='text'
-          placeholder='Price (ex. 45.67)'
-          name='price'
+          type="text"
+          placeholder="Price (ex. 45.67)"
+          name="price"
           onChange={(e) => setPrice(e.target.value)}
         />
         <input
-          type='text'
-          placeholder='Location'
-          name='location'
+          type="text"
+          placeholder="Location"
+          name="location"
           onChange={(e) => setLocation(e.target.value)}
         />
         <div onChange={(e) => setCategory(e.target.value)}>
-          <input type='radio' id='music' value='music' name='category' />
-          <label htmlFor='music'>Music</label> <br />
-          <input type='radio' id='art' value='Female' name='category' /> 
-          <label htmlFor='art'>Art</label>
+          <input type="radio" id="music" value="music" name="category" />
+          <label htmlFor="music">Music</label> <br />
+          <input type="radio" id="art" value="art" name="category" /> 
+          <label htmlFor="art">Art</label>
           <br />
         </div>
         {/* <label htmlFor='category'>
@@ -135,7 +135,7 @@ const CreateListing = (props) => {
             <option value='art'>art</option>
           </select>
         </label> */}
-        <button onClick={createListing} type='submit'>
+        <button onClick={createListing} type="submit">
           Create Listing
         </button>
       </div>

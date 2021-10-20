@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router';
-import UserItem from '../UserItem';
+//import UserItem from '../UserItem';
 //import API from '../../utils/API';
-import { Container } from 'reactstrap';
+import { Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -36,11 +36,37 @@ const ManageListings = ({ history }) => {
     <div>
       <h2>Manage your listings</h2>
       <div>
-        {listing.map((item) => (
-          <Container key={item.id}>
-            <UserItem item={item} />
-          </Container>
-        ))}
+        <Table bordered>
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Image Url</th>
+              <th>Price</th>
+              <th>Edit/Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {listing.map((item) => (
+              <tr>
+                <td>{item.id}</td>
+                <td>{item.productName}</td>
+                <td>{item.quantity}</td>
+                {item.imageUrl === null || item.imageUrl === '' ? (
+                  <td>no image found</td>
+                ) : (
+                  <td>{item.imageUrl}</td>
+                )}
+
+                <td>${item.price}</td>
+                <td>
+                  <i>Edit</i> | <i>Delete</i>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
       </div>
       <Link to='/gallery'></Link>
     </div>

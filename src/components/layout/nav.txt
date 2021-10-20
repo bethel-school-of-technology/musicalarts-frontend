@@ -1,0 +1,111 @@
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import {
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
+
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import navclass from './Navigation.module.css';
+
+// function getToken() {
+//   const token = localStorage.getItem('token');
+// }
+
+function Navigation({ user }) {
+  //const { countCartItems } = props;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  //const [name, setName] = useState('');
+
+  //const [bagCount, setBagCount] = useState(0);
+
+  // useEffect(() => {
+  //   let bag = JSON.parse(localStorage.getItem('shoppingBag'));
+  //   setBagCount(bag.length);
+  // }, []);
+
+  // useEffect(() => {
+  //   let user = JSON.parse(localStorage.getItem('user'));
+  //   setName(user);
+  // }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    console.log(token);
+    setIsLoggedIn(true);
+  }, []);
+
+  const history = useHistory();
+  const signout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    history.push('/signin');
+    setIsLoggedIn(false);
+  };
+
+  return (
+    <header className={navclass.header}>
+      <nav>
+        <ul>
+          <li>
+            <Link to='/'>Home</Link>
+          </li>
+          <li>
+            <Link to='/about'>About</Link>
+          </li>
+          <li>
+            <Link to='/gallery'>Gallery</Link>
+          </li>
+          <li>
+            <Link to='/bag'>
+              ShopBag(0)
+              {/*{""}
+              {countCartItems ? (
+                <button className="badge">{countCartItems}</button>
+              ) : (
+                ""
+              )}*/}
+              {/*<i className="fa fa-shopping-cart" aria-hidden="true"></i>*/}
+              {/*<FontAwesomeIcon icon={faShoppingCart} />*/}
+            </Link>
+          </li>
+          {isLoggedIn ? (
+            <UncontrolledDropdown>
+              <DropdownToggle caret>Welcome user</DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem header>
+                  <Link to='/dashboard'>Dashboard</Link>
+                </DropdownItem>
+                <DropdownItem onClick={signout}>Signout</DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          ) : (
+            // <div>
+            //   <li>
+            //     <Link to='/dashboard'>Dashboard</Link>
+            //   </li>
+            //   <li>
+            //     <button className={navclass.signout} onClick={signout}>
+            //       Signout
+            //     </button>
+            //   </li>
+
+            // </div>
+            <div>
+              <li>
+                <Link to='/signin'>SignIn</Link>
+              </li>
+              <li>
+                <Link to='/signup'>SignUp</Link>
+              </li>
+            </div>
+          )}
+        </ul>
+      </nav>
+    </header>
+  );
+}
+
+export default Navigation;

@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import {
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
 
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import navclass from './Navigation.module.css';
@@ -49,7 +55,7 @@ function Navigation() {
             </li>
             <li>
               <Link to='/bag'>
-                ShopBag{' '}
+                ShopBag(0)
                 {/*{""}
               {countCartItems ? (
                 <button className="badge">{countCartItems}</button>
@@ -75,11 +81,8 @@ function Navigation() {
               <Link to='/gallery'>Gallery</Link>
             </li>
             <li>
-              <Link to='/dashboard'>Dashboard</Link>
-            </li>
-            <li>
               <Link to='/bag'>
-                ShopBag{' '}
+                ShopBag(0)
                 {/*{""}
               {countCartItems ? (
                 <button className="badge">{countCartItems}</button>
@@ -90,11 +93,15 @@ function Navigation() {
                 {/*<FontAwesomeIcon icon={faShoppingCart} />*/}
               </Link>
             </li>
-            <li>
-              <button className={navclass.signout} onClick={signout}>
-                Signout
-              </button>
-            </li>
+            <UncontrolledDropdown>
+              <DropdownToggle caret>Welcome user</DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem header>
+                  <Link to='/dashboard'>Dashboard</Link>
+                </DropdownItem>
+                <DropdownItem onClick={signout}>Signout</DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
           </ul>
         </nav>
       )}

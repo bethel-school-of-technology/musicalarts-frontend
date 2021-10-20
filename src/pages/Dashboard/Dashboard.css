@@ -17,6 +17,7 @@ main {
   background-color: #00ccff36;
   margin-bottom: 2rem;
   border-radius: 0.5rem;
+  width: 100%;
 }
 .nav ul {
   list-style-type: none;
@@ -31,9 +32,9 @@ main {
   font-size: 1.2rem;
   margin-right: 40px;
 }
+
 .link:hover {
   color: #975b5b;
-  font-size: 1.3rem;
 }
 
 .profile {
@@ -41,4 +42,5 @@ main {
   background-color: #975b5b9f;
   border-radius: 1rem;
   font-size: 1rem;
+  width: 100%;
 }

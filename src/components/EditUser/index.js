@@ -1,77 +1,77 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { useParams, withRouter } from 'react-router';
+//import axios from 'axios';
+import React from 'react';
+import { withRouter } from 'react-router';
 
 //import signupclass from './SignUpForm.module.css';
 
 function EditUser(props) {
-  const [user, setUser] = useState({
-    username: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    address: '',
-    phoneNumber: '',
-  });
-  let { userId } = useParams();
-  const editUser = () => {
-    if (
-      user.username !== '' &&
-      user.firstName !== '' &&
-      user.lastName !== '' &&
-      user.email !== '' &&
-      user.phoneNumber !== '' &&
-      user.address !== ''
-    ) {
-      const req = {
-        ...user,
-      };
+  // const [user, setUser] = useState({
+  //   username: '',
+  //   firstName: '',
+  //   lastName: '',
+  //   email: '',
+  //   address: '',
+  //   phoneNumber: '',
+  // });
+  // let { userId } = useParams();
+  // const editUser = () => {
+  //   if (
+  //     user.username !== '' &&
+  //     user.firstName !== '' &&
+  //     user.lastName !== '' &&
+  //     user.email !== '' &&
+  //     user.phoneNumber !== '' &&
+  //     user.address !== ''
+  //   ) {
+  //     const req = {
+  //       ...user,
+  //     };
 
-      const token = localStorage.getItem('token');
+  //     const token = localStorage.getItem('token');
 
-      if (!token) {
-        //redirect
-        props.history.push('/');
-      }
+  //     if (!token) {
+  //       //redirect
+  //       props.history.push('/');
+  //     }
 
-      const options = {
-        headers: {
-          Authorization: `Bearer ${props.token}`,
-        },
-      };
-      const url = `http://localhost:3001/user/${user.id}`;
-      axios.put(url, req, options).then(
-        (res) => {
-          console.log(res.data);
-          props.history.push('/dashboard');
-        },
-        (err) => {
-          //TODO: figure out what we will be naming the token
-          localStorage.removeItem('token');
-          props.history.push('/signin');
-        }
-      );
-    }
-  };
+  //     const options = {
+  //       headers: {
+  //         Authorization: `Bearer ${props.token}`,
+  //       },
+  //     };
+  //     const url = `http://localhost:3001/user/${user.id}`;
+  //     axios.put(url, req, options).then(
+  //       (res) => {
+  //         console.log(res.data);
+  //         props.history.push('/dashboard');
+  //       },
+  //       (err) => {
+  //         //TODO: figure out what we will be naming the token
+  //         localStorage.removeItem('token');
+  //         props.history.push('/signin');
+  //       }
+  //     );
+  //   }
+  // };
 
-  useEffect(() => {
-    //Load Listing from API
-    const url = `http://localhost:3001/products/${userId}`;
+  // useEffect(() => {
+  //   //Load Listing from API
+  //   const url = `http://localhost:3001/user/${userId}`;
 
-    axios.get(url).then(
-      (res) => {
-        console.log(res);
-        setUser(res.data);
-      },
-      (err) => {
-        props.history.push('/');
-      }
-    );
-  }, [userId, props.history]);
+  //   axios.get(url).then(
+  //     (res) => {
+  //       console.log(res);
+  //       setUser(res.data);
+  //     },
+  //     (err) => {
+  //       props.history.push('/');
+  //     }
+  //   );
+  // }, [userId, props.history]);
 
   return (
     <div>
-      <div>
+      {/* <div>
         <input
           onChange={(e) => setUser({ ...user, username: e.target.value })}
           type='text'
@@ -126,7 +126,8 @@ function EditUser(props) {
       </div>
       <div>
         <button onClick={editUser}>Submit</button>
-      </div>
+      </div> */}
+      <h3>Edit Account</h3>
     </div>
   );
 }

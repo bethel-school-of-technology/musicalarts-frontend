@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import API from "../../../utils/API";
+import useLocalStorage from "../../../hooks/useLocalStorage";
+//import API from "../../../utils/API";
 
 import paymentclass from "./PaymentMethod.module.css";
 
@@ -11,13 +12,19 @@ const PaymentMethodForm = () => {
     phoneNumber: "",
   });
 
-  function submitPaymentMethod() {
-    console.log(paymentmethod.cardNumber);
+  const [payment, setPayment] = useLocalStorage("paymentmethod", {});
 
-    API.createPaymentMethod(paymentmethod).then((res) => {
-      console.log(res);
-    });
-  }
+  const submitPaymentMethod = () => {
+    setPayment({ ...payment, paymentmethod });
+  };
+
+  // function submitPaymentMethod() {
+  //   console.log(paymentmethod.cardNumber);
+
+  //   API.createPaymentMethod(paymentmethod).then((res) => {
+  //     console.log(res);
+  //   });
+  // }
   return (
     <div>
       <h4 className={paymentclass.h4}>Payment Method</h4>

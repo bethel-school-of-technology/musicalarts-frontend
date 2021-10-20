@@ -1,32 +1,11 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+//import BagItem from "../../components/BagItem";
+import { Card } from "reactstrap";
+import bagitem from "../../components/BagItem/BagItem.module.css";
 //import BagList from "../../components/BagList";
 import "./ShoppingBag.css";
-
-/*const ShoppingBag_Data = [
-  {
-    id: 1,
-    image:
-      "https://wp.en.aleteia.org/wp-content/uploads/sites/2/2019/12/web3-prince-of-peace-9-year-old-art-jesus-painting-facebook.jpg",
-    title: "Gods Love",
-    type: "Music",
-    price: "$15.99",
-  },
-  {
-    id: 2,
-    image:
-      "https://coffeewiththelord.files.wordpress.com/2016/04/beautiful-sunset-in-the-mountains.jpg",
-    title: "Glory To God",
-    type: "Art",
-    price: "$599.99",
-  },
-  {
-    id: 3,
-    image: "https://www.christian.org.uk/wp-content/uploads/cross01.png",
-    title: "All For Him",
-    type: "Music",
-    price: "$17.99",
-  },
-];*/
+//import useLocalStorage from "../../hooks/useLocalStorage";
 
 //const NumberOfItems
 // Have a fuction where it counts the number of items in the shopping bag
@@ -35,22 +14,96 @@ import "./ShoppingBag.css";
 // Have a function where it adds every item's price together
 
 const ShoppingBag = () => {
+  const [shoppingBag, setShoppingBag] = useState([]);
+  //const [subTotal, setSubTotal] = useLocalStorage('total', 0);
+  //const [bag, setBag] = useLocalStorage("shoppingBag", [...shoppingBag])
+  useEffect(() => {
+    let shoppingBag = JSON.parse(localStorage.getItem("shoppingBag"));
+    setShoppingBag(shoppingBag);
+  }, []);
+
+  const removeItem = (product) => {
+    let shoppingBagCopy = [...shoppingBag];
+    shoppingBagCopy = shoppingBagCopy.filter((item) => item.id !== product.id);
+    setShoppingBag(shoppingBagCopy);
+    localStorage.setItem("shoppingBag", JSON.stringify(shoppingBagCopy));
+  };
+
+  // const addItem = (product) => {
+  //   const exist = shoppingBag.find((e) => e.id === product.id);
+  //   if (exist) {
+  //     setShoppingBag(
+  //       shoppingBag.map((e) =>
+  //         e.id === product.id ? { ...exist, qty: product.exist.qty + 1 } : e
+  //       )
+  //     );
+  //   } else {
+  //     setCartItems([...cartItems, { ...product, qty: 1 }]);
+  //   }
+  // };
+
   return (
     <div>
       <main>
         <h1 className="title">Shopping Bag</h1>
+
         {/*<BagList bag={ShoppingBag_Data} />*/}
-        <section></section>
+        {shoppingBag === null || shoppingBag === [] ? (
+          <p>Shopping Cart is Empty</p>
+        ) : (
+          <section>
+            {shoppingBag.map((product) => (
+              <Card className={bagitem.card} key={product.id}>
+                <div className={bagitem.image}>
+                  {product.imageUrl === null || product.imageUrl === "" ? (
+                    <img
+                      src="https://i.postimg.cc/2y43Z54p/noimg.png"
+                      alt={product.productName}
+                    />
+                  ) : (
+                    <img src={product.imageUrl} alt={product.productName} />
+                  )}
+                </div>
+                <div className={bagitem.content}>
+                  <h3>Title: {product.productName}</h3>
+                  <p>Type: {product.category}</p>
+                  <p>Price: ${product.price}</p>
+                  <input
+                    type="number"
+                    min="1"
+                    max={product.quantity}
+                    placeholder="Qty"
+                    name="quantity"
+                  />
+                </div>
+                {/*<div className={bagitem.count}>
+               <input>Count:{product.exist.qty}</input>
+               </div>*/}
+                {/* <div className={bagitem.additem}>
+                <button onClick={() => addItem(product)}> + </button>
+              </div> */}
 
-        <p className="subtotal">Sub Total: </p>
+                <div className={bagitem.removeitem}>
+                  <button onClick={() => removeItem(product)}>
+                    Remove From Bag
+                  </button>
+                </div>
+              </Card>
+              // <div key={p.id}>
+              //   <p>{p.productName}</p>
+              // </div>
+            ))}
+            <p className="subtotal">Sub Total: </p>
 
-        <Link to="/checkout">
-          <button className="checkout">Proceed To Checkout</button>
-        </Link>
+            <Link to="/checkout">
+              <button className="checkout">Proceed To Checkout</button>
+            </Link>
 
-        <Link to="/gallery">
-          <button className="shopping">Continue Shopping</button>
-        </Link>
+            <Link to="/gallery">
+              <button className="shopping">Continue Shopping</button>
+            </Link>
+          </section>
+        )}
       </main>
     </div>
   );

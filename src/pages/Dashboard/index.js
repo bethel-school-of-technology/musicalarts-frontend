@@ -37,7 +37,6 @@ const Dashboard = (props) => {
           username: res.data.userInfo.username,
         };
         localStorage.setItem('user', JSON.stringify({ user }));
-        setUser(user);
       },
       (err) => {
         localStorage.removeItem('token');

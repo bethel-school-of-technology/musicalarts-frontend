@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import API from "../../../utils/API";
-
+//import API from "../../../utils/API";
+import useLocalStorage from "../../../hooks/useLocalStorage";
 import shippingclass from "./ShippingInfo.module.css";
 
 const ShippingInfoForm = () => {
@@ -14,13 +14,20 @@ const ShippingInfoForm = () => {
     zipCode: "",
   });
 
-  function submitShippingInfo() {
-    console.log(shippinginfo.firstName);
+  const [shipping, setShipping] = useLocalStorage("shippinginfo", {});
 
-    API.createShippingInfo(shippinginfo).then((res) => {
-      console.log(res);
-    });
-  }
+  const submitShippingInfo = () => {
+    setShipping({ ...shipping, shippinginfo });
+  };
+
+  // function submitShippingInfo() {
+  //   console.log(shippinginfo.firstName);
+
+  //   API.createShippingInfo(shippinginfo).then((res) => {
+  //     console.log(res);
+  //   });
+
+  // }
   return (
     <div>
       <h4 className={shippingclass.h4}>Shipping Info</h4>

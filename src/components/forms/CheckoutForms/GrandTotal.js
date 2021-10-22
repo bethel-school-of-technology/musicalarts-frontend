@@ -1,11 +1,12 @@
-import grandclass from "./GrandTotal.module.css";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
+import axios from 'axios';
+import grandclass from './GrandTotal.module.css';
 //import useLocalStorage from "../../../hooks/useLocalStorage";
 //import { useState } from "react";
 //import Axios from "axios";
 
-const GrandTotal = () => {
+const GrandTotal = ({ history }) => {
   //const [disable, setDisable] = useState(true);
   //const [order, setOrder] = useLocalStorage("customerOrder", {});
   // const [customerOrder, setCustomerOrder] = useState({
@@ -31,29 +32,52 @@ const GrandTotal = () => {
     //TODO: set up axios POST to send the customerOrder object to the backend
 
     //FIXME:
-    const paymentMethod = JSON.parse(localStorage.getItem("paymentmethod"));
-    const shippingInfo = JSON.parse(localStorage.getItem("shippinginfo"));
-    const productsOrdered = JSON.parse(localStorage.getItem("productsOrdered"));
-    const userOrder = Object.assign(
+    const paymentMethod = JSON.parse(localStorage.getItem('paymentmethod'));
+    const shippingInfo = JSON.parse(localStorage.getItem('shippinginfo'));
+    const productsOrdered = JSON.parse(localStorage.getItem('productsOrdered'));
+    const userOrder = {
       shippingInfo,
       paymentMethod,
-      productsOrdered
-    );
+      productsOrdered,
+    };
+    console.log(userOrder);
     //const userOrder = Object.create({
     //   shippingInfo,paymentMethod, productsOrdered
     // })
-    const finalOrder = JSON.parse(localStorage.getItem("customerOrder"));
-    const req = {
-      finalOrder,
-    };
+    //const finalOrder = JSON.parse(localStorage.getItem('customerOrder'));
+
+    //const token = localStorage.getItem('token');
+
+    // if (!token) {
+    //   //redirect
+    //   history.push('/');
+    // }
+
+    // const options = {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // };
+    // const req = {
+    //   userOrder,
+    // };
+    // console.log(req);
     axios
-      .post("http://localhost:3001/order/checkout", req)
-      .then
-      //setCustomerOrder()
-      //   localStorage.removeItem("shippinginfo");
-      //   localStorage.removeItem("shoppingBag");
-      //   localStorage.removeItem("paymentmethod");
-      ();
+      .post('http://localhost:3001/orders/checkout', userOrder)
+      .then(function (response) {
+        console.log(response);
+        history.push('/ordersubmission');
+        return;
+      })
+      .catch(function (error) {
+        console.log(error);
+        alert('error checking out');
+      });
+    //setCustomerOrder()
+    //   localStorage.removeItem("shippinginfo");
+    //   localStorage.removeItem("shoppingBag");
+    //   localStorage.removeItem("paymentmethod");
+    //();
     console.log(paymentMethod);
     console.log(shippingInfo);
     console.log(productsOrdered);
@@ -77,19 +101,16 @@ const GrandTotal = () => {
       <h4 className={grandclass.h4}>Grand Total</h4>
 
       <p className={grandclass.p}>* Grand Total will be displayed here *</p>
-
-      <Link to="/ordersubmission">
-        {/* disabled={disable} */}
-        <button className={grandclass.button1} onClick={submitOrder}>
-          Submit Order
-        </button>
-      </Link>
+      <button className={grandclass.button1} onClick={submitOrder}>
+        Submit Order
+      </button>
+      {/* <Link to='/ordersubmission'> disabled={disable} </Link> */}
       <br />
-      <Link to="/bag">
+      <Link to='/bag'>
         <button className={grandclass.button2}>Back To Shopping Bag</button>
       </Link>
     </div>
   );
 };
 
-export default GrandTotal;
+export default withRouter(GrandTotal);

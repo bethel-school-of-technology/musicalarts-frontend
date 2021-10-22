@@ -1,36 +1,46 @@
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 //import BagItem from "../../components/BagItem";
-import { Card } from 'reactstrap';
-import bagitem from '../../components/BagItem/BagItem.module.css';
+import { Card } from "reactstrap";
+import bagitem from "../../components/BagItem/BagItem.module.css";
 //import BagList from "../../components/BagList";
-import './ShoppingBag.css';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import "./ShoppingBag.css";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const ShoppingBag = () => {
   const [shoppingBag, setShoppingBag] = useState([]);
   const [shoppingOrder, setShoppingOrder] = useLocalStorage(
-    'shoppingorder',
+    "productsOrdered",
     []
   );
-  const [qty, setQty] = useState({
-    quantity: 1,
-  });
-  const [subTotal, setSubTotal] = useLocalStorage('total', []);
+  //const [subTotal, setSubTotal] = useState(0);
+  // const [qty, setQty] = useState({
+  //   quantity: 1,
+  // });
 
-  const productPrice = shoppingBag.reduce((a, c) => a + c.price * c.bagQty, 0);
+  //const totalPrice = shoppingBag.reduce((a, c) => a + c.price * c.bagQty, 0);
+
+  const totalPrice = () => {
+    if (shoppingBag) {
+      return shoppingBag.reduce((a, c) => a + c.price * c.bagQty, 0);
+    } else {
+      return <p>Total Price: $0</p>;
+    }
+  };
 
   //const [bag, setBag] = seLocalStorage("shoppingBag", [...shoppingBag])
   useEffect(() => {
-    let shoppingBag = JSON.parse(localStorage.getItem('shoppingBag'));
+    let shoppingBag = JSON.parse(localStorage.getItem("shoppingBag"));
     console.log(shoppingBag);
     setShoppingBag(shoppingBag);
   }, []);
 
-  const submitShoppingBag = (product, price) => {
-    setShoppingOrder([...shoppingOrder, product]);
+  const submitShoppingBag = (product) => {
+    setShoppingOrder({ ...shoppingOrder, product });
     //price.productPrice = 0;
-    setSubTotal([...subTotal, price]);
+    //setSubTotal([...subTotal, price]);
+
+    //shoppingOrder.push(subTotal);
 
     //localStorage.removeItem('shoppingBag')
   };
@@ -39,25 +49,25 @@ const ShoppingBag = () => {
     let shoppingBagCopy = [...shoppingBag];
     shoppingBagCopy = shoppingBagCopy.filter((item) => item.id !== product.id);
     setShoppingBag(shoppingBagCopy);
-    localStorage.setItem('shoppingBag', JSON.stringify(shoppingBagCopy));
+    localStorage.setItem("shoppingBag", JSON.stringify(shoppingBagCopy));
   };
 
   return (
     <div>
       <main>
-        <h1 className='title'>Shopping Bag</h1>
+        <h1 className="title">Shopping Bag</h1>
 
         {/*<BagList bag={ShoppingBag_Data} />*/}
         {shoppingBag === null || shoppingBag === [] ? (
-          <p>Shopping Cart is Empty</p>
+          <p>Shopping Bag is Empty</p>
         ) : (
           <section>
             {shoppingBag.map((product) => (
               <Card className={bagitem.card} key={product.id}>
                 <div className={bagitem.image}>
-                  {product.imageUrl === null || product.imageUrl === '' ? (
+                  {product.imageUrl === null || product.imageUrl === "" ? (
                     <img
-                      src='https://i.postimg.cc/2y43Z54p/noimg.png'
+                      src="https://i.postimg.cc/2y43Z54p/noimg.png"
                       alt={product.productName}
                     />
                   ) : (
@@ -68,8 +78,11 @@ const ShoppingBag = () => {
                   <h3>Title: {product.productName}</h3>
                   <p>Type: {product.category}</p>
                   <p>Price: ${product.price}</p>
+
                   <p>Qty: {product.bagQty}</p>
-                  {product.quantity > 0 && (
+                  <p>Total Price: ${product.bagQty * product.price}</p>
+
+                  {/* {product.quantity > 0 && (
                     <>
                       <li>
                         <div className='row'>
@@ -89,7 +102,7 @@ const ShoppingBag = () => {
                         </div>
                       </li>
                     </>
-                  )}
+                  )} */}
                 </div>
                 {/*<div className={bagitem.count}>
                <input>Count:{product.exist.qty}</input>
@@ -105,19 +118,20 @@ const ShoppingBag = () => {
                 </div>
               </Card>
             ))}
-            <p className='subtotal'>Sub Total: ${productPrice} </p>
 
-            <Link to='/checkout'>
+            <p className="subtotal">Sub Total: ${totalPrice().toFixed(2)} </p>
+
+            <Link to="/checkout">
               <button
                 onClick={() => submitShoppingBag(shoppingBag)}
-                className='checkout'
+                className="checkout"
               >
                 Proceed To Checkout
               </button>
             </Link>
 
-            <Link to='/gallery'>
-              <button className='shopping'>Continue Shopping</button>
+            <Link to="/gallery">
+              <button className="shopping">Continue Shopping</button>
             </Link>
           </section>
         )}

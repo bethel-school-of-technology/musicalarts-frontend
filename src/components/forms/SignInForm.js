@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 
 import signinclass from './SignInForm.module.css';
 
-function SignInForm({ history }) {
+function SignInForm(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,7 +20,7 @@ function SignInForm({ history }) {
         (result) => {
           const token = result.data.jwt;
           localStorage.setItem('token', token);
-          history.push(`/dashboard`);
+          props.history.push(`/dashboard`);
           console.log(result.data);
         },
         (err) => {

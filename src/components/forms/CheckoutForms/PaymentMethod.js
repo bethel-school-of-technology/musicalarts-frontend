@@ -6,16 +6,26 @@ import paymentclass from "./PaymentMethod.module.css";
 
 const PaymentMethodForm = () => {
   const [paymentmethod, setPaymentMethod] = useState({
+    nameOnCard: "",
     cardNumber: "",
-    expirationDate: "",
-    cvv: "",
-    phoneNumber: "",
+    cardExpirationDate: "",
+    cardCvv: "",
   });
 
   const [payment, setPayment] = useLocalStorage("paymentmethod", {});
-
+  const [disable, setDisable] = useState(false);
   const submitPaymentMethod = () => {
-    setPayment({ ...payment, paymentmethod });
+    if (
+      paymentmethod.nameOnCard !== "" &&
+      paymentmethod.cardNumber !== "" &&
+      paymentmethod.cardExpirationDate !== "" &&
+      paymentmethod.cardCvv !== ""
+    ) {
+      setPayment({ ...payment, paymentmethod });
+      setDisable(true);
+    } else {
+      alert("missing fields");
+    }
   };
 
   // function submitPaymentMethod() {
@@ -28,7 +38,18 @@ const PaymentMethodForm = () => {
   return (
     <div>
       <h4 className={paymentclass.h4}>Payment Method</h4>
-
+      <div>
+        <input
+          onChange={(e) =>
+            setPaymentMethod({ ...paymentmethod, nameOnCard: e.target.value })
+          }
+          className={paymentclass.input}
+          type="text"
+          required
+          id="nameoncard"
+          placeholder="Name On Card"
+        />
+      </div>
       <div>
         <input
           onChange={(e) =>
@@ -46,7 +67,7 @@ const PaymentMethodForm = () => {
           onChange={(e) =>
             setPaymentMethod({
               ...paymentmethod,
-              expirationDate: e.target.value,
+              cardExpirationDate: e.target.value,
             })
           }
           className={paymentclass.input}
@@ -59,7 +80,7 @@ const PaymentMethodForm = () => {
       <div>
         <input
           onChange={(e) =>
-            setPaymentMethod({ ...paymentmethod, cvv: e.target.value })
+            setPaymentMethod({ ...paymentmethod, cardCvv: e.target.value })
           }
           className={paymentclass.input}
           type="number"
@@ -69,19 +90,11 @@ const PaymentMethodForm = () => {
         />
       </div>
       <div>
-        <input
-          onChange={(e) =>
-            setPaymentMethod({ ...paymentmethod, phoneNumber: e.target.value })
-          }
-          className={paymentclass.input}
-          type="text"
-          required
-          id="phonenumber"
-          placeholder="Phone Number"
-        />
-      </div>
-      <div>
-        <button className={paymentclass.button} onClick={submitPaymentMethod}>
+        <button
+          disabled={disable}
+          className={paymentclass.button}
+          onClick={submitPaymentMethod}
+        >
           Submit
         </button>
       </div>

@@ -5,19 +5,33 @@ import shippingclass from "./ShippingInfo.module.css";
 
 const ShippingInfoForm = () => {
   const [shippinginfo, setShippingInfo] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    address: "",
+    buyerFirstName: "",
+    buyerLastName: "",
+    buyerEmail: "",
+    buyerPhoneNumber: "",
+    streetAddress: "",
     city: "",
     state: "",
-    zipCode: "",
+    zipcode: "",
   });
-
   const [shipping, setShipping] = useLocalStorage("shippinginfo", {});
-
+  const [disable, setDisable] = useState(false);
   const submitShippingInfo = () => {
-    setShipping({ ...shipping, shippinginfo });
+    if (
+      shippinginfo.buyerFirstName !== "" &&
+      shippinginfo.buyerLastName !== "" &&
+      shippinginfo.buyerEmail !== "" &&
+      shippinginfo.buyerPhoneNumber !== "" &&
+      shippinginfo.streetAddress !== "" &&
+      shippinginfo.city !== "" &&
+      shippinginfo.state !== "" &&
+      shippinginfo.zipcode !== ""
+    ) {
+      setShipping({ ...shipping, shippinginfo });
+      setDisable(true);
+    } else {
+      alert("missing fields");
+    }
   };
 
   // function submitShippingInfo() {
@@ -34,7 +48,7 @@ const ShippingInfoForm = () => {
       <div>
         <input
           onChange={(e) =>
-            setShippingInfo({ ...shippinginfo, firstName: e.target.value })
+            setShippingInfo({ ...shippinginfo, buyerFirstName: e.target.value })
           }
           className={shippingclass.input}
           type="text"
@@ -46,7 +60,7 @@ const ShippingInfoForm = () => {
       <div>
         <input
           onChange={(e) =>
-            setShippingInfo({ ...shippinginfo, lastName: e.target.value })
+            setShippingInfo({ ...shippinginfo, buyerLastName: e.target.value })
           }
           className={shippingclass.input}
           type="text"
@@ -58,7 +72,7 @@ const ShippingInfoForm = () => {
       <div>
         <input
           onChange={(e) =>
-            setShippingInfo({ ...shippinginfo, email: e.target.value })
+            setShippingInfo({ ...shippinginfo, buyerEmail: e.target.value })
           }
           className={shippingclass.input}
           type="text"
@@ -70,7 +84,22 @@ const ShippingInfoForm = () => {
       <div>
         <input
           onChange={(e) =>
-            setShippingInfo({ ...shippinginfo, address: e.target.value })
+            setShippingInfo({
+              ...shippinginfo,
+              buyerPhoneNumber: e.target.value,
+            })
+          }
+          className={shippingclass.input}
+          type="text"
+          required
+          id="phonenumber"
+          placeholder="Phone Number"
+        />
+      </div>
+      <div>
+        <input
+          onChange={(e) =>
+            setShippingInfo({ ...shippinginfo, streetAddress: e.target.value })
           }
           className={shippingclass.input}
           type="text"
@@ -106,7 +135,7 @@ const ShippingInfoForm = () => {
       <div>
         <input
           onChange={(e) =>
-            setShippingInfo({ ...shippinginfo, zipCode: e.target.value })
+            setShippingInfo({ ...shippinginfo, zipcode: e.target.value })
           }
           className={shippingclass.input}
           type="number"
@@ -116,7 +145,11 @@ const ShippingInfoForm = () => {
         />
       </div>
       <div>
-        <button className={shippingclass.button} onClick={submitShippingInfo}>
+        <button
+          disabled={disable}
+          className={shippingclass.button}
+          onClick={submitShippingInfo}
+        >
           Submit
         </button>
       </div>

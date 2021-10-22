@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Container } from 'reactstrap';
-import Item from '../../components/Item';
-import API from '../../utils/API';
-import { withRouter } from 'react-router';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import React, { useState, useEffect } from "react";
+import { Container } from "reactstrap";
+import Item from "../../components/Item";
+import API from "../../utils/API";
+import { withRouter } from "react-router";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const Gallery = () => {
   const [inventory, setInventory] = useState([]);
-  const [bag, setBag] = useLocalStorage('shoppingBag', []);
+  const [bag, setBag] = useLocalStorage("shoppingBag", []);
 
   useEffect(() => {
     API.getListings().then((res) => {
@@ -23,10 +23,12 @@ const Gallery = () => {
     if (isInBag) {
       if (isInBag.bagQty < product.quantity) {
         isInBag.bagQty++;
-        alert('already in bag, go there.');
+        alert(
+          `You currently have ${isInBag.bagQty} of "${product.productName}" in your ShopBag`
+        );
         setBag(bag);
       } else {
-        alert('Sorry, not enough products in our store');
+        alert("Sorry, not enough products in our store");
       }
     } else {
       product.bagQty = 1;
@@ -44,10 +46,10 @@ const Gallery = () => {
           <Container key={item.id}>
             <Item item={item} />
             {item.quantity === 0 || item.quantity === null ? (
-              <p style={{ color: 'red' }}>Sold Out</p>
+              <p style={{ color: "red" }}>Sold Out</p>
             ) : (
               <div>
-                <p style={{ color: 'green' }}>In Stock</p>
+                <p style={{ color: "green" }}>In Stock</p>
                 <button onClick={() => addToBag(item)}>Add to Bag</button>
               </div>
             )}

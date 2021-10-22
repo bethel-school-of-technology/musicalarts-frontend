@@ -1,30 +1,31 @@
-import React, { useState } from "react";
-import useLocalStorage from "../../../hooks/useLocalStorage";
+import React, { useState } from 'react';
+import useLocalStorage from '../../../hooks/useLocalStorage';
 //import API from "../../../utils/API";
 
-import paymentclass from "./PaymentMethod.module.css";
+import paymentclass from './PaymentMethod.module.css';
 
 const PaymentMethodForm = () => {
   const [paymentmethod, setPaymentMethod] = useState({
-    nameOnCard: "",
-    cardNumber: "",
-    cardExpirationDate: "",
-    cardCvv: "",
+    nameOnCard: '',
+    cardNumber: '',
+    cardExpirationDate: '',
+    cardCvv: '',
   });
 
-  const [payment, setPayment] = useLocalStorage("paymentmethod", {});
+  const [payment, setPayment] = useLocalStorage('paymentmethod', {});
   const [disable, setDisable] = useState(false);
   const submitPaymentMethod = () => {
     if (
-      paymentmethod.nameOnCard !== "" &&
-      paymentmethod.cardNumber !== "" &&
-      paymentmethod.cardExpirationDate !== "" &&
-      paymentmethod.cardCvv !== ""
+      paymentmethod.nameOnCard !== '' &&
+      paymentmethod.cardNumber !== '' &&
+      paymentmethod.cardExpirationDate !== '' &&
+      paymentmethod.cardCvv !== ''
     ) {
       setPayment({ ...payment, paymentmethod });
       setDisable(true);
+      alert('Successful!');
     } else {
-      alert("missing fields");
+      alert('missing fields');
     }
   };
 
@@ -44,10 +45,10 @@ const PaymentMethodForm = () => {
             setPaymentMethod({ ...paymentmethod, nameOnCard: e.target.value })
           }
           className={paymentclass.input}
-          type="text"
+          type='text'
           required
-          id="nameoncard"
-          placeholder="Name On Card"
+          id='nameoncard'
+          placeholder='Name On Card'
         />
       </div>
       <div>
@@ -56,10 +57,10 @@ const PaymentMethodForm = () => {
             setPaymentMethod({ ...paymentmethod, cardNumber: e.target.value })
           }
           className={paymentclass.input}
-          type="number"
+          type='number'
           required
-          id="cardnumber"
-          placeholder="Credit or Debit Card Number"
+          id='cardnumber'
+          placeholder='Credit or Debit Card Number'
         />
       </div>
       <div>
@@ -71,10 +72,10 @@ const PaymentMethodForm = () => {
             })
           }
           className={paymentclass.input}
-          type="text"
+          type='text'
           required
-          id="expirationdate"
-          placeholder="Exp. (MM/YY)"
+          id='expirationdate'
+          placeholder='Exp. (MM/YY)'
         />
       </div>
       <div>
@@ -83,10 +84,10 @@ const PaymentMethodForm = () => {
             setPaymentMethod({ ...paymentmethod, cardCvv: e.target.value })
           }
           className={paymentclass.input}
-          type="number"
+          type='number'
           required
-          id="cvv"
-          placeholder="CVV"
+          id='cvv'
+          placeholder='CVV'
         />
       </div>
       <div>

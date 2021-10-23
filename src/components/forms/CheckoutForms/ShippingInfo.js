@@ -1,37 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 //import API from "../../../utils/API";
-import useLocalStorage from '../../../hooks/useLocalStorage';
-import shippingclass from './ShippingInfo.module.css';
+import useLocalStorage from "../../../hooks/useLocalStorage";
+import shippingclass from "./ShippingInfo.module.css";
 
 const ShippingInfoForm = () => {
   const [shippinginfo, setShippingInfo] = useState({
-    buyerFirstName: '',
-    buyerLastName: '',
-    buyerEmail: '',
-    buyerPhoneNumber: '',
-    streetAddress: '',
-    city: '',
-    state: '',
-    zipcode: '',
+    buyerFirstName: "",
+    buyerLastName: "",
+    buyerEmail: "",
+    buyerPhoneNumber: "",
+    streetAddress: "",
+    city: "",
+    state: "",
+    zipcode: "",
   });
-  const [shipping, setShipping] = useLocalStorage('shippinginfo', {});
+  const [shipping, setShipping] = useLocalStorage("shippinginfo", {});
   const [disable, setDisable] = useState(false);
   const submitShippingInfo = () => {
     if (
-      shippinginfo.buyerFirstName !== '' &&
-      shippinginfo.buyerLastName !== '' &&
-      shippinginfo.buyerEmail !== '' &&
-      shippinginfo.buyerPhoneNumber !== '' &&
-      shippinginfo.streetAddress !== '' &&
-      shippinginfo.city !== '' &&
-      shippinginfo.state !== '' &&
-      shippinginfo.zipcode !== ''
+      shippinginfo.buyerFirstName !== "" &&
+      shippinginfo.buyerLastName !== "" &&
+      shippinginfo.buyerEmail !== "" &&
+      shippinginfo.buyerPhoneNumber !== "" &&
+      shippinginfo.streetAddress !== "" &&
+      shippinginfo.city !== "" &&
+      shippinginfo.state !== "" &&
+      shippinginfo.zipcode !== ""
     ) {
       setShipping({ ...shipping, shippinginfo });
-      alert('Successful');
+      alert("Successful");
       setDisable(true);
     } else {
-      alert('missing fields');
+      alert("missing fields");
     }
   };
 
@@ -52,10 +52,10 @@ const ShippingInfoForm = () => {
             setShippingInfo({ ...shippinginfo, buyerFirstName: e.target.value })
           }
           className={shippingclass.input}
-          type='text'
+          type="text"
           required
-          id='firstname'
-          placeholder='First Name'
+          id="firstname"
+          placeholder="First Name"
         />
       </div>
       <div>
@@ -64,10 +64,10 @@ const ShippingInfoForm = () => {
             setShippingInfo({ ...shippinginfo, buyerLastName: e.target.value })
           }
           className={shippingclass.input}
-          type='text'
+          type="text"
           required
-          id='lastname'
-          placeholder='Last Name'
+          id="lastname"
+          placeholder="Last Name"
         />
       </div>
       <div>
@@ -76,10 +76,10 @@ const ShippingInfoForm = () => {
             setShippingInfo({ ...shippinginfo, buyerEmail: e.target.value })
           }
           className={shippingclass.input}
-          type='text'
+          type="text"
           required
-          id='email'
-          placeholder='Email'
+          id="email"
+          placeholder="Email"
         />
       </div>
       <div>
@@ -91,10 +91,10 @@ const ShippingInfoForm = () => {
             })
           }
           className={shippingclass.input}
-          type='text'
+          type="text"
           required
-          id='phonenumber'
-          placeholder='Phone Number'
+          id="phonenumber"
+          placeholder="Phone Number"
         />
       </div>
       <div>
@@ -103,10 +103,10 @@ const ShippingInfoForm = () => {
             setShippingInfo({ ...shippinginfo, streetAddress: e.target.value })
           }
           className={shippingclass.input}
-          type='text'
+          type="text"
           required
-          id='address'
-          placeholder='Street Address'
+          id="address"
+          placeholder="Street Address"
         />
       </div>
       <div>
@@ -115,10 +115,10 @@ const ShippingInfoForm = () => {
             setShippingInfo({ ...shippinginfo, city: e.target.value })
           }
           className={shippingclass.input}
-          type='text'
+          type="text"
           required
-          id='city'
-          placeholder='City'
+          id="city"
+          placeholder="City"
         />
       </div>
       <div>
@@ -127,10 +127,10 @@ const ShippingInfoForm = () => {
             setShippingInfo({ ...shippinginfo, state: e.target.value })
           }
           className={shippingclass.input}
-          type='text'
+          type="text"
           required
-          id='state'
-          placeholder='State'
+          id="state"
+          placeholder="State"
         />
       </div>
       <div>
@@ -139,10 +139,10 @@ const ShippingInfoForm = () => {
             setShippingInfo({ ...shippinginfo, zipcode: e.target.value })
           }
           className={shippingclass.input}
-          type='number'
+          type="number"
           required
-          id='zipcode'
-          placeholder='Zip Code'
+          id="zipcode"
+          placeholder="Zip Code"
         />
       </div>
       <div>

@@ -35,8 +35,29 @@ const ShoppingBag = () => {
     setShoppingBag(shoppingBag);
   }, []);
 
-  const submitShoppingBag = (product) => {
-    setShoppingOrder({ ...shoppingOrder, product });
+  const submitShoppingBag = () => {
+    const array = JSON.parse(localStorage.getItem("shoppingBag"));
+    // const newObject = Object.assign({}, array);
+    // console.log(newObject);
+    // const productsOrdered = [
+    //   {
+    //     productId: `${product.id}`,
+    //     productName: newObject.productName,
+    //     quantity: newObject.bagQty,
+    //     price: newObject.price,
+    //   },
+    // ];
+
+    const productsOrdered = array.map((product) => {
+      return {
+        productId: product.id,
+        productName: product.productName,
+        quantity: product.bagQty,
+        price: product.price,
+      };
+    });
+    setShoppingOrder([{ ...shoppingOrder, productsOrdered }]);
+
     //price.productPrice = 0;
     //setSubTotal([...subTotal, price]);
 

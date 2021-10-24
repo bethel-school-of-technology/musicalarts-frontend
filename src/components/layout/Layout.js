@@ -6,8 +6,8 @@ function Layout(props) {
     <div>
       <Navigation />
       <main className={layclass.main}>{props.children}</main>
+      {/*<Footer />*/}
     </div>
-    /*countCartItems={cartItems.length}*/
   );
 }
 

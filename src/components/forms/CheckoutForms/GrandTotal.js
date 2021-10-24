@@ -3,58 +3,23 @@ import { withRouter } from "react-router";
 import axios from "axios";
 import "./GrandTotal.css";
 import { Container } from "reactstrap";
-//import useLocalStorage from "../../../hooks/useLocalStorage";
-//import { useState } from "react";
-//import Axios from "axios";
 
 const GrandTotal = (props) => {
-  //const [disable, setDisable] = useState(true);
-  //const [order, setOrder] = useLocalStorage("customerOrder", {});
-  // const [customerOrder, setCustomerOrder] = useState({
-  //   buyerFirstName: "",
-  //   buyerLastName: "",
-  //   buyerEmail: "",
-  //   buyerPhoneNumber: "",
-  //   streetAddress: "",
-  //   city: "",
-  //   state: "",
-  //   zipcode: "",
-  //   nameOnCard: "",
-  //   cardNumber: "",
-  //   cardExpirationDate: "",
-  //   cardCvv: "",
-  //   productsOrdered: [
-  //     { productId: "", productName: "", quantity: "", price: "" },
-  //   ],
-  // });
   const submitOrder = () => {
-    //TODO: Add in checks/switch so before the order is submitted the new object is created in local storage,
-    //you get the order back from local storage 'JSON.parse(localStorage.getItem('customerOrder))'
-    //TODO: set up axios POST to send the customerOrder object to the backend
-
-    //FIXME:
-    //const checkoutInfo = JSON.parse(localStorage.getItem("checkoutinfo"));
+    const totalPrice = JSON.parse(localStorage.getItem("totalPrice"));
     const shippingInfo = JSON.parse(localStorage.getItem("shippinginfo"));
     const paymentMethod = JSON.parse(localStorage.getItem("paymentmethod"));
     const productsOrdered = JSON.parse(localStorage.getItem("productsOrdered"));
     const userOrder = {
-      //...checkoutInfo,
+      ...totalPrice,
       ...shippingInfo,
       ...paymentMethod,
-      productsOrdered,
+      ...productsOrdered,
     };
-    console.log(userOrder);
-    //['productsOrdered':[{},{}]]
-    //[{},{}]
-    //const userOrder = Object.create({
-    //   shippingInfo,paymentMethod, productsOrdered
-    // })
-    //const finalOrder = JSON.parse(localStorage.getItem('customerOrder'));
 
     const token = localStorage.getItem("token");
 
     if (!token) {
-      //redirect
       props.history.push("/");
     }
 
@@ -63,44 +28,23 @@ const GrandTotal = (props) => {
         Authorization: `Bearer ${props.token}`,
       },
     };
-    const req = {
-      userOrder,
-    };
-    // console.log(req);
+
     axios
-      .post("http://localhost:3001/orders/checkout", req, options)
+      .post("http://localhost:3001/orders/checkout", userOrder, options)
       .then(function (response) {
         console.log(response);
         props.history.push("/ordersubmission");
+        localStorage.removeItem("shippinginfo");
+        localStorage.removeItem("shoppingBag");
+        localStorage.removeItem("paymentmethod");
+        localStorage.removeItem("totalPrice");
+        localStorage.removeItem("productsOrdered");
         return;
       })
       .catch(function (error) {
         console.log(error);
         alert("error checking out");
       });
-    //setCustomerOrder()
-    //   localStorage.removeItem("shippinginfo");
-    //   localStorage.removeItem("shoppingBag");
-    //   localStorage.removeItem("paymentmethod");
-    //();
-    //console.log(checkoutInfo);
-    console.log(shippingInfo);
-    console.log(paymentMethod);
-    console.log(productsOrdered);
-    console.log(userOrder);
-
-    //setOrder({ ...order, customerOrder });
-    //order.push(userOrder);
-
-    //TODO:
-    // if (paymentMethod && shippingInfo) {
-    //   setDisable(false);
-    //   localStorage.removeItem("shippinginfo");
-    //   localStorage.removeItem("shoppingBag");
-    //   localStorage.removeItem("paymentmethod");
-    // } else {
-    //   alert("missing information");
-    // }
   };
   const order = JSON.parse(localStorage.getItem("shoppingBag")) || [];
   const totalPrice = order.reduce((a, c) => a + c.price * c.bagQty, 0);
@@ -109,14 +53,12 @@ const GrandTotal = (props) => {
       <div>
         <h4 className="h4">Grand Total ${totalPrice}</h4>
 
-        {/*<p className="p">${totalPrice}</p>*/}
-
         <div className="col text-center">
           <Link to="/ordersubmission" className="button1" onClick={submitOrder}>
             Submit Order
           </Link>
         </div>
-        {/* <Link to='/ordersubmission'> disabled={disable} </Link> */}
+
         <div className="col text-center">
           <Link className="button2" to="/bag">
             Back To Shopping Bag

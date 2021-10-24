@@ -10,12 +10,7 @@ const ShoppingBag = () => {
     "productsOrdered",
     []
   );
-  //const [subTotal, setSubTotal] = useState(0);
-  // const [qty, setQty] = useState({
-  //   quantity: 1,
-  // });
-
-  //const totalPrice = shoppingBag.reduce((a, c) => a + c.price * c.bagQty, 0);
+  const [subTotal, setSubTotal] = useLocalStorage("totalPrice", []);
 
   const totalPrice = () => {
     if (shoppingBag) {
@@ -25,7 +20,6 @@ const ShoppingBag = () => {
     }
   };
 
-  //const [bag, setBag] = seLocalStorage("shoppingBag", [...shoppingBag])
   useEffect(() => {
     let shoppingBag = JSON.parse(localStorage.getItem("shoppingBag"));
     console.log(shoppingBag);
@@ -34,16 +28,6 @@ const ShoppingBag = () => {
 
   const submitShoppingBag = () => {
     const array = JSON.parse(localStorage.getItem("shoppingBag"));
-    // const newObject = Object.assign({}, array);
-    // console.log(newObject);
-    // const productsOrdered = [
-    //   {
-    //     productId: `${product.id}`,
-    //     productName: newObject.productName,
-    //     quantity: newObject.bagQty,
-    //     price: newObject.price,
-    //   },
-    // ];
 
     const productsOrdered = array.map((product) => {
       return {
@@ -53,14 +37,10 @@ const ShoppingBag = () => {
         price: product.price,
       };
     });
-    setShoppingOrder([{ ...shoppingOrder, productsOrdered }]);
+    setShoppingOrder({ ...shoppingOrder, productsOrdered });
 
-    //price.productPrice = 0;
-    //setSubTotal([...subTotal, price]);
-
-    //shoppingOrder.push(subTotal);
-
-    //localStorage.removeItem('shoppingBag')
+    const totalPrice = shoppingBag.reduce((a, c) => a + c.price * c.bagQty, 0);
+    setSubTotal({ ...subTotal, totalPrice });
   };
 
   const removeItem = (product) => {

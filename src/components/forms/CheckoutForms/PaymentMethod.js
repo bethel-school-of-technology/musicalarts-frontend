@@ -1,31 +1,32 @@
-import React, { useState } from 'react';
-import useLocalStorage from '../../../hooks/useLocalStorage';
+import React, { useState } from "react";
+import useLocalStorage from "../../../hooks/useLocalStorage";
 //import API from "../../../utils/API";
+import { Button, Container, Input } from "reactstrap";
 
-import paymentclass from './PaymentMethod.module.css';
+import "./CheckoutPage.css";
 
 const PaymentMethodForm = () => {
   const [paymentmethod, setPaymentMethod] = useState({
-    nameOnCard: '',
-    cardNumber: '',
-    cardExpirationDate: '',
-    cardCvv: '',
+    nameOnCard: "",
+    cardNumber: "",
+    cardExpirationDate: "",
+    cardCvv: "",
   });
 
-  const [payment, setPayment] = useLocalStorage('paymentmethod', {});
+  const [payment, setPayment] = useLocalStorage("paymentmethod", []);
   const [disable, setDisable] = useState(false);
   const submitPaymentMethod = () => {
     if (
-      paymentmethod.nameOnCard !== '' &&
-      paymentmethod.cardNumber !== '' &&
-      paymentmethod.cardExpirationDate !== '' &&
-      paymentmethod.cardCvv !== ''
+      paymentmethod.nameOnCard !== "" &&
+      paymentmethod.cardNumber !== "" &&
+      paymentmethod.cardExpirationDate !== "" &&
+      paymentmethod.cardCvv !== ""
     ) {
-      setPayment({ ...payment, paymentmethod });
+      setPayment(...payment, paymentmethod);
       setDisable(true);
-      alert('Successful!');
+      alert("Successful!");
     } else {
-      alert('missing fields');
+      alert("missing fields");
     }
   };
 
@@ -37,69 +38,73 @@ const PaymentMethodForm = () => {
   //   });
   // }
   return (
-    <div>
-      <h4 className={paymentclass.h4}>Payment Method</h4>
+    <Container className="col text-center">
       <div>
-        <input
-          onChange={(e) =>
-            setPaymentMethod({ ...paymentmethod, nameOnCard: e.target.value })
-          }
-          className={paymentclass.input}
-          type='text'
-          required
-          id='nameoncard'
-          placeholder='Name On Card'
-        />
+        <div>
+          <h4>Payment Method</h4>
+        </div>
+        <div>
+          <Input
+            onChange={(e) =>
+              setPaymentMethod({ ...paymentmethod, nameOnCard: e.target.value })
+            }
+            className="Input"
+            type="text"
+            required
+            id="nameoncard"
+            placeholder="Name On Card"
+          />
+        </div>
+        <div>
+          <Input
+            onChange={(e) =>
+              setPaymentMethod({ ...paymentmethod, cardNumber: e.target.value })
+            }
+            className="Input"
+            type="number"
+            required
+            id="cardnumber"
+            placeholder="Credit or Debit Card Number"
+          />
+        </div>
+        <div>
+          <Input
+            onChange={(e) =>
+              setPaymentMethod({
+                ...paymentmethod,
+                cardExpirationDate: e.target.value,
+              })
+            }
+            className="Input"
+            type="text"
+            required
+            id="expirationdate"
+            placeholder="Exp. (MM/YY)"
+          />
+        </div>
+        <div>
+          <Input
+            onChange={(e) =>
+              setPaymentMethod({ ...paymentmethod, cardCvv: e.target.value })
+            }
+            className="Input"
+            type="number"
+            required
+            id="cvv"
+            placeholder="CVV"
+          />
+        </div>
+        <div className="col text-center">
+          <Button
+            disabled={disable}
+            className="button"
+            onClick={submitPaymentMethod}
+          >
+            Submit
+          </Button>
+        </div>
       </div>
-      <div>
-        <input
-          onChange={(e) =>
-            setPaymentMethod({ ...paymentmethod, cardNumber: e.target.value })
-          }
-          className={paymentclass.input}
-          type='number'
-          required
-          id='cardnumber'
-          placeholder='Credit or Debit Card Number'
-        />
-      </div>
-      <div>
-        <input
-          onChange={(e) =>
-            setPaymentMethod({
-              ...paymentmethod,
-              cardExpirationDate: e.target.value,
-            })
-          }
-          className={paymentclass.input}
-          type='text'
-          required
-          id='expirationdate'
-          placeholder='Exp. (MM/YY)'
-        />
-      </div>
-      <div>
-        <input
-          onChange={(e) =>
-            setPaymentMethod({ ...paymentmethod, cardCvv: e.target.value })
-          }
-          className={paymentclass.input}
-          type='number'
-          required
-          id='cvv'
-          placeholder='CVV'
-        />
-      </div>
-      <div>
-        <button
-          disabled={disable}
-          className={paymentclass.button}
-          onClick={submitPaymentMethod}
-        >
-          Submit
-        </button>
-      </div>
-    </div>
+    </Container>
   );
 };
 

@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import axios from "axios";
-import grandclass from "./GrandTotal.module.css";
+import "./GrandTotal.css";
+import { Container } from "reactstrap";
 //import useLocalStorage from "../../../hooks/useLocalStorage";
 //import { useState } from "react";
 //import Axios from "axios";
@@ -32,12 +33,14 @@ const GrandTotal = (props) => {
     //TODO: set up axios POST to send the customerOrder object to the backend
 
     //FIXME:
-    // const paymentMethod = JSON.parse(localStorage.getItem('paymentmethod'));
-    // const shippingInfo = JSON.parse(localStorage.getItem('shippinginfo'));
-    const checkoutInfo = JSON.parse(localStorage.getItem("checkoutinfo"));
+    //const checkoutInfo = JSON.parse(localStorage.getItem("checkoutinfo"));
+    const shippingInfo = JSON.parse(localStorage.getItem("shippinginfo"));
+    const paymentMethod = JSON.parse(localStorage.getItem("paymentmethod"));
     const productsOrdered = JSON.parse(localStorage.getItem("productsOrdered"));
     const userOrder = {
-      ...checkoutInfo,
+      //...checkoutInfo,
+      ...shippingInfo,
+      ...paymentMethod,
       productsOrdered,
     };
     console.log(userOrder);
@@ -80,8 +83,9 @@ const GrandTotal = (props) => {
     //   localStorage.removeItem("shoppingBag");
     //   localStorage.removeItem("paymentmethod");
     //();
-    // console.log(paymentMethod);
-    console.log(checkoutInfo);
+    //console.log(checkoutInfo);
+    console.log(shippingInfo);
+    console.log(paymentMethod);
     console.log(productsOrdered);
     console.log(userOrder);
 
@@ -101,19 +105,25 @@ const GrandTotal = (props) => {
   const order = JSON.parse(localStorage.getItem("shoppingBag")) || [];
   const totalPrice = order.reduce((a, c) => a + c.price * c.bagQty, 0);
   return (
-    <div>
-      <h4 className={grandclass.h4}>Grand Total</h4>
+    <Container>
+      <div>
+        <h4 className="h4">Grand Total ${totalPrice}</h4>
 
-      <p className={grandclass.p}>${totalPrice}</p>
-      <button className={grandclass.button1} onClick={submitOrder}>
-        Submit Order
-      </button>
-      {/* <Link to='/ordersubmission'> disabled={disable} </Link> */}
-      <br />
-      <Link to="/bag">
-        <button className={grandclass.button2}>Back To Shopping Bag</button>
-      </Link>
-    </div>
+        {/*<p className="p">${totalPrice}</p>*/}
+
+        <div className="col text-center">
+          <Link to="/ordersubmission" className="button1" onClick={submitOrder}>
+            Submit Order
+          </Link>
+        </div>
+        {/* <Link to='/ordersubmission'> disabled={disable} </Link> */}
+        <div className="col text-center">
+          <Link className="button2" to="/bag">
+            Back To Shopping Bag
+          </Link>
+        </div>
+      </div>
+    </Container>
   );
 };
 

@@ -1,25 +1,25 @@
-import axios from 'axios';
-import { useState } from 'react';
-import { withRouter } from 'react-router';
-
-import signinclass from './SignInForm.module.css';
+import axios from "axios";
+import { useState } from "react";
+import { withRouter } from "react-router";
+import { Button, Container, Input } from "reactstrap";
+import "./SignInForm.css";
 
 function SignInForm(props) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   function submitHandler() {
     console.log(username);
     console.log(password);
-    if (username !== '' && password !== '') {
+    if (username !== "" && password !== "") {
       const req = {
         username,
         password,
       };
-      axios.post('http://localhost:3001/user/signin', req).then(
+      axios.post("http://localhost:3001/user/signin", req).then(
         (result) => {
           const token = result.data.jwt;
-          localStorage.setItem('token', token);
+          localStorage.setItem("token", token);
           props.history.push(`/dashboard`);
           console.log(result.data);
         },
@@ -31,33 +31,35 @@ function SignInForm(props) {
   }
 
   return (
-    <div className={signinclass.form}>
+    <Container className="col text-center">
       <div>
-        <input
-          onChange={(e) => setUsername(e.target.value)}
-          className={signinclass.input}
-          type='text'
-          required
-          id='username'
-          placeholder='Username'
-        />
+        <div>
+          <Input
+            onChange={(e) => setUsername(e.target.value)}
+            className="Input"
+            type="text"
+            required
+            id="username"
+            placeholder="Username"
+          />
+        </div>
+        <div>
+          <Input
+            onChange={(e) => setPassword(e.target.value)}
+            className="Input"
+            type="password"
+            required
+            id="password"
+            placeholder="Password"
+          />
+        </div>
+        <div className="col text-center">
+          <Button className="submit" onClick={submitHandler}>
+            Submit
+          </Button>
+        </div>
       </div>
-      <div>
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          className={signinclass.input}
-          type='password'
-          required
-          id='password'
-          placeholder='Password'
-        />
-      </div>
-      <div>
-        <button className={signinclass.button} onClick={submitHandler}>
-          Submit
-        </button>
-      </div>
-    </div>
+    </Container>
   );
 }
 

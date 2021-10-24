@@ -1,3 +1,37 @@
+{/*<BagList bag={ShoppingBag_Data} />*/}
+
+
+{/* {product.quantity > 0 && (
+                    <>
+                      <li>
+                        <div className='row'>
+                          <div>Qty</div>
+                          <div>
+                            <select
+                              value={qty}
+                              onChange={(e) => setQty(e.target.value)}
+                            >
+                              {[...Array(product.quantity).keys()].map((x) => (
+                                <option key={x + 1} value={x + 1}>
+                                  {x + 1}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+                      </li>
+                    </>
+                  )} */}
+
+
+
+
+{/*<div className={bagitem.count}>
+               <input>Count:{product.exist.qty}</input>
+               </div>*/}
+                {/* <div className={bagitem.additem}>
+                <button onClick={() => addItem(product)}> + </button>
+              </div> */}
 import { Card } from "reactstrap";
 import bagitem from "./BagItem.module.css";
 import React, { useState } from "react";

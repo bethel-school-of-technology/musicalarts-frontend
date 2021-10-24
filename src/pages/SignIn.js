@@ -1,11 +1,11 @@
-import { withRouter } from 'react-router';
-import SignInForm from '../components/forms/SignInForm';
-import signinclass from './SignIn.module.css';
+import { withRouter } from "react-router";
+import SignInForm from "../components/forms/SignInForm";
+import "./SignIn.css";
 
 function SignInPage() {
   return (
     <section>
-      <h1 className={signinclass.h1}>Sign In</h1>
+      <h1 className="h1">Sign In</h1>
       <SignInForm />
     </section>
   );

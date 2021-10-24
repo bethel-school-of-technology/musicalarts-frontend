@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
-
-import signupclass from "./SignUpForm.module.css";
+import { Container, Input } from "reactstrap";
+import "./SignUpForm.css";
 
 function SignUpForm() {
   const [user, setUser] = useState({
@@ -24,85 +24,85 @@ function SignUpForm() {
   }
 
   return (
-    <div className={signupclass.form}>
+    <Container className="col text-center">
       <div>
-        <input
-          onChange={(e) => setUser({ ...user, username: e.target.value })}
-          className={signupclass.input}
-          type="text"
-          required
-          id="username"
-          placeholder="Username"
-        />
-      </div>
-      <div>
-        <input
-          onChange={(e) => setUser({ ...user, password: e.target.value })}
-          className={signupclass.input}
-          type="password"
-          required
-          id="password"
-          placeholder="Password"
-        />
-      </div>
-      <div>
-        <input
-          onChange={(e) => setUser({ ...user, firstName: e.target.value })}
-          className={signupclass.input}
-          type="text"
-          required
-          id="firstname"
-          placeholder="First Name"
-        />
-      </div>
-      <div>
-        <input
-          onChange={(e) => setUser({ ...user, lastName: e.target.value })}
-          className={signupclass.input}
-          type="text"
-          required
-          id="lastname"
-          placeholder="Last Name"
-        />
-      </div>
-      <div>
-        <input
-          onChange={(e) => setUser({ ...user, email: e.target.value })}
-          className={signupclass.input}
-          type="text"
-          required
-          id="email"
-          placeholder="Email"
-        />
-      </div>
-      <div>
-        <input
-          onChange={(e) => setUser({ ...user, address: e.target.value })}
-          className={signupclass.input}
-          type="text"
-          required
-          id="address"
-          placeholder="Address"
-        />
-      </div>
-      <div>
-        <input
-          onChange={(e) => setUser({ ...user, phoneNumber: e.target.value })}
-          className={signupclass.input}
-          type="text"
-          required
-          id="phonenumber"
-          placeholder="Phone"
-        />
-      </div>
-      <div>
-        <Link to="/signin">
-          <button className={signupclass.button} onClick={submitHandler}>
+        <div>
+          <Input
+            onChange={(e) => setUser({ ...user, username: e.target.value })}
+            className="Input"
+            type="text"
+            required
+            id="username"
+            placeholder="Username"
+          />
+        </div>
+        <div>
+          <Input
+            onChange={(e) => setUser({ ...user, password: e.target.value })}
+            className="Input"
+            type="password"
+            required
+            id="password"
+            placeholder="Password"
+          />
+        </div>
+        <div>
+          <Input
+            onChange={(e) => setUser({ ...user, firstName: e.target.value })}
+            className="Input"
+            type="text"
+            required
+            id="firstname"
+            placeholder="First Name"
+          />
+        </div>
+        <div>
+          <Input
+            onChange={(e) => setUser({ ...user, lastName: e.target.value })}
+            className="Input"
+            type="text"
+            required
+            id="lastname"
+            placeholder="Last Name"
+          />
+        </div>
+        <div>
+          <Input
+            onChange={(e) => setUser({ ...user, email: e.target.value })}
+            className="Input"
+            type="text"
+            required
+            id="email"
+            placeholder="Email"
+          />
+        </div>
+        <div>
+          <Input
+            onChange={(e) => setUser({ ...user, address: e.target.value })}
+            className="Input"
+            type="text"
+            required
+            id="address"
+            placeholder="Address"
+          />
+        </div>
+        <div>
+          <Input
+            onChange={(e) => setUser({ ...user, phoneNumber: e.target.value })}
+            className="Input"
+            type="text"
+            required
+            id="phonenumber"
+            placeholder="Phone"
+          />
+        </div>
+        <div>
+          <Link className="submit" to="/signin" onClick={submitHandler}>
             Submit
-          </button>
-        </Link>
+          </Link>
+        </div>
       </div>
-    </div>
+    </Container>
   );
 }
 

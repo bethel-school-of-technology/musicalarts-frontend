@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-//import BagItem from "../../components/BagItem";
-import { Card } from "reactstrap";
-import bagitem from "../../components/BagItem/BagItem.module.css";
-//import BagList from "../../components/BagList";
+import { Button, Card } from "reactstrap";
 import "./ShoppingBag.css";
 import useLocalStorage from "../../hooks/useLocalStorage";
 
@@ -77,15 +74,13 @@ const ShoppingBag = () => {
     <div>
       <main>
         <h1 className="title">Shopping Bag</h1>
-
-        {/*<BagList bag={ShoppingBag_Data} />*/}
         {shoppingBag === null || shoppingBag === [] ? (
-          <p>Shopping Bag is Empty</p>
+          <p className="emptybag">Shopping Bag is Empty</p>
         ) : (
           <section>
             {shoppingBag.map((product) => (
-              <Card className={bagitem.card} key={product.id}>
-                <div className={bagitem.image}>
+              <Card className="card" key={product.id}>
+                <div className="image">
                   {product.imageUrl === null || product.imageUrl === "" ? (
                     <img
                       src="https://i.postimg.cc/2y43Z54p/noimg.png"
@@ -95,65 +90,41 @@ const ShoppingBag = () => {
                     <img src={product.imageUrl} alt={product.productName} />
                   )}
                 </div>
-                <div className={bagitem.content}>
-                  <h3>Title: {product.productName}</h3>
-                  <p>Type: {product.category}</p>
-                  <p>Price: ${product.price}</p>
-
-                  <p>Qty: {product.bagQty}</p>
-                  <p>Total Price: ${product.bagQty * product.price}</p>
-
-                  {/* {product.quantity > 0 && (
-                    <>
-                      <li>
-                        <div className='row'>
-                          <div>Qty</div>
-                          <div>
-                            <select
-                              value={qty}
-                              onChange={(e) => setQty(e.target.value)}
-                            >
-                              {[...Array(product.quantity).keys()].map((x) => (
-                                <option key={x + 1} value={x + 1}>
-                                  {x + 1}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                        </div>
-                      </li>
-                    </>
-                  )} */}
+                <div className="content">
+                  <h3>{product.productName}</h3>
+                  <div>
+                    <p>Type: {product.category}</p>
+                    <p>Price: ${product.price}</p>
+                    <p>Qty: {product.bagQty}</p>
+                    <p>Total Price: ${product.bagQty * product.price}</p>
+                  </div>
                 </div>
-                {/*<div className={bagitem.count}>
-               <input>Count:{product.exist.qty}</input>
-               </div>*/}
-                {/* <div className={bagitem.additem}>
-                <button onClick={() => addItem(product)}> + </button>
-              </div> */}
 
-                <div className={bagitem.removeitem}>
-                  <button onClick={() => removeItem(product)}>
+                <div className="col text-center">
+                  <Button
+                    className="removeitem"
+                    onClick={() => removeItem(product)}
+                  >
                     Remove From Bag
-                  </button>
+                  </Button>
                 </div>
               </Card>
             ))}
 
             <p className="subtotal">Sub Total: ${totalPrice().toFixed(2)} </p>
-
-            <Link to="/checkout">
-              <button
-                onClick={() => submitShoppingBag(shoppingBag)}
+            <div className="col text-center">
+              <Link
                 className="checkout"
+                onClick={() => submitShoppingBag(shoppingBag)}
+                to="/checkout"
               >
                 Proceed To Checkout
-              </button>
-            </Link>
-
-            <Link to="/gallery">
-              <button className="shopping">Continue Shopping</button>
-            </Link>
+              </Link>
+              <br />
+              <Link className="shopping" to="/gallery">
+                Continue Shopping
+              </Link>
+            </div>
           </section>
         )}
       </main>

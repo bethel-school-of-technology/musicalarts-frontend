@@ -1,18 +1,19 @@
 import { Link } from "react-router-dom";
-import submissionclass from "./OrderSubmission.module.css";
+import { Container } from "reactstrap";
+import "./OrderSubmission.css";
 
 const OrderSubmissionAlert = () => {
   return (
-    <div>
-      <h1 className={submissionclass.h1}>
-        Your Order Was Successfully Submitted!
-      </h1>
+    <Container className="col text-center">
       <div>
-        <Link to={"/gallery"}>
-          <button className={submissionclass.button}>Back To Gallery</button>
-        </Link>
+        <h1 className="h1">Your Order Was Successfully Submitted!</h1>
+        <div>
+          <Link className="button" to={"/gallery"}>
+            Back To Gallery
+          </Link>
+        </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

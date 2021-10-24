@@ -106,7 +106,7 @@ const CreateListing = (props) => {
           onChange={(e) => setQuantity(e.target.value)}
         />
         <input
-          type="text"
+          type="number"
           placeholder="Price (ex. 45.67)"
           name="price"
           onChange={(e) => setPrice(e.target.value)}

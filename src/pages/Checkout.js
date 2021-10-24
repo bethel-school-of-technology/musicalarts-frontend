@@ -1,4 +1,3 @@
-//import CheckoutForm from "../components/forms/CheckoutForms/CheckoutForm";
 import ShippingInfoForm from "../components/forms/CheckoutForms/ShippingInfo";
 import PaymentMethodForm from "../components/forms/CheckoutForms/PaymentMethod";
 import GrandTotal from "../components/forms/CheckoutForms/GrandTotal";

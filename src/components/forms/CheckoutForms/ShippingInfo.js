@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Container, Input } from "reactstrap";
-//import API from "../../../utils/API";
 import useLocalStorage from "../../../hooks/useLocalStorage";
 import "./CheckoutPage.css";
 
@@ -36,14 +35,6 @@ const ShippingInfoForm = () => {
     }
   };
 
-  // function submitShippingInfo() {
-  //   console.log(shippinginfo.firstName);
-
-  //   API.createShippingInfo(shippinginfo).then((res) => {
-  //     console.log(res);
-  //   });
-
-  // }
   return (
     <Container className="col text-center">
       <div>

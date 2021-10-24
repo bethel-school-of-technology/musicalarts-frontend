@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import useLocalStorage from "../../../hooks/useLocalStorage";
-//import API from "../../../utils/API";
 import { Button, Container, Input } from "reactstrap";
 
 import "./CheckoutPage.css";
@@ -30,13 +29,6 @@ const PaymentMethodForm = () => {
     }
   };
 
-  // function submitPaymentMethod() {
-  //   console.log(paymentmethod.cardNumber);
-
-  //   API.createPaymentMethod(paymentmethod).then((res) => {
-  //     console.log(res);
-  //   });
-  // }
   return (
     <Container className="col text-center">
       <div>

@@ -5,7 +5,7 @@ import "./Checkout.css";
 
 const CheckoutPage = () => {
   return (
-    <section>
+    <section className="shadow-lg rounded">
       <h1 className="h1">Checkout</h1>
       <ShippingInfoForm />
       <PaymentMethodForm />

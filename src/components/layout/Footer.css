@@ -1,0 +1,17 @@
+.footer {
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(171, 134, 255);
+  padding: 3px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+p {
+  color: rgb(72, 18, 221);
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 25px;
+}

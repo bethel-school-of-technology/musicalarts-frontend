@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-} from "reactstrap";
+} from 'reactstrap';
 
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import navclass from "./Navigation.module.css";
+import navclass from './Navigation.module.css';
 
 // function getToken() {
 //   const token = localStorage.getItem('token');
@@ -17,7 +17,7 @@ import navclass from "./Navigation.module.css";
 function Navigation() {
   //const { countCartItems } = props;
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const bag = JSON.parse(localStorage.getItem("shoppingBag")) || [];
+  const bag = JSON.parse(localStorage.getItem('shoppingBag')) || [];
   const bagCount = bag.reduce((a, c) => a + c.bagQty, 0);
 
   //const user = JSON.parse(localStorage.getItem('user')) || [];
@@ -26,7 +26,7 @@ function Navigation() {
   // const isLoggedIn = !!token;
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     console.log(token);
 
     setIsLoggedIn(token);
@@ -37,10 +37,10 @@ function Navigation() {
   const history = useHistory();
   const signout = () => {
     //localStorage.clear();
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     setIsLoggedIn(false);
-    history.push("/signin");
+    history.push('/signin');
   };
 
   return (
@@ -48,16 +48,16 @@ function Navigation() {
       <nav>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to='/'>Home</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link to='/about'>About</Link>
           </li>
           <li>
-            <Link to="/gallery">Gallery</Link>
+            <Link to='/gallery'>Gallery</Link>
           </li>
           <li>
-            <Link to="/bag">
+            <Link to='/bag'>
               ShopBag({bagCount})
               {/*{""}
               {countCartItems ? (
@@ -65,18 +65,18 @@ function Navigation() {
               ) : (
                 ""
               )}*/}
-              {/*<i classNarme="fa fa-shopping-cart" aria-hidden="true"></i>*/}
+              {/*<i className="fa fa-shopping-cart" aria-hidden="true"></i>*/}
               {/*<FontAwesomeIcon icon={faShoppingCart} />*/}
             </Link>
           </li>
           {!isLoggedIn ? (
             <>
-              {" "}
+              {' '}
               <li>
-                <Link to="/signin">SignIn</Link>
+                <Link to='/signin'>SignIn</Link>
               </li>
               <li>
-                <Link to="/signup">SignUp</Link>
+                <Link to='/signup'>SignUp</Link>
               </li>
             </>
           ) : (
@@ -85,7 +85,7 @@ function Navigation() {
                 <DropdownToggle caret>Welcome user</DropdownToggle>
                 <DropdownMenu>
                   <DropdownItem header>
-                    <Link to="/dashboard">Dashboard</Link>
+                    <Link to='/dashboard'>Dashboard</Link>
                   </DropdownItem>
                   <DropdownItem onClick={signout}>Signout</DropdownItem>
                 </DropdownMenu>

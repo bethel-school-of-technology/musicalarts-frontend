@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams, withRouter } from 'react-router';
+import { Input } from 'reactstrap';
 
 //TODO: add history once you have axios up and running!!
 const EditListing = ({ history }) => {
@@ -101,13 +102,13 @@ const EditListing = ({ history }) => {
     <div>
       <form>
         <h2>Edit Listing {listing.productName} </h2>
-        <input
+        <Input
           type='text'
           name='productName'
           value={listing.productName}
           onChange={(e) => setListing({ ...listing, itemName: e.target.value })}
         />
-        <input
+        <Input
           type='text'
           name='description'
           value={listing.description}
@@ -115,19 +116,19 @@ const EditListing = ({ history }) => {
             setListing({ ...listing, description: e.target.value })
           }
         />
-        <input
+        <Input
           type='text'
           name='price'
           value={listing.price}
           onChange={(e) => setListing({ ...listing, price: e.target.value })}
         />
-        <input
+        <Input
           type='text'
           name='genre'
           value={listing.genre}
           onChange={(e) => setListing({ ...listing, genre: e.target.value })}
         />
-        <input
+        <Input
           type='text'
           name='location'
           value={listing.location}

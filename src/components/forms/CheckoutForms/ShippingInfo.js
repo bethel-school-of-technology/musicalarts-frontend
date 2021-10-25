@@ -49,7 +49,7 @@ const ShippingInfoForm = () => {
                 buyerFirstName: e.target.value,
               })
             }
-            className="Input"
+            className="m-4 Input"
             type="text"
             required
             id="firstname"
@@ -64,7 +64,7 @@ const ShippingInfoForm = () => {
                 buyerLastName: e.target.value,
               })
             }
-            className="Input"
+            className="m-4 Input"
             type="text"
             required
             id="lastname"
@@ -76,7 +76,7 @@ const ShippingInfoForm = () => {
             onChange={(e) =>
               setShippingInfo({ ...shippinginfo, buyerEmail: e.target.value })
             }
-            className="Input"
+            className="m-4 Input"
             type="text"
             required
             id="email"
@@ -91,7 +91,7 @@ const ShippingInfoForm = () => {
                 buyerPhoneNumber: e.target.value,
               })
             }
-            className="Input"
+            className="m-4 Input"
             type="text"
             required
             id="phonenumber"
@@ -106,7 +106,7 @@ const ShippingInfoForm = () => {
                 streetAddress: e.target.value,
               })
             }
-            className="Input"
+            className="m-4 Input"
             type="text"
             required
             id="address"
@@ -118,7 +118,7 @@ const ShippingInfoForm = () => {
             onChange={(e) =>
               setShippingInfo({ ...shippinginfo, city: e.target.value })
             }
-            className="Input"
+            className="m-4 Input"
             type="text"
             required
             id="city"
@@ -130,7 +130,7 @@ const ShippingInfoForm = () => {
             onChange={(e) =>
               setShippingInfo({ ...shippinginfo, state: e.target.value })
             }
-            className="Input"
+            className="m-4 Input"
             type="text"
             required
             id="state"
@@ -142,7 +142,7 @@ const ShippingInfoForm = () => {
             onChange={(e) =>
               setShippingInfo({ ...shippinginfo, zipcode: e.target.value })
             }
-            className="Input"
+            className="m-4 Input"
             type="number"
             required
             id="zipcode"
@@ -152,7 +152,7 @@ const ShippingInfoForm = () => {
         <div className="col text-center">
           <Button
             disabled={disable}
-            className="button"
+            className="mb-4 button"
             onClick={submitShippingInfo}
           >
             Submit

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Button, Card } from "reactstrap";
+import { Button, Card, Container } from "reactstrap";
 import "./ShoppingBag.css";
 import useLocalStorage from "../../hooks/useLocalStorage";
 
@@ -52,14 +52,14 @@ const ShoppingBag = () => {
 
   return (
     <div>
-      <main>
+      <Container className="shadow-lg rounded col text-center">
         <h1 className="title">Shopping Bag</h1>
         {shoppingBag === null || shoppingBag === [] ? (
           <p className="emptybag">Shopping Bag is Empty</p>
         ) : (
           <section>
             {shoppingBag.map((product) => (
-              <Card className="card" key={product.id}>
+              <Card className="shadow-lg mb-5 rounded card" key={product.id}>
                 <div className="image">
                   {product.imageUrl === null || product.imageUrl === "" ? (
                     <img
@@ -107,7 +107,7 @@ const ShoppingBag = () => {
             </div>
           </section>
         )}
-      </main>
+      </Container>
     </div>
   );
 };

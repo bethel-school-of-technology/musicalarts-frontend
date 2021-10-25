@@ -24,12 +24,13 @@ function SignUpForm() {
   }
 
   return (
-    <Container className="col text-center">
+    <Container className="shadow-lg rounded col text-center">
       <div>
+        <h1 className="h1">Sign Up</h1>
         <div>
           <Input
             onChange={(e) => setUser({ ...user, username: e.target.value })}
-            className="Input"
+            className="m-4 Input"
             type="text"
             required
             id="username"
@@ -39,7 +40,7 @@ function SignUpForm() {
         <div>
           <Input
             onChange={(e) => setUser({ ...user, password: e.target.value })}
-            className="Input"
+            className="m-4 Input"
             type="password"
             required
             id="password"
@@ -49,7 +50,7 @@ function SignUpForm() {
         <div>
           <Input
             onChange={(e) => setUser({ ...user, firstName: e.target.value })}
-            className="Input"
+            className="m-4 Input"
             type="text"
             required
             id="firstname"
@@ -59,7 +60,7 @@ function SignUpForm() {
         <div>
           <Input
             onChange={(e) => setUser({ ...user, lastName: e.target.value })}
-            className="Input"
+            className="m-4 Input"
             type="text"
             required
             id="lastname"
@@ -69,7 +70,7 @@ function SignUpForm() {
         <div>
           <Input
             onChange={(e) => setUser({ ...user, email: e.target.value })}
-            className="Input"
+            className="m-4 Input"
             type="text"
             required
             id="email"
@@ -79,7 +80,7 @@ function SignUpForm() {
         <div>
           <Input
             onChange={(e) => setUser({ ...user, address: e.target.value })}
-            className="Input"
+            className="m-4 Input"
             type="text"
             required
             id="address"
@@ -89,7 +90,7 @@ function SignUpForm() {
         <div>
           <Input
             onChange={(e) => setUser({ ...user, phoneNumber: e.target.value })}
-            className="Input"
+            className="m-4 Input"
             type="text"
             required
             id="phonenumber"

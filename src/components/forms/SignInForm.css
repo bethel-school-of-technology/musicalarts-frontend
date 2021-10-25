@@ -1,3 +1,12 @@
+.h1 {
+  color: white;
+  font-size: 70px !important;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  text-align: center;
+  padding: 5px !important;
+}
+
 .Input {
   border: none;
   border-radius: 0.3em;

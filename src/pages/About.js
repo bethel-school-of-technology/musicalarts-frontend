@@ -3,7 +3,7 @@ import "./About.css";
 
 const AboutPage = () => {
   return (
-    <Container>
+    <Container className="shadow-lg p-4 rounded col text-center">
       <div>
         <h1 className="h1">About Us</h1>
 

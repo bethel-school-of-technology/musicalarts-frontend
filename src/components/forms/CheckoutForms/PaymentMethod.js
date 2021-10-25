@@ -40,7 +40,7 @@ const PaymentMethodForm = () => {
             onChange={(e) =>
               setPaymentMethod({ ...paymentmethod, nameOnCard: e.target.value })
             }
-            className="Input"
+            className="m-4 Input"
             type="text"
             required
             id="nameoncard"
@@ -52,7 +52,7 @@ const PaymentMethodForm = () => {
             onChange={(e) =>
               setPaymentMethod({ ...paymentmethod, cardNumber: e.target.value })
             }
-            className="Input"
+            className="m-4 Input"
             type="number"
             required
             id="cardnumber"
@@ -67,7 +67,7 @@ const PaymentMethodForm = () => {
                 cardExpirationDate: e.target.value,
               })
             }
-            className="Input"
+            className="m-4 Input"
             type="text"
             required
             id="expirationdate"
@@ -79,7 +79,7 @@ const PaymentMethodForm = () => {
             onChange={(e) =>
               setPaymentMethod({ ...paymentmethod, cardCvv: e.target.value })
             }
-            className="Input"
+            className="m-4 Input"
             type="number"
             required
             id="cvv"
@@ -89,7 +89,7 @@ const PaymentMethodForm = () => {
         <div className="col text-center">
           <Button
             disabled={disable}
-            className="button"
+            className="mb-4 button"
             onClick={submitPaymentMethod}
           >
             Submit

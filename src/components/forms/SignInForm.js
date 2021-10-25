@@ -31,12 +31,13 @@ function SignInForm(props) {
   }
 
   return (
-    <Container className="col text-center">
+    <Container className="shadow-lg rounded col text-center">
       <div>
+        <h1 className="h1">Sign In</h1>
         <div>
           <Input
             onChange={(e) => setUsername(e.target.value)}
-            className="Input"
+            className="m-4 Input"
             type="text"
             required
             id="username"
@@ -46,7 +47,7 @@ function SignInForm(props) {
         <div>
           <Input
             onChange={(e) => setPassword(e.target.value)}
-            className="Input"
+            className="m-4 Input"
             type="password"
             required
             id="password"

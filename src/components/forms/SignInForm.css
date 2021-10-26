@@ -14,9 +14,9 @@
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   font-size: 26px;
-  text-align: center !important;
+  align-items: center;
   margin: 15px;
-  padding: 15px;
+  padding: 150px 150px;
   height: 45px;
   width: 445px;
 }
@@ -26,7 +26,7 @@
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   font-size: 26px;
-  text-align: center !important;
+  align-items: center;
 }
 
 .submit {

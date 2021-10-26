@@ -51,16 +51,17 @@ const ShoppingBag = () => {
   };
 
   return (
-    <div>
-      <Container className="shadow-lg rounded col text-center">
+    <Container className="shopbag shadow-lg rounded text-center">
+      <div>
         <h1 className="title">Shopping Bag</h1>
+
         {shoppingBag === null || shoppingBag === [] ? (
           <p className="emptybag">Shopping Bag is Empty</p>
         ) : (
           <section>
             {shoppingBag.map((product) => (
-              <Card className="shadow-lg mb-5 rounded card" key={product.id}>
-                <div className="image">
+              <Card className="card shadow-lg mb-5 rounded" key={product.id}>
+                <div className="text-center image">
                   {product.imageUrl === null || product.imageUrl === "" ? (
                     <img
                       src="https://i.postimg.cc/2y43Z54p/noimg.png"
@@ -80,7 +81,7 @@ const ShoppingBag = () => {
                   </div>
                 </div>
 
-                <div className="col text-center">
+                <div className="text-center">
                   <Button
                     className="removeitem"
                     onClick={() => removeItem(product)}
@@ -92,7 +93,7 @@ const ShoppingBag = () => {
             ))}
 
             <p className="subtotal">Sub Total: ${totalPrice().toFixed(2)} </p>
-            <div className="col text-center">
+            <div className="text-center">
               <Link
                 className="checkout"
                 onClick={() => submitShoppingBag(shoppingBag)}
@@ -107,8 +108,8 @@ const ShoppingBag = () => {
             </div>
           </section>
         )}
-      </Container>
-    </div>
+      </div>
+    </Container>
   );
 };
 

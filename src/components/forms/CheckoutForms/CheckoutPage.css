@@ -3,7 +3,7 @@ h4 {
   font-size: 35px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-  text-align: left !important;
+
   padding: 10px 1px;
 }
 
@@ -14,11 +14,11 @@ h4 {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   font-size: 26px;
-  text-align: center !important;
+  text-align: center;
   margin: 15px;
   padding: 15px;
-  height: 45px;
-  width: 445px;
+  height: 45px !important;
+  width: 445px !important;
 }
 
 .Input::placeholder {

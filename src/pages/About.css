@@ -14,3 +14,8 @@
     "Lucida Sans", Arial, sans-serif;
   text-align: justify !important;
 }
+
+.about {
+  margin: 3rem auto;
+  width: 60%;
+}

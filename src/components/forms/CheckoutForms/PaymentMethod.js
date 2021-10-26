@@ -30,7 +30,7 @@ const PaymentMethodForm = () => {
   };
 
   return (
-    <Container className="col text-center">
+    <Container className="d-flex justify-content-center">
       <div>
         <div>
           <h4>Payment Method</h4>
@@ -40,7 +40,7 @@ const PaymentMethodForm = () => {
             onChange={(e) =>
               setPaymentMethod({ ...paymentmethod, nameOnCard: e.target.value })
             }
-            className="m-4 Input"
+            className="col m-4 Input"
             type="text"
             required
             id="nameoncard"
@@ -52,7 +52,7 @@ const PaymentMethodForm = () => {
             onChange={(e) =>
               setPaymentMethod({ ...paymentmethod, cardNumber: e.target.value })
             }
-            className="m-4 Input"
+            className="col m-4 Input"
             type="number"
             required
             id="cardnumber"
@@ -67,7 +67,7 @@ const PaymentMethodForm = () => {
                 cardExpirationDate: e.target.value,
               })
             }
-            className="m-4 Input"
+            className="col m-4 Input"
             type="text"
             required
             id="expirationdate"
@@ -79,7 +79,7 @@ const PaymentMethodForm = () => {
             onChange={(e) =>
               setPaymentMethod({ ...paymentmethod, cardCvv: e.target.value })
             }
-            className="m-4 Input"
+            className="col m-4 Input"
             type="number"
             required
             id="cvv"

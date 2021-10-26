@@ -1,39 +1,36 @@
-.header {
-  align-items: center;
-  justify-content: space-between;
+#main-header {
   background-color: rgb(171, 134, 255);
+  max-width: 100%;
   -webkit-box-shadow: 0px 0px 5px 3px rgba(41, 41, 41, 0.25);
   -moz-box-shadow: 0px 0px 5px 3px rgba(41, 41, 41, 0.25);
   box-shadow: 0px 0px 5px 3px rgba(41, 41, 41, 0.25);
 }
 
-.header ul {
+#main-header ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center;
 }
 
-.header li {
+#main-header li {
   margin: 1rem 5rem;
 }
 
-.header a {
+#main-header a {
   text-decoration: underline;
   font-size: 1.5rem;
   color: rgb(72, 18, 221);
 }
 
-.header a:hover,
-.header a:active,
-.header a.active,
+#main-header a:hover,
+#main-header a:active,
+#main-header a.active,
 .signout:hover {
   color: white;
 }
 
 .signout {
-  background-color: rgb(171, 134, 255);
   color: rgb(72, 18, 221);
   cursor: pointer;
   border: none;

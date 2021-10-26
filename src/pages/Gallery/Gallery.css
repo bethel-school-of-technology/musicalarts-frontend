@@ -1,0 +1,17 @@
+.gallery-text {
+  background: #cc8fc0;
+  background: linear-gradient(90deg, #cc8fc0 5%, #b32dfd 79%);
+  margin-right: 1.56rem;
+  margin-left: 1.56rem;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.137);
+}
+.gallery-text h2 {
+  font-size: 7.5rem;
+}
+.gallery hr {
+  color: #000000ab;
+}
+.CardTitle h3 {
+  color: black !important;
+}

@@ -2,8 +2,9 @@
   align-items: center;
   justify-content: space-between;
   background-color: rgb(171, 134, 255);
-  padding: 3px;
-  position: fixed;
+  margin-top: 10px;
+  padding: 10px;
+  position: static;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -14,4 +15,5 @@ p {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   font-size: 25px;
+  padding: 5px;
 }

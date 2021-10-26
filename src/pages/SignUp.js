@@ -3,7 +3,7 @@ import "./SignUp.css";
 
 function SignUpPage() {
   return (
-    <section>
+    <section className="signup">
       {/*<h1 className="h1">Sign Up</h1>*/}
       <SignUpForm />
     </section>

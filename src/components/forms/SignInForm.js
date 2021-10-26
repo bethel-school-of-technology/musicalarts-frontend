@@ -31,10 +31,10 @@ function SignInForm(props) {
   }
 
   return (
-    <Container className="shadow-lg rounded col text-center">
+    <Container className="d-flex shadow-lg rounded justify-content-center">
       <div>
         <h1 className="h1">Sign In</h1>
-        <div>
+        <div className="col">
           <Input
             onChange={(e) => setUsername(e.target.value)}
             className="m-4 Input"
@@ -44,7 +44,7 @@ function SignInForm(props) {
             placeholder="Username"
           />
         </div>
-        <div>
+        <div className="col">
           <Input
             onChange={(e) => setPassword(e.target.value)}
             className="m-4 Input"
@@ -54,7 +54,7 @@ function SignInForm(props) {
             placeholder="Password"
           />
         </div>
-        <div className="col text-center">
+        <div className="text-center">
           <Button className="submit" onClick={submitHandler}>
             Submit
           </Button>

@@ -6,3 +6,8 @@
   text-align: center !important;
   padding: 5px !important;
 }
+
+.check {
+  margin: 3rem auto;
+  width: 60%;
+}

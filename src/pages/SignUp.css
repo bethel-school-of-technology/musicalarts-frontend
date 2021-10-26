@@ -6,3 +6,9 @@
   text-align: center;
   padding: 5px !important;
 }
+
+.signup {
+  margin: 3rem auto;
+  height: 50rem;
+  width: 60%;
+}

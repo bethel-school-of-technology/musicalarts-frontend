@@ -4,7 +4,7 @@ import "./SignIn.css";
 
 function SignInPage() {
   return (
-    <section>
+    <section className="signin">
       {/*<h1 className="h1">Sign In</h1>*/}
       <SignInForm />
     </section>

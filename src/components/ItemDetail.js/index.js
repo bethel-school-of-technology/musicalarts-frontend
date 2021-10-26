@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
+import { Container } from 'reactstrap';
 
 const ItemDetail = ({ history }) => {
   const [inventory, setInventory] = useState([]);
@@ -25,21 +26,27 @@ const ItemDetail = ({ history }) => {
   }
   return (
     <div>
-      <h1>{inventory.productName}</h1>
-      <img src={inventory.imageUrl} alt={inventory.productName} />
-      <p>{inventory.description}</p>
-      {inventory.quantity === 0 || inventory.quantity === null ? (
-        <p style={{ color: 'red' }}>Sold Out</p>
-      ) : (
-        <div>
-          <p style={{ color: 'green' }}>In Stock</p>
-          <button outline color='primary'>
-            Add to cart
-          </button>
-        </div>
-      )}
-      <Link to='/gallery'>Back to Gallery</Link>
-      <br />
+      <Container className='text-center'>
+        <h1>{inventory.productName}</h1>
+        {inventory.imageUrl === null || inventory.imageUrl === '' ? (
+          <img
+            src='https://i.postimg.cc/kgmdKBXP/noimage.png'
+            alt={inventory.productName}
+          />
+        ) : (
+          <img src={inventory.imageUrl} alt={inventory.productName} />
+        )}
+
+        <p>{inventory.description}</p>
+        {inventory.quantity === 0 || inventory.quantity === null ? (
+          <p style={{ color: 'red' }}>Sold Out</p>
+        ) : (
+          <div>
+            <p style={{ color: 'green' }}>In Stock</p>
+          </div>
+        )}
+        <Link to='/gallery'>Back to Gallery</Link>
+      </Container>
     </div>
   );
 };

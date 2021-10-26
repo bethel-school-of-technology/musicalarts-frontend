@@ -29,6 +29,9 @@ const API = {
       .post(`${backendUrl}paymentmethods`, newPaymentMethod)
       .catch((e) => console.error(e));
   },
+  getOrders: function () {
+    return axios.get(`${backendUrl}orders`).catch((e) => console.error(e));
+  },
 };
 
 export default API;

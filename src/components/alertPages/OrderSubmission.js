@@ -4,7 +4,7 @@ import "./OrderSubmission.css";
 
 const OrderSubmissionAlert = () => {
   return (
-    <Container className="col text-center">
+    <Container className="col text-center lastpage">
       <div>
         <h1 className="h1">Your Order Was Successfully Submitted!</h1>
         <div>

@@ -6,3 +6,9 @@
   text-align: center;
   padding: 5px !important;
 }
+
+.notfound {
+  margin: 5rem auto;
+  height: 30rem;
+  width: 60%;
+}

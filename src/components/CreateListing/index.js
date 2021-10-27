@@ -64,27 +64,25 @@ const CreateListing = (props) => {
         (res) => {
           console.log(res.data);
           props.history.push('/gallery');
+          alert('Listing Successfully created!');
         },
         (err) => {
-          //TODO: figure out what we will be naming the token
           console.error(err);
-          //localStorage.removeItem('token');
-          //props.history.push('/signin');
         }
       );
     }
-    alert('Listing Successfully created!');
   };
 
   return (
     <div>
-      <h2 className='text-center'>Create A New Listing: </h2>
-      <Container className='mb-2'>
+      <h2 className='mt-4 text-center'>Create A New Listing: </h2>
+      <Container className='d-flex flex-column mb-4 justify-content-center'>
         <Input
           className='mb-2'
           type='text'
           placeholder='Listing Name'
           name='productName'
+          required='required'
           onChange={(e) => setProductName(e.target.value)}
         />
         <Input
@@ -130,7 +128,6 @@ const CreateListing = (props) => {
             type='number'
             step='1'
           />
-          <InputGroupAddon addonType='append'>.00</InputGroupAddon>
         </InputGroup>
         <Input
           type='text'
@@ -138,14 +135,24 @@ const CreateListing = (props) => {
           name='location'
           onChange={(e) => setLocation(e.target.value)}
         />
-        <div onChange={(e) => setCategory(e.target.value)}>
+        <p style={{ fontSize: '20px' }}>Will you be selling Music or Art?</p>
+        <div
+          className='d-flex flex-row justify-content-start'
+          onChange={(e) => setCategory(e.target.value)}
+          style={{ fontSize: '17px' }}
+        >
           <Input type='radio' id='music' value='music' name='category' />
-          <label htmlFor='music'>Music</label> <br />
+          <label htmlFor='music'>Music</label>{' '}
           <Input type='radio' id='art' value='art' name='category' /> 
           <label htmlFor='art'>Art</label>
           <br />
         </div>
-        <Button onClick={createListing} type='submit'>
+        <Button
+          outline
+          className='text-center'
+          onClick={createListing}
+          type='submit'
+        >
           Create Listing
         </Button>
       </Container>

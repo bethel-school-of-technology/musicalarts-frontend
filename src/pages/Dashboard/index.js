@@ -9,7 +9,6 @@ import CustomerOrders from '../../components/CustomerOrders';
 import EditUser from '../../components/EditUser';
 import ManageListings from '../../components/ManageListings';
 import UserOrders from '../../components/UserOrders';
-
 import './Dashboard.css';
 
 const Dashboard = (props) => {
@@ -30,7 +29,6 @@ const Dashboard = (props) => {
     const url = `http://localhost:3001/user/dashboard`;
     axios.get(url, options).then(
       (res) => {
-        console.log(res);
         let user = {
           firstName: res.data.userInfo.firstName,
           lastName: res.data.userInfo.lastName,

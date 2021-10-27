@@ -1,13 +1,13 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-//import { useParams } from 'react-router';
+import { withRouter } from 'react-router';
 import { Table, Container } from 'reactstrap';
 import EditableRow from '../EditListing/EditableRow';
 import ReadOnlyRow from '../EditListing/ReadOnlyRow';
 
 const ManageList = ({ history }) => {
-  const [listings, setListings] = useState([]);
-  const [editListingId, setEditListingId] = useState(null);
+  const [products, setProducts] = useState([]);
+  const [editProductId, setEditProductId] = useState(null);
   const [editFormData, setEditFormData] = useState({
     productName: '',
     description: '',
@@ -17,7 +17,6 @@ const ManageList = ({ history }) => {
     price: '',
     location: '',
   });
-  //let { listingId } = useParams();
 
   //get all listings
   useEffect(() => {
@@ -33,7 +32,7 @@ const ManageList = ({ history }) => {
     const url = `http://localhost:3001/products/user-listing`;
     axios.get(url, options).then(
       (res) => {
-        setListings(res.data);
+        setProducts(res.data);
       },
       (err) => {
         localStorage.removeItem('token');
@@ -52,71 +51,75 @@ const ManageList = ({ history }) => {
     setEditFormData(newFormData);
   };
 
-  //   const editListing = () => {
-  //     console.log(listings);
-
-  //     if (
-  //       editForm.productName !== '' &&
-  //       listings.description !== '' &&
-  //       listings.price !== '' &&
-  //       listing.genre !== '' &&
-  //       listing.location !== ''
-  //     ) {
-  //       const req = {
-  //         ...listing,
-  //       };
-
-  //       const token = localStorage.getItem('token');
-  //       if (!token) {
-  //         history.push('/signin');
-  //       }
-
-  //       const options = {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       };
-  //       const url = `http://localhost:3001/products/${listing.id}`;
-
-  //       axios.put(url, req, options).then(
-  //         (res) => {
-  //           history.push(`/${listing.id}`);
-  //           console.log(res.data);
-  //         },
-  //         (err) => {
-  //           localStorage.removeItem('token');
-  //           history.push('/signin');
-  //         }
-  //       );
-  //     }
-  //   };
-
-  const handleEditFormSubmit = (e) => {
+  const handleEditFormSubmit = (e, product) => {
     e.preventDefault();
+    const editedProduct = {
+      id: editProductId,
+      productName: editFormData.productName,
+      description: editFormData.description,
+      genre: editFormData.genre,
+      quantity: editFormData.quantity,
+      imageUrl: editFormData.imageUrl,
+      price: editFormData.price,
+      location: editFormData.location,
+    };
+    const newProducts = [...products];
+    const i = products.findIndex((product) => product.id === editProductId);
+    newProducts[i] = editedProduct;
+    setProducts(newProducts);
+    setEditProductId(null);
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      history.push('/signin');
+    }
+
+    const options = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const url = `http://localhost:3001/products/${editProductId}`;
+
+    axios.put(url, editedProduct, options).then(
+      (res) => {
+        alert('Listing successfully updated');
+        history.push(`/gallery`);
+        console.log(res.data);
+      },
+      (err) => {
+        console.error(err);
+        // localStorage.removeItem('token');
+        // history.push('/signin');
+      }
+    );
   };
 
-  const handleEditClick = (e, listing) => {
+  const handleEditClick = (e, product) => {
     e.preventDefault();
-    setEditListingId(listing.id);
+    setEditProductId(product.id);
     const formValues = {
-      productName: listing.productName,
-      description: listing.description,
-      genre: listing.genre,
-      quantity: listing.quantity,
-      imageUrl: listing.imageUrl,
-      price: listing.price,
-      location: listing.location,
+      productName: product.productName,
+      description: product.description,
+      genre: product.genre,
+      quantity: product.quantity,
+      imageUrl: product.imageUrl,
+      price: product.price,
+      location: product.location,
     };
     setEditFormData(formValues);
   };
 
   //cancel edit
   const handleCancelClick = () => {
-    setEditListingId(null);
+    setEditProductId(null);
   };
 
-  //delete listing
-  const deleteListing = () => {
+  const deleteListing = (productId) => {
+    const newProducts = [...products];
+    const i = products.findIndex((product) => product.id === productId);
+    newProducts.splice(i, 1);
+    setProducts(newProducts);
     const token = localStorage.getItem('token');
     if (!token) {
       history.push('/signin');
@@ -128,14 +131,16 @@ const ManageList = ({ history }) => {
       },
     };
 
-    const url = `http://localhost:3001/products/${listings.id}`;
+    const url = `http://localhost:3001/products/${productId}`;
 
     axios.delete(url, options).then(
       (res) => {
-        history.push('/');
+        alert('Listing was successfully deleted!');
+        //history.push('/');
         console.log(res.data);
       },
       (err) => {
+        console.error(err);
         localStorage.removeItem('token');
         history.push('/signin');
       }
@@ -145,7 +150,9 @@ const ManageList = ({ history }) => {
   return (
     <div>
       <Container className='mt-3'>
-        <h2 className='text-center'>Manage Listings</h2>
+        <h2 className='text-center' style={{ fontSize: '50px' }}>
+          Manage Listings
+        </h2>
         <form onSubmit={handleEditFormSubmit}>
           <Table className='mt-3' bordered>
             <thead>
@@ -161,21 +168,22 @@ const ManageList = ({ history }) => {
               </tr>
             </thead>
             <tbody>
-              {listings.map((listing) => (
+              {products.map((product) => (
                 <>
-                  {editListingId === listing.id ? (
+                  {editProductId === product.id ? (
                     <EditableRow
-                      key={listing.id}
+                      key={editProductId}
                       editFormData={editFormData}
                       handleCancelClick={handleCancelClick}
                       handleEditFormChange={handleEditFormChange}
                     />
                   ) : (
                     <ReadOnlyRow
-                      key={listing.id}
-                      listing={listing}
+                      key={product.id}
+                      product={product}
                       deleteListing={deleteListing}
                       handleEditClick={handleEditClick}
+                      //handleDeleteClick={handleDeleteClick}
                     />
                   )}
                 </>
@@ -188,4 +196,4 @@ const ManageList = ({ history }) => {
   );
 };
 
-export default ManageList;
+export default withRouter(ManageList);

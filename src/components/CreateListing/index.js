@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router';
-//import './CreateListing.css';
+import './CreateListing.css';
 import axios from 'axios';
 import {
   Button,
@@ -74,15 +74,17 @@ const CreateListing = (props) => {
   };
 
   return (
-    <div>
-      <h2 className='mt-4 text-center'>Create A New Listing: </h2>
+    <div id='create-list'>
+      <h2 className='mt-4 text-center' style={{ fontSize: '50px' }}>
+        Create A New Listing:{' '}
+      </h2>
       <Container className='d-flex flex-column mb-4 justify-content-center'>
         <Input
           className='mb-2'
           type='text'
           placeholder='Listing Name'
           name='productName'
-          required='required'
+          required
           onChange={(e) => setProductName(e.target.value)}
         />
         <Input
@@ -90,6 +92,7 @@ const CreateListing = (props) => {
           type='text'
           placeholder='Genre'
           name='genre'
+          required
           onChange={(e) => setGenre(e.target.value)}
         />
         <Input
@@ -97,6 +100,7 @@ const CreateListing = (props) => {
           type='text'
           placeholder='Description'
           name='description'
+          required
           onChange={(e) => setDescription(e.target.value)}
         />
         <Input
@@ -149,7 +153,7 @@ const CreateListing = (props) => {
         </div>
         <Button
           outline
-          className='text-center'
+          className='btn text-center'
           onClick={createListing}
           type='submit'
         >

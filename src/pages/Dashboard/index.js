@@ -5,8 +5,8 @@ import { Link, Switch, Route } from 'react-router-dom';
 import { Container } from 'reactstrap';
 
 import CreateListing from '../../components/CreateListing';
-import CustomerOrders from '../../components/CustomerOrders';
-import EditUser from '../../components/EditUser';
+//import CustomerOrders from '../../components/CustomerOrders';
+//import EditUser from '../../components/EditUser';
 import ManageListings from '../../components/ManageListings';
 import UserOrders from '../../components/UserOrders';
 import './Dashboard.css';
@@ -70,25 +70,23 @@ const Dashboard = (props) => {
                 Manage Listings
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link className='link' to={`${url}/update-account`}>
                 Update Account
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link className='link' to={`${url}/user-orders`}>
                 View Orders
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link className='link' to={`${url}/customer-orders`}>
                 View Customer Orders
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
-
-        {/* When the model's/backend are set up integrate it so that the user's name shows up */}
 
         <div className='profile'>
           <h3 style={{ fontSize: '50px' }}>Profile</h3>
@@ -102,10 +100,9 @@ const Dashboard = (props) => {
       <Switch>
         <Route path={`${path}/create-listing`} component={CreateListing} />
         <Route path={`${path}/manage-listings`} component={ManageListings} />
-        <Route path={`${path}/update-account`} component={EditUser} />
-        {/* <Route path={`${path}/edit-listing/:id`} component={EditListing} /> */}
+        {/* <Route path={`${path}/update-account`} component={EditUser} /> */}
         <Route path={`${path}/user-orders`} component={UserOrders} />
-        <Route path={`${path}/customer-orders`} component={CustomerOrders} />
+        {/* <Route path={`${path}/customer-orders`} component={CustomerOrders} /> */}
       </Switch>
     </div>
   );

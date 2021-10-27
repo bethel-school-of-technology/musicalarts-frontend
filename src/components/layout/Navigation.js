@@ -14,7 +14,9 @@ import {
 } from 'reactstrap';
 import Badge from '@material-ui/core/Badge';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import { AccountCircleOutlined } from '@material-ui/icons';
 import './Navigation.css';
+//import malogo from '../../Images/malogo.png';
 
 function Navigation(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +36,7 @@ function Navigation(props) {
     return (
       <div id='main-header'>
         <Navbar light expand='xl'>
-          <Container className='d-flex'>
+          <Container>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
               <Nav className='ml-auto' navbar>
@@ -60,9 +62,9 @@ function Navigation(props) {
                   </>
                 ) : (
                   <>
-                    <UncontrolledDropdown nav inNavbar>
-                      <DropdownToggle nav caret>
-                        Welcome user
+                    <UncontrolledDropdown className='header-down' nav inNavbar>
+                      <DropdownToggle nav>
+                        <AccountCircleOutlined />
                       </DropdownToggle>
                       <DropdownMenu className='dropdown-menu-right'>
                         <DropdownItem>

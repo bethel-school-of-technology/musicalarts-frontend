@@ -5,27 +5,27 @@ import './Home.css';
 
 const HomePage = (props) => {
   return (
-    <Container className='col text-center'>
-      <h1 id='home-text' className='h1 col text-center'>
-        MusicalArts®
-      </h1>
-      <p>
-        <i>
-          The World's exclusive e-commerce platform for the Christian Artists
-          and Musicians!
-        </i>
-      </p>
+    <div>
+      <Container className=' home-page d-flex justify-content-center align-items-center flex-column text-center'>
+        <h1 className='h1 home-text col text-center'>MusicalArts®</h1>
+        <p className='gallery-txt'>
+          <i>
+            The World's exclusive e-commerce platform for the Christian Artists
+            and Musicians!
+          </i>
+        </p>
 
-      {/* <Carol /> */}
+        {/* <Carol /> */}
 
-      <Link to='/signup' className='button1'>
-        Create Account
-      </Link>
-      <br />
-      <Link className='button2' to='/gallery'>
-        View Listings
-      </Link>
-    </Container>
+        <Link to='/signup' className='button1'>
+          Create Account
+        </Link>
+        <br />
+        <Link className='button2' to='/gallery'>
+          View Listings
+        </Link>
+      </Container>
+    </div>
   );
 };
 

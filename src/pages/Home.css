@@ -1,20 +1,24 @@
-#home-text {
+.home-page {
+  margin-bottom: 9rem;
+}
+
+.home-page .home-text {
   font-family: 'Trebuchet', 'Arial Narrow', Arial, sans-serif !important;
-  font-size: 100px !important;
-  background: -webkit-linear-gradient(rgb(187, 18, 221), rgb(72, 18, 221));
+  font-size: 12.5rem !important;
+  background: -webkit-linear-gradient(227deg, #bb12dd 5%, #5321db 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.p {
+.gallery-text {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 40px;
   text-align: center;
 }
 
 .button1 {
-  background-color: rgb(72, 18, 221);
+  background-color: #4812dd;
   border: none;
   border-radius: 0.5em;
   color: white;
@@ -28,7 +32,7 @@
 }
 
 .button2 {
-  background-color: rgb(187, 18, 221);
+  background-color: #bb12dd;
   border: none;
   border-radius: 0.5em;
   color: white;

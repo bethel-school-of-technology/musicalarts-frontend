@@ -2,8 +2,8 @@ div {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-    'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   color: white;
 }
 
@@ -41,7 +41,7 @@ div {
 }
 
 .profile {
-  padding: 50px 500px 50px 500px;
+  padding: 50px 320px 50px 320px;
   box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, 0.2);
   background-color: #975b5b9f;
   border-radius: 1rem;

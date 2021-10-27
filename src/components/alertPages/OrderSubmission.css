@@ -7,6 +7,12 @@
   padding: 60px 10px 60px 10px;
 }
 
+.lastpage {
+  margin: 5rem auto;
+  height: 30rem;
+  width: 60%;
+}
+
 .button {
   background-color: rgb(72, 18, 221);
   border: none;

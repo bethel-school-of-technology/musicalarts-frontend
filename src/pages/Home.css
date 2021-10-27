@@ -1,9 +1,9 @@
 .home-page {
-  margin-bottom: 9rem;
+  margin-bottom: 10.2rem;
 }
 
 .home-page .home-text {
-  font-family: 'Trebuchet', 'Arial Narrow', Arial, sans-serif !important;
+  font-family: "Trebuchet", "Arial Narrow", Arial, sans-serif !important;
   font-size: 12.5rem !important;
   background: -webkit-linear-gradient(227deg, #bb12dd 5%, #5321db 100%);
   background-clip: text;
@@ -12,7 +12,7 @@
 }
 
 .gallery-text {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 40px;
   text-align: center;
 }
@@ -22,7 +22,7 @@
   border: none;
   border-radius: 0.5em;
   color: white;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   display: inline-block;
   margin: 15px;
   padding: 10px;
@@ -36,7 +36,7 @@
   border: none;
   border-radius: 0.5em;
   color: white;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   display: inline-block;
   margin: 15px;
   padding: 10px;

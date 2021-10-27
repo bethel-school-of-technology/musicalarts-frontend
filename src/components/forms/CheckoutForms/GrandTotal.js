@@ -19,6 +19,11 @@ const GrandTotal = (props) => {
 
     const token = localStorage.getItem("token");
 
+    // if (!paymentMethod && !shippingInfo) {
+    //   alert("missing information");
+    //   props.history.push("/bag");
+    // }
+
     if (!token) {
       props.history.push("/");
     }

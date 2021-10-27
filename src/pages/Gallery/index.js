@@ -11,7 +11,6 @@ import {
   CardSubtitle,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
-//import Item from '../../components/Item';
 import API from '../../utils/API';
 import { withRouter } from 'react-router';
 import useLocalStorage from '../../hooks/useLocalStorage';
@@ -29,7 +28,6 @@ const Gallery = () => {
     if (isInBag) {
       if (isInBag.bagQty < product.quantity) {
         isInBag.bagQty++;
-        //alert(`${product.productName} added to bag`);
         setBag(bag);
         alert(
           `You currently have ${isInBag.bagQty} of "${product.productName}" in your ShopBag`
@@ -60,7 +58,6 @@ const Gallery = () => {
         <Row className='d-flex justify-content-center'>
           {inventory.map((item) => (
             <Col key={item.id} lg='6'>
-              {/* <Item item={item} /> */}
               <Card
                 className='shadow-lg'
                 style={{ width: '40rem', height: '35rem' }}

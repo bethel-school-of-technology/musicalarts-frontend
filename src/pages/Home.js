@@ -10,7 +10,7 @@ const HomePage = (props) => {
         <h1 className='h1 home-text col text-center'>MusicalArts®</h1>
         <p className='gallery-txt'>
           <i>
-            The World's exclusive e-commerce platform for the Christian Artists
+            The World's most exclusive e-commerce platform for the Christian Artists
             and Musicians!
           </i>
         </p>

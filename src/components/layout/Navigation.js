@@ -14,13 +14,7 @@ import {
 } from 'reactstrap';
 import Badge from '@material-ui/core/Badge';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Navigation.css';
-
-// function getToken() {
-//   const token = localStorage.getItem('token');
-// }
 
 function Navigation(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,8 +33,8 @@ function Navigation(props) {
     const token = localStorage.getItem('token');
     return (
       <div id='main-header'>
-        <Navbar light expand='md'>
-          <Container className='justify-content-evenly'>
+        <Navbar light expand='xl'>
+          <Container className='d-flex'>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
               <Nav className='ml-auto' navbar>

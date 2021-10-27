@@ -2,27 +2,27 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import DeleteForeverOutlined from '@material-ui/icons/DeleteForeverOutlined';
 
-const ReadOnlyRow = ({ listing, handleEditClick, deleteListing }) => {
+const ReadOnlyRow = ({ product, handleEditClick, deleteListing }) => {
   return (
-    <tr key={listing.id}>
-      <td>{listing.productName}</td>
-      <td>{listing.description}</td>
-      <td>{listing.genre}</td>
-      <td>{listing.quantity}</td>
-      {(listing.imageUrl === '') | (listing.imageUrl === null) ? (
+    <tr key={product.id}>
+      <td>{product.productName}</td>
+      <td>{product.description}</td>
+      <td>{product.genre}</td>
+      <td>{product.quantity}</td>
+      {(product.imageUrl === '') | (product.imageUrl === null) ? (
         <td>no image url</td>
       ) : (
-        <td>{listing.imageUrl}</td>
+        <td>{product.imageUrl}</td>
       )}
 
-      <td>{listing.price}</td>
-      <td>{listing.location}</td>
+      <td>{product.price}</td>
+      <td>{product.location}</td>
       <td>
         <Button
           className='btn btn-sm'
           outline
           type='button'
-          onClick={(e) => handleEditClick(e, listing)}
+          onClick={(e) => handleEditClick(e, product)}
         >
           edit
         </Button>{' '}
@@ -32,7 +32,7 @@ const ReadOnlyRow = ({ listing, handleEditClick, deleteListing }) => {
           color='danger'
           outline
           type='button'
-          onClick={() => deleteListing(listing.id)}
+          onClick={() => deleteListing(product.id)}
         >
           <DeleteForeverOutlined />
         </Button>

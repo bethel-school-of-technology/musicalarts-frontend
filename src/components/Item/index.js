@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import useLocalStorage from '../../hooks/useLocalStorage';
 import './Item.css';
 
 import {
-  Button,
   Card,
   CardImg,
   CardText,
@@ -15,31 +13,6 @@ import {
 } from 'reactstrap';
 
 const Item = ({ item }) => {
-  const [bag, setBag] = useLocalStorage('shoppingBag', []);
-  const addToBag = (product) => {
-    var isInBag = bag.find((obj) => {
-      return obj.id === product.id;
-    });
-
-    console.log(isInBag);
-    if (isInBag) {
-      if (isInBag.bagQty < product.quantity) {
-        isInBag.bagQty++;
-        //alert(`${product.productName} added to bag`);
-        setBag(bag);
-        alert(
-          `You currently have ${isInBag.bagQty} of "${product.productName}" in your ShopBag`
-        );
-      } else {
-        alert('Sorry, not enough products in our store');
-      }
-    } else {
-      product.bagQty = 1;
-      setBag([...bag, product]);
-      bag.push(product);
-    }
-  };
-
   return (
     <div>
       <Card className='shadow-lg'>

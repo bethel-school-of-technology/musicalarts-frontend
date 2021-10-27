@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Table } from 'reactstrap';
 import { withRouter } from 'react-router';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Gallery = ({ history }) => {
   const [orders, setOrders] = useState([]);
@@ -31,7 +32,10 @@ const Gallery = ({ history }) => {
   return (
     <>
       {orders.length === 0 ? (
-        <h3 className='text-center'>You have no orders!</h3>
+        <div className='text-center'>
+          <h3>You have no orders!</h3>
+          <Link to='/gallery'>Go to the Gallery</Link>
+        </div>
       ) : (
         <>
           <h2 className='mt-3 text-center' style={{ fontSize: '50px' }}>

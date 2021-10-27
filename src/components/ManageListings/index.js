@@ -149,14 +149,16 @@ const ManageList = ({ history }) => {
         <form onSubmit={handleEditFormSubmit}>
           <Table className='mt-3' bordered>
             <thead>
-              <th>Product Name</th>
-              <th>Description</th>
-              <th>Genre</th>
-              <th>Quantity</th>
-              <th>Image Url</th>
-              <th>Price</th>
-              <th>Location</th>
-              <th>Actions</th>
+              <tr>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Genre</th>
+                <th>Quantity</th>
+                <th>Image Url</th>
+                <th>Price</th>
+                <th>Location</th>
+                <th>Actions</th>
+              </tr>
             </thead>
             <tbody>
               {listings.map((listing) => (

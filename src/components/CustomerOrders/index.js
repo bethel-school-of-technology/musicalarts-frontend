@@ -1,9 +1,12 @@
 import React from 'react';
+import { Container } from 'reactstrap';
 
 const CustomerOrders = () => {
   return (
     <div>
-      <h3>Customer Orders</h3>
+      <Container className='mt-5 mb-5 text-center'>
+        <h3 style={{ fontSize: '50px' }}>Under Construction</h3>
+      </Container>
     </div>
   );
 };

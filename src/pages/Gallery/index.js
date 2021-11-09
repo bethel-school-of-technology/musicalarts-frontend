@@ -51,7 +51,7 @@ const Gallery = () => {
   return (
     <div className='gallery'>
       <div className='gallery-text mt-4'>
-        <h2 className='text-center mt-5 mb-5'>MusicalArts Gallery</h2>
+        <h2 className='text-center mt-5 mb-5'>easl's Gallery</h2>
       </div>
 
       <Container fluid className='text-center'>

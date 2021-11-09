@@ -1,20 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:wght@700&display=swap');
+
 .home-page {
-  margin-bottom: 11.7rem;
+  /* margin-bottom: 11.7rem; */
+  margin-top: 6rem;
 }
 
 .home-page .home-text {
-  font-family: "Trebuchet", "Arial Narrow", Arial, sans-serif !important;
+  font-family: 'Lobster Two', cursive;
   font-size: 12.5rem !important;
-  background: -webkit-linear-gradient(227deg, #bb12dd 5%, #5321db 100%);
+  /* background: -webkit-linear-gradient(227deg, #e688f8 5%, #6243b6 100%);
   background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
+  color: #6243b6;
+  text-shadow: 0 1px #e688f8, -1px 0 #e688f8, -1px 2px #e688f8, -2px 1px #e688f8,
+    -2px 3px #e688f8, -3px 2px #e688f8, -3px 4px #e688f8, -4px 3px #e688f8,
+    -4px 5px #e688f8, -5px 4px #e688f8, -5px 6px #e688f8, -6px 5px #e688f8,
+    -6px 7px #e688f8, -7px 6px #e688f8, -7px 8px #e688f8, -8px 7px #e688f8;
 }
 
-.gallery-text {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+.home-txt {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 40px;
   text-align: center;
+  color: #dda68f;
 }
 
 .button1 {
@@ -22,7 +31,7 @@
   border: none;
   border-radius: 0.5em;
   color: white;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   display: inline-block;
   margin: 15px;
   padding: 10px;
@@ -36,7 +45,7 @@
   border: none;
   border-radius: 0.5em;
   color: white;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   display: inline-block;
   margin: 15px;
   padding: 10px;
